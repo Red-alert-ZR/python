@@ -186,6 +186,10 @@ resp = request.post(url,headers=headers,data=data,verify=Flase)
 
 设置3秒钟没反应，如果结合代理去使用，代理一段时间没反应，就可以从ip池里删除了
 resp = requests.get(url,headers=headers,data=data,verify=False,timeout=3)
+
+=================================================================
+
+retrying模块
     
     
     
