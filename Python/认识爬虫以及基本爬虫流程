@@ -1,1 +1,206 @@
+#爬虫实验
+import requests
 
+def main():
+    url = "http://www.4399dmw.com/search/dh-0-0-0-0-0-2-0/"
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0"
+    }
+    resp = requests.get(url=url,headers=headers)
+    with open ("a.txt","wb+") as f:
+        #写入文件
+        f.write(resp.content)
+        
+    pass
+
+if __name__ == '__main__':
+    main()
+------------------------------------------------------------------
+
+import requests
+
+def main():
+    url = "http://www.4399dmw.com/search/dh-0-0-0-0-0-{}-0/"
+    url_list=[]
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0"
+    }
+    for i in range(3):
+        url_list.append(url.format(i))
+
+    #打印地址列表
+    print(url_list)
+
+    #遍历地址列表并且发送get请求，然后保存
+    for item in url_list:
+        resp = requests.get(url=item,headers=headers)
+        with open ("a"+str(i)+".txt","wb+") as f:
+            #写入文件
+            f.write(resp.content)
+
+
+
+    pass
+
+if __name__ == '__main__':
+    main()
+-------------------------------------------------------------------
+import requests
+
+def main():
+    url = "http://www.4399dmw.com/search/dh-0-0-0-0-0-{}-0/"
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0"
+    }
+    for i in range(14):
+        url1 = url.format(i)
+        print(url1)
+        resp = requests.get(url=url1,headers=headers)
+        with open ("a"+str(i+1)+".txt","wb+") as f:
+            #写入文件
+            f.write(resp.content)
+
+    pass
+
+if __name__ == '__main__':
+    main()
+--------------------------------------------------------
+
+#代理使用:
+#是一种反反爬虫的手段
+#防止自己的ip泄露或追踪
+
+#http https socket4 socket5
+import requests
+
+def main():
+    url = "http://www.4399dmw.com/search/dh-0-0-0-0-0-{}-0/"
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0"
+    }
+    #代理
+    proxies = {"HTTP":"http://11.3.118.247:30001"}
+    url1 = url.format("1")
+    print(url1)
+    resp = requests.get(url=url1,headers=headers,proxies=proxies)
+    with open ("a.txt","wb+") as f:
+        #写入文件
+        f.write(resp.content)
+        
+ #如果你使用的是socks代理
+ proxies = {"HTTPS":"socks5://123.1.1.1:12312"}
+ 
+ #匿名代理:
+ #知道你用代理，但是不知道你是谁
+ 
+ #混合代理:
+ #知道你用代理，但是获取到的是假的ip地址
+ 
+ #高匿代理:
+ #无法发现你在使用代理
+ 
+ ---------------------------------------------------
+ 
+ #反爬虫侦测:
+ #一段时间内ip访问的频率
+ #检查cookie, session, user-agent, refer, header等参数
+ #服务器提供商
+ #需要ip地址池的更新
+ 
+-----------------------------------------------------
+
+#处理session(用户登录维持)
+
+#通过网页的表单知道post的信息，但是网站内部的情况需要登录之后带着cookie/session信息才能访问
+
+import requests
+
+def main():
+    url = "http://sqlilabs.njhack.xyz:8080/Less-20/index.php"
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0"
+    }
+    data = {"uname":"admin","passwd":"admin"}
+    #实例化session
+    session = requests.session()
+
+    #发送post请求，提交用户名密码
+    session.post(url,headers=headers,data=data)
+    #此时session里面已经有cookie的信息了，可以直接用session去get登陆后的任何界面
+    res = session.get(url,headers=headers)
+    print(res.content.decode("utf-8"))
+    
+    pass
+
+if __name__ == '__main__':
+    main()
+------------------------------------------
+#处理cookie直接登录的情况
+
+#带着cookie情况下:
+import requests
+
+def main():
+    url = "http://sqlilabs.njhack.xyz:8080/Less-20/index.php"
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0",
+        "Cookie":"uname=admin"
+    }
+    cookie_dict = {"uname":"admin"}
+    resp = requests.get(url,headers=headers,cookies=cookie_dict)
+    print(resp.content.decode("utf-8"))
+    pass
+
+if __name__ == '__main__':
+    main()
+--------------------------------------------------------------------
+
+#直接从返回中获得cookie信息
+import requests
+
+def main():
+    url = "http://http://sqlilabs.njhack.xyz/Less-20/index.php"
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0"
+    }
+    data = {"uname":"admin","passwd":"admin"}
+    resp = requests.get(url,headers=headers,data=data)
+    #解码cookies
+    cookies = requests.utils.dict_from_cookiejar(resp.cookies)
+    print(cookies)
+    pass
+
+if __name__ == '__main__':
+    main()
+----------------------------------------------------------
+
+如果要处理https网页
+ssl证书问题
+
+不去验证ssl证书
+resp = request.post(url,headers=headers,data=data,verify=Flase)
+
+--------------------------------------------------------------
+
+超时参数
+
+设置3秒钟没反应，如果结合代理去使用，代理一段时间没反应，就可以从ip池里删除了
+resp = requests.get(url,headers=headers,data=data,verify=False,timeout=3)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
