@@ -190,6 +190,66 @@ resp = requests.get(url,headers=headers,data=data,verify=False,timeout=3)
 =================================================================
 
 retrying模块
+
+pip install retrying
+
+import requests
+from retrying import retry
+
+#如果失败就请求3次，执行3次如果还失败就报错，可以配合try
+@retry(stop_max_attempt_number=3)
+def qingqiu(inurl):
+    url = inurl
+    print("开始请求网站")
+    headers = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+    }
+    res = requests.get(url=url,headers=headers)
+    with open("a.txt","wb+") as f:
+        f.write(res.content)
+    print("请求成功")
+    pass
+
+def main():
+    try:
+        qingqiu("http://www.4399dmw.comx/search/dh-1-0-0-0-0-1-0/")
+    except:
+        print("no")
+    pass
+
+==========================
+
+Json
+
+#爬虫不一定整站爬行，还可以请求接口
+
+结构化数据：
+json，xml
+
+#处理方式：直接转化为python类型
+
+#大多数手机版的网页可能是json数据
+#可以在审查元素--network--response看到
+
+#有的时候在访问json页面可能发生错误，因为有可能碰到了反爬虫程序，考虑是不是referer缺失等问题
+
+-----------------
+
+http://api.help.bj.cn/apis/aqi3/?id=nanjing
+
+import requests
+import json
+
+def main():
+    url = "https://json.tewx.cn/user/API_kdd531mytfdzm06i?sdAS1dsnuUa3sd=190001&Jsdh4bajs99dii=sohpuisypf4nfaei"
+    resp = requests.get(url=url)
+    content = resp.content.decode("utf-8")
+    print(content)
+    #把字符串变成了字典
+    shuju = json.loads(content)
+    #访问json转化后的字典
+    print(shuju["data"]["JSON"]["mydata"]["name"])
+    pass
     
     
     
