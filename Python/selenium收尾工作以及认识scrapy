@@ -1,0 +1,186 @@
+模拟手机操作
+
+引入触控类
+from selenium.webdriver.common.touch_actions import TouchActions
+
+mobileEmulation = {'deviceName':'iPhone 6/7/8'}
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option('mobileEmulation',mobileEmulation)
+#关闭w3c模式！！！非常重要，否则无法点击
+options.add_experimental_option('w3c',False)
+
+#点击坐标操作
+action =TouchActions(driver)
+action.tap_and_hold(75,125).release(75,125).perform()
+
+double_tap
+filck_element
+long_press
+move
+perform
+release
+scroll
+tap
+
+=======================
+
+清除input标签所有的value
+sell1 = driver.find_element_by_xpath("//input[@id='j-input']")
+driver.execute_script("arguments[0].value='';",sell1)
+
+======================
+
+爬虫框架
+
+scrapy
+
+提取结构性的数据而编写的框架，使用少量代码快速获取东西
+
+爬虫框架工作流程：
+1.调度器把requests-->引擎-->下载中间件-->下载器
+2.下载器发送请求，获取响应-->下载中间件--->引擎--->调度器
+3.爬虫提取url地址，组成request对象--->爬虫中间件--->引擎--->调度器
+4.爬虫提取数据--->引擎-->管道
+5.管道提醒数据处理和保存
+
+pip3 install scrapy
+还需要安装pypiwin32
+
+scrapy startproject test1
+新建一个项目test1
+
+spiders文件夹 = 所有的爬虫都会放在这里面
+items.py = 定义一些爬取的数据模型
+middlewares.py = 爬虫中间件
+pipelines.py = 将items的模型存储到本地的磁盘中
+settings.py = 设置请求头信息
+
+cd test1
+scrapy genspider spider1 "4399dmw.com"
+生成一个爬虫
+
+scrapy crawl spider1
+这个spider1是刚刚生成的
+
+post发送数据
+
+--------------------------------------------------------------------------
+#<spider1.py>------------(爬取少量的信息时)***
+import scrapy
+from test1.items import Test1Item
+
+
+class Spider1Spider(scrapy.Spider):
+    #爬虫根据这个名字运行的
+    name = 'spider1'
+    #允许的域名
+    allowed_domains = ['4399dmw.com']
+    #从什么域名开始
+    start_urls = ['http://www.4399dmw.com/donghua/']
+
+    def parse(self, response):
+        #//div[@class='u-ct']/p[@class='u-tt']/text()
+        datas = response.xpath("//div[@class='u-ct']/p[@class='u-tt']/text()")
+        for i in datas:
+            print(i.get())
+
+            #使用items来存储
+            topipeline1 = Test1Item(title=i.get())
+            yield topipeline1
+        pass
+---------------------------------------------------------------------
+#<pipelines.py>------------(爬取少量的信息时)***
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+
+# useful for handling different item types with a single interface
+from itemadapter import ItemAdapter
+import json
+from scrapy.exporters import JsonItemExporter,JsonLinesItemExporter
+
+
+
+
+class Test1Pipeline:
+    #打开爬虫的时候执行
+    def open_spider(self,spider):
+        #打开并准备存储,使用二进制存储
+        self.fp = open("spider1.json",'wb')
+        self.explorer = JsonLinesItemExporter(self.fp,ensure_ascii=False,encoding="utf-8")
+        self.explorer.start_exporting()
+        pass
+    #使用yield的时候执行
+    def process_item(self, item, spider):       
+        self.explorer.export_item(item)
+        return item
+
+    #爬虫结束的时候执行
+    def close_spider(self,spider):
+        self.explorer.finish_exporting()
+        #结束关闭文件
+        self.fp.close()
+        pass
+---------------------------------------------------------------
+##<pipelines.py>----------经典方法***
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+
+# useful for handling different item types with a single interface
+from itemadapter import ItemAdapter
+import json
+
+
+
+
+
+class Test1Pipeline:
+    #打开爬虫的时候执行
+    def open_spider(self,spider):
+        #打开并准备存储
+        self.fp = open("spider1.json",'w',encoding='utf-8')
+        pass
+    
+    #使用yield的时候执行
+    def process_item(self, item, spider):
+        #使用字典方式储存
+        item_json = json.dumps(dict(item),ensure_ascii=False)
+        self.fp.write(item_json+'\n')
+        return item
+
+    #爬虫结束的时候执行
+    def close_spider(self,spider):
+        #结束关闭文件
+        self.fp.close()
+        pass
+    ============================================================
+    '''
+        #发送post请求
+         def start_requests(self):
+        url = "http://www.xx.com"
+        data = {"username":"admin","passwd":"admin"}
+        #请求地址和数据，并进行回调
+        request = scrapy.FormRequest(url,formdata=data,callback=self.parse_login)
+        yield request
+        pass
+
+    def parse_login(self,response):
+        with open("a.html",'w',encoding="utf-8")as fp:
+            fp.write(response.text)           
+        pass
+
+        #找到下一页的链接
+        next_url = response.xpath("//a[@class='next']/@href").get()
+        if not next_url:
+            return
+        else:
+            #让他返回继续执行这个方法
+            yield scrapy.Request("http://www.4399dmw.com/"+next_url,callback=self.parse)
+'''
+#补充
