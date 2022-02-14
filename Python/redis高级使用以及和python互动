@@ -1,0 +1,173 @@
+set类型
+
+无序集合，元素唯一，不重复，没有修改操作
+
+新建一个set值
+sadd s1 member1 member2 member3
+
+获取s1里所有值
+smembers s1
+
+获取s1里有多少个元素
+scard s1
+
+删除set中的值
+srem s1 member2
+
+取出交集
+sinter s1 s2
+
+取并集
+sunion s1 s2
+
+取差集
+sdiff s1 s2
+
+------------------------
+
+zset类型
+
+有序集合，元素唯一，不重复，没有修改操作
+每个元素关联一个score，也就是权重，从小到大权重排序
+
+添加元素和对应的权重
+zadd zs1 4 xiaoming 5 xiaohong 2 xiaogang
+
+查看元素排序
+zrange zs1 0 -1
+
+取权重4-5之间的值
+zrangebyscore zs1 4 5
+
+删除zset中的值
+zrem zs1 xiaogang
+
+================================
+
+和python进行互动
+
+pip3 install redis
+
+import redis
+
+r = redis.StrictRedis(host='localhost',port=6379,db=0)
+r.set("key1","value111")
+print(r.get("key1").decode("utf-8"))
+
+----------------
+
+有过期时间的
+r.set("key2","value211",px=5000)
+
+r.setex("haha1",10,"nihao123")
+
+-----------------
+
+使用连接池去链接
+pool = redis.ConnectionPool(host='localhost',port=6379,decode_responses=True)
+r = redis.Redis(connection_pool=pool)
+r.set("key2","value211",px=5000)
+print(r.get("key2"))
+
+-----------------
+
+mset
+r.mset({'haha1':'value1','haha2':'value2','haha3':'value3'})
+
+print(r.mget("haha1","haha3"))
+
+------------------
+
+hash功能
+
+r.hset("hash1","k1","value1")
+r.hset("hash1","k2","value2222")
+print(r.hkeys("hash1"))
+print(r.hget("hash1","k2"))
+print(r.hmget("hash1", "k2","k1"))
+
+r.hmset("hash2",{"n1":"nnn1","n2":"nnn2"})
+
+print(r.hgetall("hash2"))
+
+print(r.hexists("hash1","k1"))
+
+自增自减
+r.hincrby("hash2","n3",amount=-11)
+
+自增自减浮点数
+r.hincrbyfloat("hash2","n3",amount=+11.12)
+
+=========================
+
+list
+r.rpush("list1",1,2,3,4,5,6,7)
+
+print(r.lrange("list1",0,3))
+
+r.rpush("list1",10)
+
+在3的前面添加一个99
+r.linsert("list1","before",3,99)
+
+r.lset("list1",4,-300)
+
+删除列表最左边的元素
+r.lpop("list1")
+
+只保留0-2的元素
+r.ltrim("list1",0,2)
+
+索引为1的值
+print(r.lindex("list1",1))
+
+======================
+
+set
+
+r.sadd("set1",11,22,33,44,55)
+print(r.scard("set1"))
+
+print(r.smembers("set1"))
+
+使用迭代取获取元素
+for i in r.sscan_iter("set1"):
+print(i)
+
+随机删除一个元素
+r.spop("set1")
+
+指定删除某个元素
+r.srem("set1",33)
+
+==============================
+
+zset
+
+r.zadd("zset1",mapping={'m1':2,'m2':9,'m3':7,'m4':1})
+
+print(r.zcard("zset1"))
+
+print(r.zrange("zset1",0,-1))
+
+print(r.zrevrange("zset1",0,-1))
+
+r.zincrby("zset1",value="m3",amount=2)
+
+r.zrem("zset1","m2")
+
+print(r.zscore("zset1","m3"))
+
+===================================
+
+任意类型删除
+r.delete("haha2")
+
+判断数据是否存在
+print(r.exists("zset1"))
+
+重命名数据
+r.rename("set1","set10")
+
+获得类型
+print(r.type('zset1'))
