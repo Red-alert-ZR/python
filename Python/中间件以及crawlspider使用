@@ -1,0 +1,124 @@
+同时采集多个字段
+datas_pic = response.xpath("//a[@class='u-card']/img")
+        for item in datas_pic:
+            #使用items来存储
+            pic = item.xpath("@data-src").extract()
+            title = item.xpath("@alt").extract()
+            topipeline1 = Test1Item(pic=pic,title=title)
+            yield topipeline1
+
+-------------------
+
+中间件
+伪造ua
+
+middleware.py中
+添加
+class useragentMiddleware(object):
+    #定义请求头
+    USER_AGENTS = {
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.33',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.94 Safari/537.34',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.95 Safari/537.35',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.96 Safari/537.36'
+    }
+    def process_requests(self,request,spider):
+        #随机选出一个ua
+        user_agent = random.choice(self.USER_AGENTS)
+        #设置随机请求头
+        request.header['User-Agent']=user_agent
+        pass
+
+在settings.py中
+DOWNLOADER_MIDDLEWARES = {
+    'test1.middlewares.useragentMiddleware': 543,
+}
+
+-------------------
+
+使用代理ip
+
+#代理ip的中间件
+class proxyMiddleware(object):
+    #普通代理
+    PROXIES = {'1.2.3.4:8080','2.2.2.2:9090'}
+    def process_request(self,request,spider):
+        ''''''
+        proxy= random.choice(self.PROXIES)
+        request.meta['proxy'] = proxy
+        '''
+        #有单独用户名和密码的私密代理
+        proxy = '1.2.3.4:9099'
+        user_pass = "admin:admin888"
+        request.meta['proxy']=proxy
+        #假如需要使用base64加密
+        bs64_user_pass = base64.b64encode(user_pass.encode('utf-8'))
+        request.headers['Proxy-Authorization']="Basic"+bs64_user_pass.decode("utf-8")
+        '''
+        pass
+    def process_response(self,request,response,spider):
+        if response.status!=200:
+            print('请求出错')
+
+========================
+
+crawlspider
+
+进入spider目录
+scrapy genspider -t crawl spider1 目标网站
+
+scrapy shell [目标网址]
+
+title = response.xpath("//a[@class='u-card']/img/@alt")
+title
+可以测试是否可以抓取到内容
+============================================================
+
+import scrapy
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import CrawlSpider, Rule
+from test2.items import Test2Item
+
+class Spider2Spider(CrawlSpider):
+    name = 'spider2'
+    allowed_domains = ['4399dmw.com']
+    start_urls = ['http://www.4399dmw.com/search/dh-1-0-0-0-0-0-0/']
+
+    #决定爬虫的走向，爬到页面是否需要跟进，到某个页面中使用什么函数处理
+    rules = (
+        Rule(LinkExtractor(allow=r'.+dh-1-0-0-0-0-\d-0\/'),follow=True),
+        Rule(LinkExtractor(allow=r'.+\/dh\/.+\/'),callback='parse_detail', follow=False)
+    )
+
+    def parse_item(self, response):
+        #item = {}
+        #item['domain_id'] = response.xpath('//input[@id="sid"]/@value').get()
+        #item['name'] = response.xpath('//div[@id="name"]').get()
+        #item['description'] = response.xpath('//div[@id="description"]').get()
+        #item['title'] = response.xpath("//a[@class='u-card']/img/@alt").get()
+        datas_pic = response.xpath("//a[@class='u-card']/img")
+        for i in datas_pic:
+            # 使用items来存储
+            pic = i.xpath("@data-src").extract()
+            a = pic[0]
+            a = "http:" + a
+            pic[0] = a
+            pic = pic
+            title = i.xpath("@alt").extract()
+            topipeline1 = Test2Item(pic=pic, title=title)
+            yield topipeline1
+        pass
+
+    def parse_detail(self, response):
+        pic =response.xpath("//div[@class='works__main']//img[@class='works__img']/@data-src").extract()
+        a = pic[0]
+        a = "http:" + a
+        pic[0] = a
+        pic = pic
+        title = response.xpath("//div[@class='works__main']/h1/text()").extract()
+        jianjie = response.xpath("//div[@class='main']/div/p/text()").extract()
+        topipeline1 = Test2Item(jianjie=jianjie,title=title,pic=pic)
+        print(title+'----------'+jianjie+'--------'+pic)
+        yield topipeline1
+        pass
+
