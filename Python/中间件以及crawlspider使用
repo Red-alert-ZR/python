@@ -1,3 +1,5 @@
+#**7**#
+
 同时采集多个字段
 datas_pic = response.xpath("//a[@class='u-card']/img")
         for item in datas_pic:
