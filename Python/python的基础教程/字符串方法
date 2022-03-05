@@ -1,0 +1,152 @@
+
+s0 = 'Hello world'
+print('The string is %s'%s0)
+x = 2
+print(f'The string is: {s0}, the variables is {x}')
+
+print('字符串是 {}, 整数变量是 {},新增字符串是 {}'.format(s0,x,'Ni Hao'))
+
+print('第2个是 {1}, 第1个是 {0}, 重复第2个 {1}'.format(s0,x))
+
+print('整数变量是 {var}, 字符串是 {vstr}'.format(vstr=s0,var=x))
+
+
+
+#传统格式化字符串方法%
+s0 = 'Hello world' ;x=2
+print('The string is %s'%s0)
+#x=2
+print('The string is: %s, the variable is: %d'%(s0,x))
+
+
+
+#转换说明符
+%c          格式化字符及其ASCII码
+%s          格式化字符串
+%d          格式化整数
+%f          格式化浮点数，可指定小数后面的精度
+
+
+
+#格式化字符串还需要一些辅助指令,置于%和说明符号之间
+
+
+nHex = 0xFF
+print("nHex = %#x, nDec = %d, nOct = %#o"%(nHex,nHex,nHex))
+
+pi =3.1415926535897932384626
+print(pi)
+print('%10.3f' % pi) #字符串占用10个位置（宽度为10），精度为3
+print("pi = %.*f" % (3,pi)) #用*从后面的元组中读取字段宽度或精度
+print('%010.3f' % pi) #用0来填充空白
+print('%-10.3f' % pi) #左对齐
+print('%+f' % pi) #显示正负号
+
+
+
+#改变print()的自动换行
+
+#在默认情况下，print()函数会自动在行末加上回车，如果不需回车,使用end参数,就可以改变它的行为。
+
+print(0)
+print(1)
+print(2)
+
+#设置end参数
+
+print(0,end='')
+print(1,end='  ')
+print(2,end=',')
+print(3)
+print(4)
+
+print('#',end='')
+print('#',end='')
+print('#',end='')
+print('#',end='')
+
+#输入函数input()
+
+#函数input()让程序暂停运行，等待用户输入一些文本。获取用户输入后，Python将其存储在一个变量中，以方便各位使用。
+
+s = input()
+print(s)
+
+#这种获取用户的信息方式并不是很友好，因为用户不知道现在是等待用户输入状态。所以编程者可以给input()函数增加一个参数,
+#用来提醒用户输入，比如:
+
+s = input('请输入一个数值：')
+print(s)
+
+请输入一个数值：56
+56
+
+#要注意的是，无论用户输入的是什么信息，默认都是以字符串的形式被input()函数获取。
+#比如:
+print(type(s))
+
+请输入一个数值：[1,2,3,6,9,87,5,5,8,8,755,8]
+[1,2,3,6,9,87,5,5,8,8,755,8]
+<class 'str'>
+
+
+#必要时，可以一次输入多个数据,输入时可使用空格、逗号等符号分隔，
+#然后利用字符串方法提取每个输入
+
+info = input('请输入学号和姓名，用空格分隔：')
+stuid,name = info.split()
+print(stuid,name)
+
+请输入学号和姓名，用空格分隔：202113020082 赵瑞
+202113020082 赵瑞
+#注意，上例中stuid的类型仍然是字符串
+
+
+#那如果编程者希望获取到的是一个整数,该怎么办呢?
+#可以有两种方法:
+
+#类型转换
+
+#强制类型转换已在第二章介绍过,是- -种比较简单的方式。比如:
+s = int(input('请输入一个数值：'))
+print(type(s))
+
+请输入一个数值：123
+<class 'int'>
+
+s = input('请输入一个数值：')
+num = int(s)
+print(type(num))
+
+请输入一个数值：1123
+<class 'int'>
+
+
+#但是，如果此时用户输入的不是一个合法的数字，比如输入“a2"那么就会错:
+s = input('请输入一个数值：')
+num = int(s)
+print(type(num))
+
+请输入一个数值：a2
+Traceback (most recent call last):
+  File "C:\Python Study\PyScripter\python study\模块1.py", line 127, in <module>
+    num = int(s)
+ValueError: invalid literal for int() with base 10: 'a2'
+
+num = int(input('请输入一个浮点数'))
+print(type(num))
+
+请输入一个浮点数3.14
+Traceback (most recent call last):
+  File "C:\Python Study\PyScripter\python study\模块1.py", line 136, in <module>
+    num = int(input('请输入一个浮点数'))
+ValueError: invalid literal for int() with base 10: '3.14'
+
+#小技巧:自动类型转换
+#自动转换通过一个函数eval()来实现， 该函数可以自动识别出用户输入的数据类型，
+#然后转换为对应的数据形式。比如:
+
+
+s = input('请输入：')
+a = eval(s)
+print(type(a))
