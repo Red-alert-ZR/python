@@ -1,0 +1,30 @@
+
+import math
+
+b = []
+a = 6
+for i in range(0,a):
+    s = float(input('请输入测量数据：' ))
+    s = ("%.3f" %s)
+    b.append(s)
+    #print(b)
+f = 0
+for i in range(0,len(b)):
+    s = float(b[i])
+    s = float("%.3f" %s)
+    f = s+f
+    #print(f)
+f = f/a
+print("%.3f" %f)
+c = 0
+for i in range(0,len(b)):
+    s = float(b[i])
+    c = ((s-f)**2) + c
+    #print(c)
+c = (1/(a-1))*c
+uA = float("%.3f" %math.sqrt(c))
+print(uA)
+
+uB = float(input('请输入uB的值: ' ))
+e = (uA**2 + uB**2)**0.5
+print("uC等于 :{0}".format(e))
