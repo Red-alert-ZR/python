@@ -1,0 +1,175 @@
+#本关任务是将两个不同的字符串，拼接形成一个字符串，并将新字符串输出来。字符串或串（String）是由数字、字母、下划线组成的一串字符。在 Python 中，字符串用单引号或者双引号括起来。在很多情况下，我们需要将两个字符串拼接起来，形成一个字符串。
+
+#例如，一个人的姓名，通常是由“姓氏”+“名字”组成的。在很多程序中，为了方便后续处理，通常将姓氏和名字分别存在两个变量中。然后在显示时，要将姓氏和名字拼接起来，按全名显示。
+
+first_name = 'Zhang'  
+last_name = 'san'  
+
+full_name = 'Zhang san'  
+
+print(full_name)
+
+full_name = first_name + " " + last_name  
+print(full_name)  
+
+#本关任务：对给定的字符串进行处理，包括字符串长度计算、大小写转换以及去除字符串前后空格等。
+#在字符串处理中，经常需要统计字符串的长度、进行大小写转换以及去除字符串前后空格等操作。
+#例如，在基于关键词的搜索引擎中，要查询关键词是否在文档或者网页中出现，搜索引擎并不需要区分关键词中字符的大小写以及关键词前后的空格等。
+#这时就需要对字符串进行处理，将其中的大写字符都转换为小写，并剔除字符串开头和结尾处的空格，然后再统一进行字符串匹配。
+
+#字符串长度获取
+Python 提供了len()函数来计算，并返回字符串的长度，即字符串中单个元素的个数。其基本语法如下：
+
+length = len(target_string)  
+其中：
+
+target_string: 目标字符串变量；
+
+length: 保存字符串长度的变量；
+
+len: 获取字符串长度的语法关键词。
+
+#下面给出了具体的使用示例：
+
+# coding=utf-8
+# 创建一个字符串变量，获取其长度并打印出来  
+color = 'It is red'  
+length = len(color)  
+print (length)
+# 直接在len函数中引入字符串内容获得其长度，然后打印出来  
+print(len('This is a circle!'))  
+#输出结果：  
+
+9  
+17  
+
+
+#大小写转换
+#Python 提供了upper()和lower()方法，来对字符串进行大小写转换。其中，upper()会将字符串中的所有字符都转换为大写，lower()则将所有字符转换为小写。除此之外，Python 还贴心的提供了title()方法，将字符串所有单词的首字母变成大写，而其他字母依然小写。各个方法的具体语法如下：
+
+# 将源字符串转换为大写并存入upper_string变量  
+upper_string = source_string.upper()
+# 将源字符串转换为小写并存入lower_string变量  
+lower_string = source_string.lower()
+# 将源字符串每个词首字母转换为大写并存入title_string变量  
+title_string = source_string.title()  
+
+去除字符串首尾空格
+Python 提供了strip()方法，可以去除字符串两侧（不包含内部）全部的空格。使用该方法，也可以通过指定参数，去除两侧指定的特定字符。
+
+
+注意：在指定参数时，如果参数是多个字符，则该方法会将多个字符逐个去比对，进行删除（区分大小写），直到首尾两侧没有匹配的字符为止。但是，该方法对字符串中间的字符没有影响。
+
+其基本语法如下：
+
+strip_string1 = source_string.strip()  
+string_strip2 = source_string.strip(target_char)  
+其中：
+
+source_string：待处理的源字符串；
+
+strip_string1和strip_string2：处理后的字符串；
+
+target_char：需要从源字符串首尾去除的特定字符。
+
+具体使用示例如下：
+
+# coding = utf-8
+# 创建一个字符串hello_world  
+hello_world = '  **The world ** is big!*    '
+# 利用strip()方法处理hello_world字符串  
+blank_hello_world = hello_world.strip()  
+char_hello_world = hello_world.strip('TH *')
+# 打印输出转换后的字符串  
+print(blank_hello_world)  
+print(char_hello_world)  
+输出结果：  
+
+**The world ** is big!*  
+he world ** is big!  
+输出结果分析：
+
+从第一行打印结果可以看到，strip()方法去除了源字符串首尾的所有空格，但是并没有去除字符串中间的空格；
+
+从第二行打印结构可以看出，strip()方法将源字符串首尾所有空格、* 以及字符T去掉了，而源字符串中头部的h因为是小写并没有去除。
+
+
+字符串查找
+Python 提供了内置的字符串查找方法find()，利用该方法可以在一个较长的字符串中查找子字符串。如果该字符串中，有一个或者多个子字符串，则该方法返回第一个子串所在位置的最左端索引，若没有找到符合条件的子串，则返回-1。find()方法的基本使用语法如下：
+
+source_string.find(sub_string)  
+其中：  
+
+source_string：源字符串；
+
+sub_string：待查的目标子字符串；
+
+find：字符串查找方法的语法关键字。
+
+例如，在一个字符串中，查找两个单词的位置：
+
+# coding=utf-8
+# 创建一个字符串  
+source_string = 'The past is gone and static'
+# 查看"past"在source_string字符串中的位置  
+print(source_string.find('past'))
+# 查看"love"在source_string字符串中的位置  
+print(source_string.find('love'))  
+输出结果：  
+
+4  
+-1  
+字符串替换
+Python 提供了replace()方法，用以替换给定字符串中的子串。其基本使用语法如下：
+
+source_string.replace(old_string, new_string)  
+其中：
+
+source_string：待处理的源字符串；
+
+old_string：被替换的旧字符串；
+
+new_string：替换的新字符串；
+
+replace：字符串替换方法的语法关键词。
+
+例如，在如下字符串中，用small子串替换big子串：
+
+# coding = utf-8
+# 创建一个字符串circle  
+source_string = 'The world is big'
+# 利用replace()方法用子串"small"代替子串"big"  
+print(source_string.replace('big','small'))  
+输出结果：  
+
+The world is small  
+字符串分割
+Python 提供了split()方法实现字符串分割。该方法根据提供的分隔符，将一个字符串分割为字符列表，如果不提供分隔符，则程序会默认把空格（制表、换行等）作为分隔符。其基本使用语法如下：
+
+source_string.split(separator)  
+其中：
+
+source_string：待处理的源字符串；
+
+separator：分隔符；
+
+split：字符串分割方法的关键词。
+
+例如，用+、/还有空格作为分隔符，分割字符串：
+
+# coding = utf-8
+# 待处理字符串source_string  
+source_string = '1+2+3+4+5'
+# 利用split()方法，按照`+`和`/`对source_string字符串进行分割  
+print(source_string.split('+'))  
+print(source_string.split('/'))  
+输出结果：
+
+['1', '2', '3', '4', '5']  
+['1+2+3+4+5']  
+
+
+
+
+
+
