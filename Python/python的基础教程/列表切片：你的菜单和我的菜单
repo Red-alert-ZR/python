@@ -1,0 +1,113 @@
+'''
+##  5  ##
+
+任务描述
+我们在前三关中学习了如何处理单个列表元素和所有列表元素，在这一关中我们还将学习如何处理部分列表元素（Python 中称为切片）。例如，当我们去餐馆吃饭点菜时，你的菜单和我的菜单有些时候是一模一样，也有些时候是部分菜名一样。那么如何根据我已经点好的菜单生成你的菜单呢？
+
+
+本关将通过菜名列表的部分复制，让学习者了解并掌握列表切片的基础知识。
+
+相关知识
+Python 切片是对一个列表取其部分元素获得一个子序列的常见操作，切片操作的返回结果类型与被切片的对象一致。要创建一个已有列表的切片，通过指定切片的第一个列表元素和最后一个列表元素的索引号即可。其基本语法如下：  
+
+list_slice = source_list[start:end:step]  
+其中：
+
+source_list：被切片的源列表；
+
+list_slice：切片后生成的子序列列表；
+
+start：切片起始索引位置，省略则从头开始；
+
+end：切片结束索引位置，省略则切至列表末尾；
+
+step：切片步长，可选参数，表示每N个元素取一个，默认为1。
+
+注意：切片和range()函数一样，Python 会自动到达所指定切片结束索引位置的前面一个元素停止。
+
+例如，下面是我已经点好的菜名列表，现在朋友点的菜单中包含我的前三个菜名，输出朋友的菜单：
+
+my_menu = ['fish','pork','pizza','carrot']  
+print(my_menu[1:4:2])  
+print(my_menu[:3])  
+print(my_menu[2:])  
+输出结果：  
+
+['pork','carrot']  
+['fish','pork','pizza']  
+['pizza','carrot']  
+负数索引返回的是离列表末尾相应间隔的元素，列表末尾元素的索引是从-1开始的。例如，朋友的菜单是包含我的菜单最后3个菜名：
+
+my_menu=['fish','pork','pizza','carrot']  
+print(my_menu[-3:])  
+输出结果：  
+
+['pork','pizza','carrot']  
+如果您想了解更多有关列表操作的相关知识，请参考：【美】 Eric Matthes 著《 Python 编程——从入门到实践》第四章。
+
+编程要求
+本关的编程任务是补全src/Step4/foods.py文件的代码内容，实现如下功能：
+
+利用切片方法从my_menu列表中每3个元素取1个，组成子序列并打印输出；
+
+利用切片方法获取my_menu列表的最后三个元素组成子序列并打印输出。
+
+本关涉及的代码文件src/Step4/foods.py的代码框架如下：
+
+# coding=utf-8
+# 创建并初始化my_munu列表  
+my_menu = []  
+while True:  
+    try:  
+        food = input()  
+        my_menu.append(food)  
+    except:  
+        break
+# 请在此添加代码，对my_menu列表进行切片操作  
+########## Begin ##########
+########## End ##########  
+评测说明
+本关的测试文件是src/Step4/foods.py，测试过程如下：
+
+平台自动编译并运行foods.py，并以标准输入方式提供测试输入；
+
+平台获取程序输出，并将其输出与预期输出对比。如果一致则测试通过，否则测试失败。
+
+以下是平台对src/Step4/foods.py的样例测试集：
+
+测试输入：  
+
+pizza  
+chicken  
+carrot  
+apple  
+banana  
+预期输出：  
+
+['pizza','apple']  
+['carrot','apple','banana']  
+开始你的任务吧，祝你成功！
+
+'''
+
+# coding=utf-8
+
+# 创建并初始化my_menu列表
+my_menu = []
+while True:
+	try:
+		food = input()
+		my_menu.append(food)
+	except:
+		break
+
+# 请在此添加代码，对my_menu列表进行切片操作
+########## Begin ##########
+a = my_menu[::3]
+print(a)
+b = my_menu[-3:]
+print(b)
+
+########## End ##########
+
+
