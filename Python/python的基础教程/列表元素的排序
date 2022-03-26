@@ -1,0 +1,36 @@
+
+##  2  ##
+本关的任务是学会列表排序相关操作的使用方法，实现对列表元素的排序。一般情况下我们创建的列表中的元素可能都是无序的，但有些时候我们需要对列表元素进行排序。
+
+
+例如，我们想将参加会议的专家名单guests列表中的五个名字元素['zhang san','li si','wang wu','sun qi','qian ba']，分别按照首字母从小到大的顺序和从大到小的顺序分别排序。排序后的输出分别为：
+
+['li si','qian ba','sun qi','wang wu','zhang san']  
+['zhang san','wang wu','sun qi','qian ba','li si']  
+相关知识
+Python 针对列表数据结构内置提供了sort()方法，实现对列表元素的排序功能。其基本语法如下：
+
+source_list.sort(reverse=True)  
+其中：
+
+source_list：待排序的列表；
+
+sort：列表排序函数的语法关键词；
+
+reverse：sort函数的可选参数。如果设置其值为True，则进行反向从大到小排序，如果设置为False或者不填写该参数，则默认进行正向从小到大排序。
+
+例如，给定一个客人列表guests，我们对其按照字母排序如下：
+
+guests = ['zhang san','li si','wang wu','sun qi','qian ba']  
+guests.sort()  
+print(guests)
+guests.sort(reverse=True)  
+print(guests)  
+程序输出结果：
+
+['li si','qian ba','sun qi','wang wu','zhang san']
+['zhang san','wang wu','sun qi','qian ba','li si']  
+注意：sort函数会直接作用于待排序的列表并修改其排序。
+
+
+
