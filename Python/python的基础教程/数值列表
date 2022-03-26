@@ -1,5 +1,6 @@
-
+'''
 ##  3  ##
+任务描述
 本关任务是利用合适的方法快速创建数字列表，并能够对列表中的元素数值进行简单的统计运算。在数据可视化的背景下，数字列表在 Python 列表中的应用十分广泛，列表十分适合存储数字集合。
 
 
@@ -90,3 +91,21 @@ print('The sum is',sum(numbers))
 The min number is 1  
 The max number is 32  
 The sum is 84  
+'''
+
+# coding=utf-8
+
+# 创建并读入range函数的相应参数
+lower = int(input())
+upper = int(input())
+step = int(input())
+
+# 请在此添加代码，实现编程要求
+########## Begin ##########
+a = list(range(lower,upper,step))
+print(len(a))
+
+print(max(a)-min(a))
+
+
+########## End ##########
