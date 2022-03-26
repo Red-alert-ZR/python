@@ -1,0 +1,248 @@
+'''
+##  1  ##
+任务描述
+本关任务是对一个给定的列表进行增、删、改等操作，并输出变化后的最终列表。列表是由按一定顺序排列的元素组成，其中的元素根据需要可能会发生变化。其中，列表元素的添加、删除或修改等是最常见的操作。
+
+
+下面以一则请客的故事来说明列表元素操作的应用场景：
+有个人邀请几个朋友吃饭，初步拟定了一个客人名单列表guests=['Zhang san','Li si','Wang wu','Zhao liu']。后面因为一些临时情况，这个客人名单不断变化：
+
+Zhao liu说要带他的朋友Hu qi一起来；
+
+Zhang san因临时有事不能来了；
+
+Wang wu说由他的弟弟Wang shi代他赴宴。
+
+最终的客人名单列表如下：
+
+['Li si','Wang shi','Zhao liu','Hu qi']
+
+相关知识
+ Python 为列表类型提供了一系列内置操作，包括append()、insert()、pop()、remove()等函数，能够很方便的处理上述列表元素变化的情况。我们以上述客人名单列表为例介绍这几种列表操作方法。
+
+添加列表元素
+Python 提供了append()和insert()等函数，实现向一个列表增加新元素的功能。
+
+ （1）在列表尾部添加元素
+在 Python 中，可以使用append()方法向一个列表的尾部追加一个元素，其基本语法如下：  
+
+source_list.append(obj)  
+其中：
+
+source_list：待修改的列表；
+
+obj：待插入的元素。
+
+例如，要向guests列表尾部增加客人Hu qi，相应的语句为：
+
+# 初始化guests列表  
+guests=['Zhang san','Li si','Wang wu','Zhao liu']
+# 向guests列表尾部追加一个名为Hu qi的客人  
+guests.append('Hu qi')
+# 输出新的guests列表  
+print(guests)  
+输出结果为：  
+
+['Zhang san','Li si','Wang wu','Zhao liu','Hu qi']  
+（2）在列表指定位置添加元素
+
+Python 也提供了insert()方法，可以在列表任意指定位置插入元素，其基本语法为：
+
+source_list.insert(index,obj)  
+其中：  
+
+source_list：待修改的列表；
+
+index：待插入的位置索引；
+
+obj：待插入的元素。
+
+注意：在 Python 中，列表起始元素的位置索引为0。
+
+例如，要向guests列表中Zhang san的后面增加客人Hu qi，则相应的语句为：
+
+# 创建并初始化guests列表  
+guests=['Zhang san','Li si','Wang wu','Zhao liu']
+# 向guests列表Zhang san后面增加一个名为Hu qi的客人  
+guests.insert(1,'Hu qi')
+# 输出新的guests列表  
+print(guests)  
+输出结果为：  
+
+['Zhang san','Hu qi','Li si','Wang wu','Zhao liu']  
+修改列表元素
+Python 中修改列表元素的方法为：直接将列表中要修改的元素索引指出，然后为其指定新值。其基本语法如下：
+
+source_list[index] = obj  
+其中：  
+
+source_list：待修改的列表；
+
+index：待修改元素的位置索引；
+
+obj：待元素的新值。
+
+例如，将请客名单guests列表中的Wang wu改为Wang shi，则相应的语句为：
+
+# 初始化guests列表  
+guests=['Zhang san','Li si','Wang wu','Zhao liu']
+# 将列表中的`Wang wu`改为`Wang shi`  
+guests[2] = 'Wang shi'
+# 输出新的guests列表  
+print(guests)  
+输出结果为：  
+
+['Zhang san','Li si','Wang shi','Zhao liu']  
+删除列表元素
+ Python 提供了多种不同的方法来实现对列表中元素的删除操作，包括根据元素索引位置或者元素值删除元素的方法。
+
+（1）删除指定位置的元素
+
+del方法
+
+在 Python 中，调用del函数能够删除指定索引位置的元素，其基本语法如下：  
+
+del source_list[index]  
+其中：  
+
+source_list：待修改的列表；
+
+index：待删除元素的位置索引。
+
+例如，将请客名单guests列表中的Zhang san删除，则相应的语句为：
+
+# 初始化guests列表  
+guests=['Zhang san','Li si','Wang wu','Zhao liu']
+# 将列表中的`Zhang san`删除  
+del guests[0]
+# 输出新的guests列表  
+print(guests)  
+输出结果为：  
+
+['Li si','Wang wu','Zhao liu']  
+pop方法
+
+Python 还提供了pop()方法来删除元素，该方法将从源列表删除对应元素，同时返回被删除的元素。其基本语法如下：  
+
+deleted_obj = source_list.pop(index)  
+其中：  
+
+deleted_obj：保存被删除元素的变量，可根据需要自由命名；
+
+source_list：待修改的列表；
+
+index：待删除元素的位置索引。
+
+注意:index参数为可选项，不填则默认删除列表末尾的元素。
+
+例如，将请客名单guests列表中的Zhang san删除，则相应的语句为：
+
+# 初始化guests列表  
+guests=['Zhang san','Li si','Wang wu','Zhao liu']
+# 将列表中的`Zhang san`删除  
+deleted_obj = guests.pop(0)
+# 输出被删除的元素以及删除后的guests列表  
+print(deleted_obj)  
+print(guests)  
+输出结果为：  
+
+Zhang san  
+['Li si','Wang wu','Zhao liu']  
+（2）删除指定值对应的元素
+
+有些时候我们并不知道要删除元素的位置索引，怎么办呢？别着急，Python 还提供了remove()方法，可以直接通过元素值来删除对应的元素。其基本语法如下：  
+
+source_list.remove(obj)  
+其中：  
+
+source_list：待修改的列表；
+
+obj：待删除元素的值。
+
+注意：如果列表中有多个值为obj的元素，remove仅删除位置索引最靠前的那个元素。
+
+例如，将请客名单guests列表中的Zhang san删除，则相应的语句为：
+
+# 初始化guests列表，列表中有多个名为Zhang san的客人  
+guests=['Zhang san','Li si','Wang wu','Zhao liu','Zhang san']
+# 将列表中的`Zhang san`删除  
+guests.remove('Zhang san')
+# 输出新的guests列表  
+print(guests)  
+输出结果为：  
+
+['Li si','Wang wu','Zhao liu','Zhang san']  
+如果您想了解更多有关列表操作的相关知识，请参考：【美】 Eric Matthes 著《 Python 编程——从入门到实践》第三章。
+
+编程要求
+本关的编程任务是补全src/Step1/guests.py文件的代码，实现相应的功能。具体要求如下：
+
+step 1：将guests列表末尾的元素删除，并将这个被删除的元素值保存到deleted_guest变量；
+
+step 2：将deleted_guest插入到 step 1 删除后的guests列表索引位置为2的地方；
+
+step 3：将 step 2 处理后的guests列表索引位置为1的元素删除；
+
+打印输出 step 1 的deleted_guest变量；
+
+打印输出 step 3 改变后的guests列表。
+
+本关涉及的代码文件src/Step1/guests.py的代码框架如下：
+
+# coding=utf-8
+# 创建并初始化Guests列表  
+guests = []
+while True:  
+    try:  
+        guest = input()  
+        guests.append(guest)  
+    except:  
+        break
+# 请在此添加代码，对guests列表进行插入、删除等操作  
+########## Begin ##########
+########## End ##########  
+测试说明
+本关的测试文件是src/Step1/guests.py，测试过程如下：
+
+平台自动编译并运行guests.py，并以标准输入方式提供测试输入；
+
+平台获取程序输出，并将其输出与预期输出对比。如果一致则测试通过，否则测试失败。
+
+以下是平台对src/Step1/guests.py的样例测试集：
+
+测试输入：
+
+zhang san  
+li si  
+wang wu  
+tan qi  
+hu ba  
+预期输出：  
+
+hu ba  
+['zhang san', 'hu ba', 'wang wu', 'tan qi']  
+开始你的任务吧，祝你成功！
+
+'''
+
+
+# coding=utf-8
+
+# 创建并初始化Guests列表
+guests = []
+while True:
+    try:
+        guest = input()
+        guests.append(guest)
+    except:
+        break
+
+    
+# 请在此添加代码，对guests列表进行插入、删除等操作
+########## Begin ##########
+deleted_guest = guests.pop()
+guests.insert(2,deleted_guest)
+del guests[1]
+print(deleted_guest)
+print(guests)
+########## End ##########
