@@ -1,5 +1,7 @@
-
+'''
 ##  2  ##
+
+任务描述
 本关的任务是学会列表排序相关操作的使用方法，实现对列表元素的排序。一般情况下我们创建的列表中的元素可能都是无序的，但有些时候我们需要对列表元素进行排序。
 
 
@@ -31,6 +33,24 @@ print(guests)
 ['li si','qian ba','sun qi','wang wu','zhang san']
 ['zhang san','wang wu','sun qi','qian ba','li si']  
 注意：sort函数会直接作用于待排序的列表并修改其排序。
+'''
 
+# coding=utf-8
+
+# 创建并初始化`source_list`列表
+source_list = []
+while True:
+    try:
+        list_element = input()
+        source_list.append(list_element)
+    except:
+        break
+
+# 请在此添加代码，对source_list列表进行排序等操作并打印输出排序后的列表
+########## Begin ##########
+source_list.sort(reverse=False)
+print(source_list)
+
+########## End ##########
 
 
