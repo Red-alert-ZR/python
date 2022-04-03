@@ -284,6 +284,30 @@ for n in range(10, 20):
           ########## End ##########
           print('%.4f' % S) #解析解=12.0703...
           
-          
+   
+##  9 求解区间范围内的素数 ##
+
+
+        #for
+        import math
+        M=eval(input())
+        N=eval(input())
+
+        #   请在此补全代码   #
+        # ********** Begin *********#
+        for m in range(M,N+1):
+            t = int(math.sqrt(m))
+            i = 2
+            while i <= t:
+                if m%i == 0:
+                    break
+                i = i+1
+            else:
+                print(m)
+
+        # ********** End **********#
+
+### 这个应该是最简单的了
+
           
           
