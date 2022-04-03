@@ -15,16 +15,16 @@
 　　本关任务就是实现该算法。
 '''
 
-a = int(input())
-b = int(input())
-########## Begin ##########
-c = a%b
-while c != 0:
-    a = b
-    b = c 
-    c = a%b 
-print(b)
-########## End ##########
+            a = int(input())
+            b = int(input())
+            ########## Begin ##########
+            c = a%b
+            while c != 0:
+                a = b
+                b = c 
+                c = a%b 
+            print(b)
+            ########## End ##########
 
 '''
 ##  2  ##
@@ -40,26 +40,26 @@ print(b)
   
  求平方根函数
 '''
-x = eval(input())
-########## Begin ##########
-g = x/2
-while abs(x-g*g) >= pow(10,-6):
-    g = (g + x/g)/2
-########## End ##########
-print('%.5f' % g)
+            x = eval(input())
+            ########## Begin ##########
+            g = x/2
+            while abs(x-g*g) >= pow(10,-6):
+                g = (g + x/g)/2
+            ########## End ##########
+            print('%.5f' % g)
 
 '''
 ##  3  ##
 求立方根的函数
 '''
-x = eval(input())
-########## Begin ##########
-g1 = x/3; g2 = 2/3*g1 + x/(3*pow(g1,2))
-while abs(g1-g2) >= pow(10,-6):
-    g1 = g2 
-    g2 = 2/3*g1 + x/(3*pow(g1,2))
-########## End ##########
-print('%.5f' % g2)
+            x = eval(input())
+            ########## Begin ##########
+            g1 = x/3; g2 = 2/3*g1 + x/(3*pow(g1,2))
+            while abs(g1-g2) >= pow(10,-6):
+                g1 = g2 
+                g2 = 2/3*g1 + x/(3*pow(g1,2))
+            ########## End ##########
+            print('%.5f' % g2)
 
 '''
 ##  4  ##
@@ -68,16 +68,16 @@ print('%.5f' % g2)
 圆周率
 
 '''
-n = int(input())
-########## Begin ##########
-i = 1
-pi = 0
-while i <= n:
-    a = 4*(pow(-1,(i-1))*(1/(2*i-1)))
-    pi = a+pi
-    i = i+1
-########## End ##########
-print('%.6f' % pi) #圆周率= 3.1415926…
+            n = int(input())
+            ########## Begin ##########
+            i = 1
+            pi = 0
+            while i <= n:
+                a = 4*(pow(-1,(i-1))*(1/(2*i-1)))
+                pi = a+pi
+                i = i+1
+            ########## End ##########
+            print('%.6f' % pi) #圆周率= 3.1415926…
 
 '''
 ##  5  ##
@@ -85,16 +85,16 @@ print('%.6f' % pi) #圆周率= 3.1415926…
 　　在 1706 年，英国数学家马青（也叫马辛、梅钦等）提出一个圆周率的快速计算公式，其收敛速度比泰勒级数快很多（n 为 4 时就可精确到小数点后 5 位），他利用这个公式将圆周率精确到了小数点后 100 位，在圆周率计算的历史中留下了不可磨灭的贡献。  
 '''
 
-n = int(input())
-########## Begin ##########
-i,A,B=1,0,0
-while i<=n:
-    A = A+(pow(-1,i-1))/((2*i-1)*pow(5,(2*i-1)))
-    B = B+(pow(-1,i-1))/((2*i-1)*pow(239,(2*i-1)))
-    i=i+1
-pi = 16*A-4*B
-########## End ##########
-print('%.14f' % pi) #圆周率= 3.141592653589793…
+            n = int(input())
+            ########## Begin ##########
+            i,A,B=1,0,0
+            while i<=n:
+                A = A+(pow(-1,i-1))/((2*i-1)*pow(5,(2*i-1)))
+                B = B+(pow(-1,i-1))/((2*i-1)*pow(239,(2*i-1)))
+                i=i+1
+            pi = 16*A-4*B
+            ########## End ##########
+            print('%.14f' % pi) #圆周率= 3.141592653589793…
 
 '''
 ##  6  ##
@@ -112,22 +112,22 @@ break
 
 　　例如下面的程序：  
 
-i=0  
-while i<10:  
-    print(i)  
-    i=i+1  
-    break  
-print('end')  
+            i=0  
+            while i<10:  
+                print(i)  
+                i=i+1  
+                break  
+            print('end')  
 　　如果没有第 5 行的break，程序会依次打印0到9，最后打印end。但加上这一行之后，程序只会打印0和end，因为在第一次执行循环体时，打印出0、i变为1后，执行的是break语句，会跳出循环，下一步直接执行最后的print('end')。  
 　　因此，break通常和 if 语句一起使用，表示当满足某种条件时，就跳出循环，例如下面的程序。  
 
-i=0  
-while i<10:  
-    print(i)  
-    i=i+1  
-    if i==7:  
-        break  
-print('end')  
+            i=0  
+            while i<10:  
+                print(i)  
+                i=i+1  
+                if i==7:  
+                    break  
+            print('end')  
 　　在这个程序中，i从0开始，每次循环增加1，当i等于7时（第 5 行），执行break，结束循环，所以程序只会打印0到6，以及最后的end。  
 　　此外，这个程序的第 2 行可以改为while 1==1，也就是说，while 的条件永远成立，因为1==1永远为真。此时通过while中的条件不能结束循环，而要通过第 5 行 if 中的条件来决定是否结束循环。另外，while 1==1也可以写成while True，因为布尔表达式1==1的计算结果就是True。
 
@@ -141,24 +141,24 @@ print('end')
 
 　　之前的程序是：  
 
-a, b = 4, 6  
-c = a % b  
-while c != 0:  
-    a = b  
-    b = c  
-    c = a % b  
-print(b)  
+            a, b = 4, 6  
+            c = a % b  
+            while c != 0:  
+                a = b  
+                b = c  
+                c = a % b  
+            print(b)  
 　　用break实现的程序是：  
 
-a, b = 4, 6  
-c = a % b  
-while True:  
-    if c==0:  
-        print(b)  
-        break  
-    a = b  
-    b = c  
-    c = a % b  
+            a, b = 4, 6  
+            c = a % b  
+            while True:  
+                if c==0:  
+                    print(b)  
+                    break  
+                a = b  
+                b = c  
+                c = a % b  
 　　这种方式似乎与文字描述更加一致。
 
 continue
@@ -168,50 +168,50 @@ continue
 
 　　例如下面的程序：  
 
-i=0  
-while i<10:  
-    i=i+1  
-    print(i)  
-    continue  
-    print('---')  
-print('end')  
+            i=0  
+            while i<10:  
+                i=i+1  
+                print(i)  
+                continue  
+                print('---')  
+            print('end')  
 　　如果没有第 5 行的continue，则该程序会依次打印1到10，并在每个数字后面都打印一个---。但加上这一行之后，程序只会打印 1 到 10，而不会打印 ---，这是因为在每次执行循环体时，当执行到continue语句，循环体的这次执行便结束了，下一步是跳回到 while 一行开始下一次循环，所以continue后面的print('---')总不会被执行到。
 　　因此，continue通常也是和 if 语句一起使用，表示当满足某种条件时，结束本次循环，直接开始下一次循环。例如下面的程序是计算 1 到 100 之间所有偶数之和。  
 
-i, s = 1, 0  
-while i<100:  
-    i=i+1  
-    if i%2==1:  
-        continue  
-     s=s+i  
-print(s)  
+            i, s = 1, 0  
+            while i<100:  
+                i=i+1  
+                if i%2==1:  
+                    continue  
+                 s=s+i  
+            print(s)  
 　　在这个程序中，i依次从1变到100，如果i是奇数（第 4 行），则直接回到 while 一行开始下一次循环，而不会执行后面的s=s+i，所以只有偶数会被累加到s。  
 　　需要说明的是，break和continue并不是必须的，但它们有时可以简化程序的实现过程。
 　　下面利用所学知识完成本关任务吧。
 '''
 
-a = int(input())
-b = int(input())
-c = int(input())
-########## Begin ##########
-i = min(a,b,c)
-while i != 0:
-    if a%i == 0:
-        if b%i == 0:
-            if c%i == 0:
-                print(i)
-                break
-            else:
-                i = i - 1
-                continue
-        else:
-            i = i - 1
-            continue
-    else:
-        i = i - 1
-        continue
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            ########## Begin ##########
+            i = min(a,b,c)
+            while i != 0:
+                if a%i == 0:
+                    if b%i == 0:
+                        if c%i == 0:
+                            print(i)
+                            break
+                        else:
+                            i = i - 1
+                            continue
+                    else:
+                        i = i - 1
+                        continue
+                else:
+                    i = i - 1
+                    continue
 
-########## End ##########
+            ########## End ##########
 
 '''
 ##  7  ##
@@ -240,28 +240,28 @@ while i != 0:
 开始你的任务吧，祝你成功！
 
 '''
-a = int(input())
-b = int(input())
-c = int(input())
-########## Begin ##########
-i = max(a,b,c)
-while i >= max(a,b,c):
-    if i%a == 0:
-        if i%b == 0:
-            if i%c == 0:
-                print(i)
-                break
-            else:
-                i = i+1
-                continue
-        else:
-            i = i+1
-            continue
-    else:
-        i = i+1
-        continue
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            ########## Begin ##########
+            i = max(a,b,c)
+            while i >= max(a,b,c):
+                if i%a == 0:
+                    if i%b == 0:
+                        if i%c == 0:
+                            print(i)
+                            break
+                        else:
+                            i = i+1
+                            continue
+                    else:
+                        i = i+1
+                        continue
+                else:
+                    i = i+1
+                    continue
 
-########## End ##########
+            ########## End ##########
 
 
 '''
@@ -289,19 +289,19 @@ while i >= max(a,b,c):
 
 '''
 
-n = int(input())
-########## Begin ##########
-a = n
-b = n
-c = n
-while (b >= 4 or a >= 2):
-    s1 = a//2
-    s2 = b//4
-    a = a+s1+s2-2*s1
-    b = b+s1+s2-4*s2
-    c = s1+s2+c
-print(c)
-########## End ##########
+            n = int(input())
+            ########## Begin ##########
+            a = n
+            b = n
+            c = n
+            while (b >= 4 or a >= 2):
+                s1 = a//2
+                s2 = b//4
+                a = a+s1+s2-2*s1
+                b = b+s1+s2-4*s2
+                c = s1+s2+c
+            print(c)
+            ########## End ##########
 
 
 
