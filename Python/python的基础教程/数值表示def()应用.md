@@ -64,4 +64,51 @@
 
                   结果：
                   ['Yellow', 'Red', 'White', 'Yellow']
+                  
+           
+      
+ ##  第3关：补码转换  ##
+ 
+                   N = 8             #位数为8
+                  ########## Begin ##########
+                  def ZhenToFan(num):
+                      if num == '-0':
+                          num = '+0'
+                      num = list(num)
+                      if num[0] == '+':
+                          num[0] = '0'
+                      elif num[0] == '-':
+                          num[0] = '1'
+                      else:
+                          num.insert(0,'0')
+                      a = N -len(num)
+                      for i in range(1,a+1):
+                          num.insert(1,'0')
+                      if num[0] == '0':
+                          num = ''.join(num)
+                      elif num[0] == '1':
+                          num =['2' if i == '0' else i for i in num[1:]]
+                          num =['0' if i == '1' else i for i in num]
+                          num =['1' if i == '2' else i for i in num]
+                          num.insert(0, '1')
+                          if num[-1] == '0':
+                              num.pop()
+                              num.append('1')
+                          elif num[-1] == '1':
+                              x = list(reversed(num))
+                              b = x.index('0')
+                              num.pop(-(b+1))
+                              num.insert(-b,'1')
+                              num1 = ['0' if i == '1' else i for i in num[-b:]]
+                              num = num[:-b]
+                              for i in num1:
+                                  num.append('0')
+                          num = ''.join(num)
+                      return num
+                  ########## End ##########
+                  z = input()       #真实值
+                  f = ZhenToFan(z)  #转换成8位反码
+                  print('%s -> %s' % (z, f))
+
+### 反码加 1 运算的思路：若反码是全 1，则直接返回全 0；否则找到最后一个 0，将其变为 1，其后为全 0，而前面保持不变，如下图。
 
