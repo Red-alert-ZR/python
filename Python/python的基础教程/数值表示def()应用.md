@@ -290,5 +290,43 @@
                           return PlusOne(QuFan(y))  # 原码按位取反再加1
                   ########## End ##########
 
+#### 最后如果想加，就把ZhuanFu函数也加入到myCording库中：
+
+
+      N = 8             #位数为8
+      ########## Begin ##########
+      def QiuEM(z): #求z的科学计数形式中的阶码和尾数
+          idx_point = z.index('.')         #小数点的编号
+          idx_firstOne = z.index('1')      #首个1的编号
+          idx_lastOne = 0                  #最后一个1的编号
+          for i in range(len(z)):
+              if z[i] == '1':
+                  idx_lastOne = i
+          if idx_point > idx_firstOne:       #若不是纯小数，如'+10.0001'
+              E = idx_point-idx_firstOne   #则阶码是小数点编号减去首个1的编号
+          else:                            #否则是纯小数,如'+0.0001'
+              E = idx_point-idx_firstOne+1 #则阶码是小数点编号减去首个1的编号，再加1
+          E = bin(E)                       #将阶码转换成二进制
+          E = E.replace('0b','')           #删去二进制里面的'0b'
+          M = z[idx_firstOne:idx_lastOne+1]#提取从首个1到末个1的部分，如'+10.01'中提取'10.01'
+          M = M.replace('.','')            #删除这部分的小数点
+          M = z[0]+'0.'+M                  #在最开始处补上符号和'0.'
+          return M,E
+      def ZhuanFu(z):  #真实值→浮点数
+          if z == '0':                       #若为0
+              return '0'*N+' '+'0'*N       #直接返回全0（中间有个空格）
+          if z[0] not in ['+', '-']:       #若无符号
+              z = '+'+z                    #则在最前补上正号，便于统一处理
+          if '.' not in z:                 #若无小数点
+              z = z+'.'                    #则在最后补上小数点，便于统一处理
+          M,E = QiuEM(z)             #获取阶码和尾数
+          M = ZhuanYuan_point(M) #将尾数转换成定点小数（原码形式）
+          M = ZhuanBu_point(M)         #求定点小数的补码
+          E = ZhuanYuan(E)   #将阶码转换成定点整数（原码形式）
+          E = ZhuanBu(E)         #求定点整数的补码
+          return E+' '+M                   #阶码在前、尾数在后，中间有个空格
+          
+          
+#### 这样一个完整的原反补码就完成了。
 
 
