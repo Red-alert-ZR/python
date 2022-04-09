@@ -1,16 +1,16 @@
-from whois import whois
-import base64
-from Cryptodome.Cipher import DES
-from Cryptodome.Cipher import AES
-import binascii
-from scapy.all import *
-from random import randint
-import time
-from hashlib import md5
-import sys,random
-import time
-import itertools
-from pexpect import pxssh
+                  from whois import whois
+                  import base64
+                  from Cryptodome.Cipher import DES
+                  from Cryptodome.Cipher import AES
+                  import binascii
+                  from scapy.all import *
+                  from random import randint
+                  import time
+                  from hashlib import md5
+                  import sys,random
+                  import time
+                  import itertools
+                  from pexpect import pxssh
 
 
 
