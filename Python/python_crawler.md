@@ -28,7 +28,7 @@
 
 
 
-            # 爬取网页
+##  爬取网页  ##
             def getData(baseurl):
                 datalist = []  #用来存储爬取的网页信息
                 for i in range(0, 10):  # 调用获取页面信息的函数，10次
@@ -91,7 +91,7 @@
                 return html
 
 
-            # 保存数据到表格
+## 保存数据到表格  ##
             def saveData(datalist,savepath):
                 print("save.......")
                 book = xlwt.Workbook(encoding="utf-8",style_compression=0) #创建workbook对象
