@@ -36,20 +36,38 @@
       #注意事项，最后一个字符不能是\
       #print(r'hello\nworld\')
 
-###  输出  ###
-      hello
-      world
-      hello	world
-      helloooo	world
-      world
-      hellworld
-      http:\\www.baidu.com
-      老师说:'大家好！'
-      hello\nworld
+
+## 3二进制与字符编码  ##
+      print(chr(0b100111001011000))
+      print(ord('乘'))
 
 
+##  4Python中的标识符和保留字  ##
+      import keyword
+      #Python保留字
+      print(keyword.kwlist)
 
+      #Python标识符
+      '''
+      变量、函数、类、模块和其它对象的起的名字就叫标识符
+      规则:
+      可以是字母、数字、下划线_
+      不能以数字开头
+      不能是我的保留字
+      严格区分大小写的
+      '''
+  
 
+##  5变量  ##
+      #变量的定义和使用
+      name = '玛丽亚'
+      print(name)
+      print('标识 ',id(name))
+      print('类型 ',type(name))
+      print('值   ',name)
+      #变量的多次赋值
+      name = '楚留冰'
+      print(name)
 
 
 
