@@ -191,6 +191,27 @@
 
 ##  流程控制语句  ##
 #### Python的输出函数input()
+#### input的高级使用
+##### 从键盘录入两个整数，计算两个整数的和
+      a = int(input('请输入一个加数：'))
+      b = int(input('请输入另一个加数：'))
+      #a = int(a) #将转换之后的结果存储到a中
+      #b = int(b)
+      print(type(a),type(b))
+      print(a+b)
+      
+#### Python的运算符
+<img src="https://user-images.githubusercontent.com/99107924/163781347-de11782c-4cce-433f-bf5a-94e6b54ad781.png" width="600px" alt="Python运算符" />
+
+
+
+<img src="https://user-images.githubusercontent.com/99107924/163781371-83690916-31f7-4c36-b2f7-27ae7e3d9ee2.png" width="600px" alt="Python运算符" />
+
+      print(1+1) #执行加法运算
+      print(1-1)
+      print(2*4)
+      print(1/2)
+
 
 
 
