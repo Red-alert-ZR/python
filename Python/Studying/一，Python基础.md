@@ -200,22 +200,131 @@
       print(type(a),type(b))
       print(a+b)
       
-#### Python的运算符
+### Python的运算符
 <img src="https://user-images.githubusercontent.com/99107924/163781347-de11782c-4cce-433f-bf5a-94e6b54ad781.png" width="600px" alt="Python运算符" />
 
+***
+***
+***
+
+#### 运算符1_算术运算符
+<img src="https://user-images.githubusercontent.com/99107924/163781371-83690916-31f7-4c36-b2f7-27ae7e3d9ee2.png" width="700px" alt="Python运算符" />
+
+      print(1+1) #加法运算
+      print(1-1) #减法运算
+      print(2*4) #乘法运算
+      print(1/2) #除法运算
+      print(11//2) #整除运算
+      print(11%2) #取余运算
+      print(2**2) #幂运算
+      print(9//4)
+      print(-9//-4)
+      print(-9//4)
+      print(9//-4) #一正一负的整数公式，向下取整
+      print(9%-4) # 公式 余数=被除数-除数*商 9-(-4)*(-3) --> 9-12 = -3
+      print(-9%4) # (-9)-4*(-3) --> -9+12 = 3
+***
+#### 运算符2_赋值运算符
+<img src="https://user-images.githubusercontent.com/99107924/163786651-78430f87-78c6-45a8-926c-d910a39fe51a.png" width="650"/>
+
+      
+      print('------运算顺序从左到右---------')
+      i=3+4
+      print(i)
+      print('--------支持链式赋值------------')
+      a=b=c=20 #链式赋值
+      print(a,id(a))
+      print(b,id(b))
+      print(c,id(c))
+      print('----------支持参数赋值-----------')
+      a=20
+      a+=30 #相当于a=a+30
+      print(a)
+      a-=10 #相当于a=a-10
+      print(a)
+      a*=2 #相当于a=a*2
+      print(a)
+      print(type(a)) #float
+      a/=3 #相当于
+      print(a)
+      print(type(a))
+      a//=2
+      print(a)
+      print(type(a))
+      a%=3
+      print(a)
+      print('-------支持系列解包赋值------------')
+      a,b,c=20,30,40
+      print(a,id(a),'\n',b,id(b),'\n',c,id(c))
+      #左右变量的个数和值的个数必须对应
+      print('--------交换两个变量的值------------')
+      a,b=10,20
+      print('交换之前:',a,b)
+      #交换
+      a,b=b,a
+      print('交换之后:',a,b)
+***
+#### 运算符3_比较运算符
+<img src="https://user-images.githubusercontent.com/99107924/163789519-b7281225-1aa4-49c5-b6be-bed05c6dc9bb.png" width="650"/>
+
+      print('比较运算符的结果为bool类型')
+      a,b=10,20
+      print("a>b吗？",a>b)
+      print("a<b吗？",a<b)
+      print("a<=b吗？",a<=b)
+      print("a>=b吗？",a>=b)
+      print("a==b吗？",a==b)
+      print("a!=b吗？",a!=b)
+
+      ''' 一个 = 称为赋值运算符
+          两个 == 称为比较运算符
+          一个变量由三部分组成：‘标识’，‘类型’，‘值’
+          == 比较的是值还是标识呢？ 
+          比较的是‘值’
+          比较对象的标识，用的是 'is'
+      '''
+      a=10
+      b=10
+      print(a==b) #说明a与b的value相等
+      print(a is b) #说明a与b的id标识也相等
+      # 呵呵
+      list1 = [11,22,33,44]
+      list2 = [11,22,33,44]
+      print(list1==list2) #value
+      print(list1 is list2) #id
+      print(id(list1),'\t',id(list2))
+      print(a is not b)
+      print(list1 is not list2)
 
 
-<img src="https://user-images.githubusercontent.com/99107924/163781371-83690916-31f7-4c36-b2f7-27ae7e3d9ee2.png" width="600px" alt="Python运算符" />
+#### 运算符4_布尔运算符
+<img src="https://user-images.githubusercontent.com/99107924/163823247-36b4f8f3-7722-45f8-9256-9014da6d2a70.png" width="650" />
+      
+      a,b=1,2
+      print('-----------------and 并且----------------------')
+      print(a==1 and b==2) #True   True and True --> True
+      print(a==1 and b<2) #False  True and False --> False
+      print(a!=1 and b==2) #False  False and True --> False
+      print(a!=1 and b!=2) #False  False and False --> False
+      
+      print('--------------------or 或者--------------------')
+      print(a==1 or b==2) #True   True or True --> True
+      print(a==1 or b<2) #True  True or False --> True
+      print(a!=1 or b==2) #True  False or True --> True
+      print(a!=1 or b!=2) #False  False or False --> False
 
-      print(1+1) #执行加法运算
-      print(1-1)
-      print(2*4)
-      print(1/2)
+      print('-------------not 对bool类型的操作数取反-------------')
+      f1=True
+      f2=False
+      print(not f1)
+      print(not f2)
 
-
-
-
-
+      print('-------------------in 与 not in  ---------------------------')
+      s='Hello World'
+      print('W' in s)
+      print('k' in s)
+      print('W' not in s)
+      print('k' not in s)
 
 
 
