@@ -327,7 +327,18 @@
       print('k' not in s)
 
 
+#### 运算符5_位运算符
+<img src="https://user-images.githubusercontent.com/99107924/164036205-e87af3c2-0bbd-41aa-a1b0-92b2dea4c8b3.png" width="650"/>
 
+
+
+      print(4&8) #按位与&，同为1时结果为1
+      print(4|8) #按位或|，同为0时结果为0
+      print(4<<1) #左移一位（移动一个位置），相当于乘以2
+      print(4<<2) #左移两位（移动两个位置），相当于乘以4
+
+      print(4>>1) #右移一位，相当于除以2
+      print(4>>2) #右移两位，相当于除以4
 
 
 
