@@ -340,9 +340,57 @@
       print(4>>1) #右移一位，相当于除以2
       print(4>>2) #右移两位，相当于除以4
 
+#### 运算符的优先级
+<img src="https://user-images.githubusercontent.com/99107924/164485659-25488485-35b8-4998-b949-e60777d58fcd.png" width="650"/>
+
+### 程序的组织结构
+### 程序的组织结构
+
+#### 顺序结构
+##### 程序从_上到下顺序地执行代码，中间没有任何的判断和跳转，直到程序结束
+
+      '''把大象装冰箱一共分几步'''
+      print('------程序开始-------')
+      print('1,把冰箱门打开')
+      print('2，把大象放冰箱')
+      print('3，把冰箱门关上')
+      print('------程序结束-------')
+
+#### 对象的布尔值
+##### Python-切皆对象，所有对象都有一个布尔值
+##### 获取对象的布尔值
+##### 使用内置函数bool()
 
 
+|以下对象的布尔值为False|代码|
+|:-|:-:|
+|False|print(bool(False))|
+|数值0|print(bool(0))|
+|None|print(bool(None))|
+|空字符串|print(bool(''))|
+|空列表|print(bool([]))|
+|空元组|print(bool(()))|
+|空字典|print(bool({}))|
+|空集合| print(bool(set()))|
 
+      print(bool(False)) #False
+      print(bool(0)) #False
+      print(bool(0.0)) #False
+      print(bool(None)) #False
+      print(bool('')) #False
+      print(bool("")) #False
+      print(bool([])) #空列表
+      print(bool(list())) #空列表
+      print(bool(())) #空元组
+      print(bool(tuple())) #空元组
+      print(bool({})) #空字典
+      print(bool(dict())) #空字典
+      print(bool(set())) #空集合
+      print('-----------以上对象的布尔值为False-----------------')
+
+      print('-----------其他对象的布尔值均为True----------------')
+      print(bool(18))
+      print(bool('hello world'))
 
 
 
