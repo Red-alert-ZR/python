@@ -495,7 +495,79 @@
 ##### 小结图片
 <img src="https://user-images.githubusercontent.com/99107924/164725337-32eb8eb2-7d88-4dc6-98fb-c50eb5e29f5d.png" width="650" />
 
-###
+#### range()函数的使用
+
+<img src="https://user-images.githubusercontent.com/99107924/164913115-ed652340-c440-4981-be8e-a7d1526fb061.png" width="650"/>
+
+      #range()的三种创建方式
+      '''第一种创建方式，只有一个参数（小括号中只给了1个数）'''
+      r=range(10) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]，默认从0开始，默认相差1的步长
+      print(r) #range(0,10)
+      print(list(r)) #用于查看range对象中的整数队列 --> list
+
+      '''第二种创建方式，给了两个参数（小括号中给了2个数）'''
+      r=range(1,10) #指定的起始值，从1开始，到10结束（不包括10），默认步长为1
+      print(list(r)) #[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+      '''第三种创建方式，给了三个参数（小括号中给了3个数）'''
+      r=range(1,10,2)
+      print(list(r)) #[1, 3, 5, 7, 9]
+
+      '''判断指定的整数 在序列中是否存在in not in'''
+      print(10 in r) #False,10不再当前的r整数序列之中
+      print(9 in r) #True,9在当前的r整数序列之中
+
+      print(10 not in r) # True
+      print(9 not in r) # False
+
+      print(range(1,20,1)) #[1,.....19]
+      print(range(1,101,1)) #[1,.....100]
+      
+#### while循环结构
+<img src="https://user-images.githubusercontent.com/99107924/164913981-1eb30d67-5e87-40ce-9e87-a30efdc6a2cc.png" width="650"/>
+
+      a=1
+      #判断条件表达式
+      while a<10:
+          #执行条件执行体
+          print(a)
+          a+=1
+
+      #计算0到4之间的累加和
+      '''
+      4步循环法
+       1，初始化变量
+       2，条件判断
+       3，条件执行体（执行体）
+       4，改变变量
+       总结：初始化的变量与条件变量的变量也改变的变量为同一个
+      '''
+      sum=0 #用来存储累加
+      '''初始化变量为0'''
+      a=0
+      '''条件判断'''
+      while a<5:
+          '''条件执行体（循环体）'''
+          sum+=a
+          '''改变变量'''
+          a+=1
+      print('和为',sum)
+      #1到100之间的偶数和
+      sum=0
+      '''初始化变量'''
+      a=0
+      '''条件判断'''
+      while a<=100:
+          '''条件执行体（求和）'''
+          #条件判断是否为偶数
+          if not bool(a%2): #if a%2==0:
+              sum+=a
+              '''改变变量'''
+              a+=1
+          else:
+              '''改变变量'''
+              a+=1
+      print('1-100之间的偶数和',sum)
 
 
 
