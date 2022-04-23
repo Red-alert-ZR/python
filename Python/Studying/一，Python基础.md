@@ -1,4 +1,4 @@
-## 计算机组成原理  ##
+## 计算机组成原理  
 #### 输出函数print()
       #可以输出数字
       print(5)
@@ -344,7 +344,6 @@
 <img src="https://user-images.githubusercontent.com/99107924/164485659-25488485-35b8-4998-b949-e60777d58fcd.png" width="650"/>
 
 ### 程序的组织结构
-### 程序的组织结构
 
 #### 顺序结构
 ##### 程序从_上到下顺序地执行代码，中间没有任何的判断和跳转，直到程序结束
@@ -392,8 +391,111 @@
       print(bool(18))
       print(bool('hello world'))
 
+#### 选择结构
+#### 分支结构_单分支结构
+
+      money=1000 #余额
+      s=int(input("请输入取款金额：")) #取款金额
+      #判断余额是否充足
+      if money>=s:
+          money-=s
+          print("取款成功，余额为：",money)
+
+#### 分支结构_双分支结构
+#### 双分支结构if...else,二选一
+
+      '''从键盘录入一个整数，编写程序让计算机判断是奇数还是偶数'''
+      num=int(input("请输入一个整数:"))
+
+      #条件判断
+      if num%2==0:
+          print(num,'是偶数')
+      else:
+          print(num,'是奇数')
+
+#### 分支结构_多分支结构
+
+      '''多分支结构，多选一执行
+      从键盘录入一个整数 成绩
+      90-100 A
+      80-89  B
+      70-79  C
+      60-69  D
+      0-59   E
+      小于0或大于100为非法数据（不是有效成绩）'''
+
+      score=int(input('请输入一个成绩：'))
+      #判断
+      if 90<=score<=100:
+          print('A级')
+      elif 80<=score<=89:
+          print('B级')
+      elif 70<=score<=79:
+          print('C级')
+      elif 60<=score<=69:
+          print('D级')
+      elif 0<=score<=59:
+          print('E级')
+      else:
+          print('对不起，成绩不再有效的范围。')
+
+#### 分支结构_嵌套if的使用
+
+      '''会员 >= 200 8折
+         会员 >= 100 9折
+              不打折
+         非会员 >= 200 9.5折
+              不打折'''
+      a=input('您是会员吗？y/n')
+      money=float(input('请输入你的购物金额：'))
+      #外层判断是非为会员
+      if a=='y': #会员
+          if money>=200:
+              print('打8折,付款金额为:',money*0.8)
+          elif money>100:
+              print('打9折，付款金额为:',money*0.9)
+          else:
+              print('不打折，付款金额为:',money)
+      else: #非会员
+          if money>=200:
+              print('打9.5折，付款金额为:',money*0.95)
+          else:
+              print('不打折，付款金额为:', money)
 
 
+#### 条件表达式
+
+      '''从键盘录入两个整数，比较两个整数的大小'''
+      num_a=int(input('请输入第一个整数'))
+      num_b=int(input('请输入第二个整数'))
+      #比较大小
+      '''if num_a>=num_b:
+          print(num_a,'大于等于',num_b)
+      else:
+          print(num_a,'小于',num_b)
+      '''
+      print('使用条件表达式进入比较') #可以简化操作
+      print( str(num_a)+' 大于等于 '+str(num_b) if num_a>=num_b else str(num_a)+' 小于 '+str(num_b) )
+
+#### pass语句
+##### pass语句，只是做一个占位符，用到需要写语句的地方
+      a=input('您是会员吗？y/n')
+
+      #判断是否为会员
+      if a=='y':
+          pass #程序不会报错
+      else:
+          pass
+      #循环结构的判断是根据对象的布尔值为True或False
+      age=int(input('请输入你的年龄:'))
+      if age:
+          print(age)
+      else:
+          print('年龄为:',age)
+##### 小结图片
+<img src="https://user-images.githubusercontent.com/99107924/164725337-32eb8eb2-7d88-4dc6-98fb-c50eb5e29f5d.png" width="650" />
+
+###
 
 
 
