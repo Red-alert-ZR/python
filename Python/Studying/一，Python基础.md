@@ -1,5 +1,5 @@
-## 计算机组成原理  
-#### 输出函数print()
+## 一.计算机组成原理  
+#### 1输出函数print()
       #可以输出数字
       print(5)
       print(5.4)
@@ -20,7 +20,7 @@
       print('hello','world','Python')
 
 
-#### 转义字符与元字符 
+#### 2转义字符与元字符 
 
       #转义字符
       print('hello\nworld') #\ +转移功能的首字母  n-->newline的首字符表示换行
@@ -38,12 +38,12 @@
       #print(r'hello\nworld\')
 
 
-#### 二进制与字符编码 
+#### 3二进制与字符编码 
       print(chr(0b100111001011000))
       print(ord('乘'))
 
 
-####  Python中的标识符和保留字  
+####  4Python中的标识符和保留字  
       import keyword
       #Python保留字
       print(keyword.kwlist)
@@ -59,7 +59,7 @@
       '''
   
 
-##  Python变量  ##
+##  二.Python变量  ##
       #变量的定义和使用
       name = '玛丽亚'
       print(name)
@@ -70,13 +70,13 @@
       name = '楚留冰'
       print(name)
 
-### 数据类型  ##
+### 1数据类型  ##
 ##### 整数类型 --> int -->98
 ##### 浮点数类型 --> float --> 3.141519
 ##### 布尔类型 --> bool --> True,False
 ##### 字符串类型 --> str --> '人生苦短，我用python'
 
-#### 整数类型
+#### 1.1整数类型
 ##### 可以表示，整数，负数，0
       n1 = 90
       n2 = -76
@@ -90,7 +90,7 @@
       print('八进制',0o176) #八进制以0o开头
       print('十六进制',0x1EAF) #十六进制以0x开头
 
-#### 浮点类型
+#### 1.2浮点类型
       a = 3.14159
       print(a,type(a))
       n1 = 1.1
@@ -101,7 +101,7 @@
       from decimal import Decimal
       print(Decimal('1.1')+Decimal('2.2'))
 
-#### 布尔类型
+#### 1.3布尔类型
 ##### 用来表示真或者假的值
 ##### True表示真，False表示假
 ##### True --> 1 False --> 0
@@ -114,7 +114,7 @@
       print(f1+1) #2   1+1的结果为2
       print(f2+1) #0   1+0的结果为1
 
-#### 字符串类型
+#### 1.4字符串类型
 ##### 字符串类型
 ##### 字符串又被称为不可变的字符序列
 ##### 可以使用单引号''双引号""三引号''''''或""""""来定义
@@ -131,7 +131,7 @@
       print(str3,type(str3))
       print(str4,type(str4))
 
-#### 数据类型转换
+#### 1.5数据类型转换
 ![image](https://user-images.githubusercontent.com/99107924/162921178-a9933ecd-f711-4c59-9d72-58b73c8850e0.png)     
       
       name = '张三'
@@ -173,7 +173,7 @@
       #print(float(s3),type(float(s3))) #字符串中的数据是非数字串，则不允许转换
       print(float(i),type(float(i)))
 
-#### 注释
+#### 2注释
 ##### 在代码中对代码的功能进行解释说明的标注性文字，可以提高代码的可读性
 ##### 注释的内容会被Python解释器忽略
 ##### 通常包括三种类型的注释
@@ -189,9 +189,9 @@
       我是
       多行注释哦'''
 
-##  流程控制语句  ##
-#### Python的输出函数input()
-#### input的高级使用
+##  三.流程控制语句  ##
+### 1Python的输出函数input()
+#### 1.1input的高级使用
 ##### 从键盘录入两个整数，计算两个整数的和
       a = int(input('请输入一个加数：'))
       b = int(input('请输入另一个加数：'))
@@ -200,14 +200,14 @@
       print(type(a),type(b))
       print(a+b)
       
-### Python的运算符
+### 2Python的运算符
 <img src="https://user-images.githubusercontent.com/99107924/163781347-de11782c-4cce-433f-bf5a-94e6b54ad781.png" width="600px" alt="Python运算符" />
 
 ***
 ***
 ***
 
-#### 运算符1_算术运算符
+#### 2.1运算符1_算术运算符
 <img src="https://user-images.githubusercontent.com/99107924/163781371-83690916-31f7-4c36-b2f7-27ae7e3d9ee2.png" width="700px" alt="Python运算符" />
 
       print(1+1) #加法运算
@@ -224,7 +224,7 @@
       print(9%-4) # 公式 余数=被除数-除数*商 9-(-4)*(-3) --> 9-12 = -3
       print(-9%4) # (-9)-4*(-3) --> -9+12 = 3
 ***
-#### 运算符2_赋值运算符
+#### 2.2运算符2_赋值运算符
 <img src="https://user-images.githubusercontent.com/99107924/163786651-78430f87-78c6-45a8-926c-d910a39fe51a.png" width="650"/>
 
       
@@ -264,7 +264,7 @@
       a,b=b,a
       print('交换之后:',a,b)
 ***
-#### 运算符3_比较运算符
+#### 2.3运算符3_比较运算符
 <img src="https://user-images.githubusercontent.com/99107924/163789519-b7281225-1aa4-49c5-b6be-bed05c6dc9bb.png" width="650"/>
 
       print('比较运算符的结果为bool类型')
@@ -297,7 +297,7 @@
       print(list1 is not list2)
 
 
-#### 运算符4_布尔运算符
+#### 2.4运算符4_布尔运算符
 <img src="https://user-images.githubusercontent.com/99107924/163823247-36b4f8f3-7722-45f8-9256-9014da6d2a70.png" width="650" />
       
       a,b=1,2
@@ -327,7 +327,7 @@
       print('k' not in s)
 
 
-#### 运算符5_位运算符
+#### 2.5运算符5_位运算符
 <img src="https://user-images.githubusercontent.com/99107924/164036205-e87af3c2-0bbd-41aa-a1b0-92b2dea4c8b3.png" width="650"/>
 
 
@@ -340,12 +340,12 @@
       print(4>>1) #右移一位，相当于除以2
       print(4>>2) #右移两位，相当于除以4
 
-#### 运算符的优先级
+#### 2.6运算符的优先级
 <img src="https://user-images.githubusercontent.com/99107924/164485659-25488485-35b8-4998-b949-e60777d58fcd.png" width="650"/>
 
-### 程序的组织结构
+### 3程序的组织结构
 
-#### 顺序结构
+#### 3.1顺序结构
 ##### 程序从_上到下顺序地执行代码，中间没有任何的判断和跳转，直到程序结束
 
       '''把大象装冰箱一共分几步'''
@@ -355,7 +355,7 @@
       print('3，把冰箱门关上')
       print('------程序结束-------')
 
-#### 对象的布尔值
+#### 3.2对象的布尔值
 ##### Python-切皆对象，所有对象都有一个布尔值
 ##### 获取对象的布尔值
 ##### 使用内置函数bool()
@@ -391,8 +391,8 @@
       print(bool(18))
       print(bool('hello world'))
 
-#### 选择结构
-#### 分支结构_单分支结构
+#### 3.3选择结构
+#### 3.3.1分支结构_单分支结构
 
       money=1000 #余额
       s=int(input("请输入取款金额：")) #取款金额
@@ -401,8 +401,8 @@
           money-=s
           print("取款成功，余额为：",money)
 
-#### 分支结构_双分支结构
-#### 双分支结构if...else,二选一
+#### 3.3.2分支结构_双分支结构
+##### 双分支结构if...else,二选一
 
       '''从键盘录入一个整数，编写程序让计算机判断是奇数还是偶数'''
       num=int(input("请输入一个整数:"))
@@ -413,7 +413,7 @@
       else:
           print(num,'是奇数')
 
-#### 分支结构_多分支结构
+#### 3.3.3分支结构_多分支结构
 
       '''多分支结构，多选一执行
       从键盘录入一个整数 成绩
@@ -439,7 +439,7 @@
       else:
           print('对不起，成绩不再有效的范围。')
 
-#### 分支结构_嵌套if的使用
+#### 3.3.4分支结构_嵌套if的使用
 
       '''会员 >= 200 8折
          会员 >= 100 9折
@@ -463,7 +463,7 @@
               print('不打折，付款金额为:', money)
 
 
-#### 条件表达式
+#### 3.3.5条件表达式
 
       '''从键盘录入两个整数，比较两个整数的大小'''
       num_a=int(input('请输入第一个整数'))
@@ -477,7 +477,7 @@
       print('使用条件表达式进入比较') #可以简化操作
       print( str(num_a)+' 大于等于 '+str(num_b) if num_a>=num_b else str(num_a)+' 小于 '+str(num_b) )
 
-#### pass语句
+### 3.3.6pass语句
 ##### pass语句，只是做一个占位符，用到需要写语句的地方
       a=input('您是会员吗？y/n')
 
@@ -495,7 +495,8 @@
 ##### 小结图片
 <img src="https://user-images.githubusercontent.com/99107924/164725337-32eb8eb2-7d88-4dc6-98fb-c50eb5e29f5d.png" width="650" />
 
-#### range()函数的使用
+#### 3.4循环结构
+#### 3.4.1range()函数的使用
 
 <img src="https://user-images.githubusercontent.com/99107924/164913115-ed652340-c440-4981-be8e-a7d1526fb061.png" width="650"/>
 
@@ -523,7 +524,7 @@
       print(range(1,20,1)) #[1,.....19]
       print(range(1,101,1)) #[1,.....100]
       
-#### while循环结构
+#### 3.4.2while循环结构
 <img src="https://user-images.githubusercontent.com/99107924/164913981-1eb30d67-5e87-40ce-9e87-a30efdc6a2cc.png" width="650"/>
 
       a=1
@@ -569,8 +570,134 @@
               a+=1
       print('1-100之间的偶数和',sum)
 
+#### 3.4.3for_in循环
+<img src="https://user-images.githubusercontent.com/99107924/164954800-f5dbec45-4a0f-4075-bc45-3b766d496f28.png" width="650"/>
+
+      for item in 'Python': #第一次去出来的是P，将P赋值给item，将item的值输出
+          print(item)
+
+      #range() 产生一个整数序列 --> 也是一个可迭代对象
+      for i in range(10):
+          print(i)
+
+      #如果在循环体中不需要使用自定义变量，可以定义为“_”
+      for _ in range(5):
+          print('人生苦短，我用Python')
+
+      print('使用for循环，计算1-100之间的偶数和')
+      sum=0 #用于存储偶数和
+      for item in range(1,101):
+          if item%2==0:
+              sum+=item
+      print('1-100之间的偶数和为：',sum)
+      #练习
+      '''输出100到999之间的水仙花数     
+          举例
+          153=3*3*3+5*5*5+1*1*1
+      '''
+      for item in range(100,1000):
+          ge=item%10      #个位
+          shi=item//10%10 #十位
+          bai=item//100   #百位
+          #print(bai,shi,ge)
+          #判断
+          if ge**3+shi**3+bai**3==item:
+              print(item)
+
+#### 3.4.4流程控制语句_break
+<img src="https://user-images.githubusercontent.com/99107924/164954903-7b89b23e-f51d-4d99-91b0-26b80ff73a72.png" width="650"/>
+
+      '''从键盘录入密码，最多录入3次，如果正确就结束循环'''
+      for item in range(3):
+          pwd=input('请输入密码：')
+          if pwd=='8888':
+              print('密码正确')
+              break #退出循环
+          else:
+              print('密码不正确')
+
+      a=0
+      while a<3:
+          pwd=input('请输入密码：')
+          if pwd=='8888':
+              print('密码正确')
+              break
+          else:
+              print('密码不正确')
+          '''改变变量'''
+          a+=1
+
+#### 3.4.5流程控制语句_continue
+<img src="https://user-images.githubusercontent.com/99107924/164954814-d21f5ffc-b202-4ca1-a48a-a9769da6956a.png" width="650"/>
+
+      '''要求输出1到50之间所有5的倍数，5，10，15，20，25
+          5的倍数的共同点：   和5的余数为0的数都是5的倍数
+          什么样的数不是5的倍数，    1，2，3，4，6，7，8，9（和5的余数为0的数都不是5的倍数）    
+          使用continue来实现
+      '''
+      for item in range(1,51):
+          if item%5==0:
+              print(item)
+
+      print('-----------使用continue-------------------')
+      for item in range(1,51):
+          if item%5!=0:
+              continue
+          print(item)
+
+#### 3.4.6流程控制语句_else
+<img src="https://user-images.githubusercontent.com/99107924/164954870-eb62f4bd-64c0-46da-8692-9a5811da2d8e.png" width="650"/>
+
+      for item in range(3):
+          pwd=input('请输入密码：')
+          if pwd=='8888':
+              print('密码正确')
+              break
+          else:
+              print('密码不正确')
+      else:
+          print('对不起，三次密码均输入错误')
+
+      a=0
+      while a<3:
+          pwd=input('请输入密码：')
+          if pwd == '8888':
+              print('密码正确')
+              break
+          else:
+              print('密码不正确')
+          '''改变变量'''
+          a+=1
+      else:
+          print('对不起，三次密码均输入错误')
+
+#### 3.5嵌套结构
+<img src="https://user-images.githubusercontent.com/99107924/164955161-3b5bf7aa-b2d5-4b70-bf60-2967d7cd3f95.png" width="650" />
+
+      '''输出一个三行四列的矩形'''
+      for i in range(1,4): #行数，执行三次，一次是一行
+          for j in range(1,5):
+              print('*',end='\t') #不换行输出
+          print() #打行
+
+      for i in range(1,10): #行数
+          for j in range(1,i):
+              print(i,'*',j,'=',i*j,end='\t') #不换行输出
+          print()
+
+#### 3.5.1二重循环中的break和continue
+<img src="https://user-images.githubusercontent.com/99107924/164955430-a726097d-36c4-428f-84a3-2174dc498853.png" width="650" />
+
+      for i in range(5): #代表外层循环要执行5次
+          for j in range(1,11):
+              if j%2==0:
+                  #break
+                  continue
+              print(j,end='\t')
+          print()
 
 
+## 四.高级变量类型
 
 
 
