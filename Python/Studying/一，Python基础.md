@@ -699,6 +699,34 @@
 
 ## 四.高级变量类型
 
+### 1列表
+#### 1.1列表的创建
+
+      '''创建列表的第一种方式，使用[]'''
+      lst1=['hello','world',98]
+      '''创建列表的第二种方式，使用内置函数list()'''
+      lst2=list(['hello','world','98'])
+
+#### 1.2列表的特点
+<img src="https://user-images.githubusercontent.com/99107924/164955965-8aa21229-a211-4693-a5b7-ab7114a5833a.png" width="650" />
+
+      lst=[1,2,3,4,5.1]
+      print(lst)
+      print(lst[0],lst[-1])
+
+#### 1.3获取列表中指定元素的索引
+
+      lst=['hello','world',98,'hello']
+      print(lst.index('hello')) #如果列表中有相同元素只返回列表中相同元素的第一个元素的索引
+      #print(lst.index('Python')) #ValueError: Python is not in list
+      print(lst.index('hello',1,4))
+
+#### 1.4获取列表中指定元素
+<img src="https://user-images.githubusercontent.com/99107924/164982929-66af2da1-ce47-4e00-85ad-04db8755b399.png" width="650"/>
+
+      lst=['hello','world',98,'hello','world',234]
+      print(lst[2])   #获取索引为2的元素
+      print(lst[-3])  #获取索引为-3的元素
 
 
 
