@@ -728,6 +728,194 @@
       print(lst[2])   #获取索引为2的元素
       print(lst[-3])  #获取索引为-3的元素
 
+#### 1.5获取列表中的多个元素_切片操作
+
+      lst = [10, 20, 30, 40, 50, 60, 70, 80]
+      # start=1,stop=6,step=1
+      print(lst[1:6:1])  # 新的列表对象
+      print('原列表', id(lst))
+      lst2 = lst[1:6:1]
+      print('切的片段', id(lst2))
+      # start=1,stop=6,step采用默认
+      print(lst[1:6])
+      print(lst[1:6:],'默认步长为1')  # 默认步长为1
+      # start=1,stop=6,step=2
+      print(lst[1:6:2])
+      # stop=6,step=2,start采用默认
+      print(lst[:6:2],' 默认从0开始')  # 默认从0开始
+      # start=1,step=2,stop采用默认
+      print(lst[1::2],'默认到最后一个结束')  # 默认到最后一个结束
+
+      print('----step步长为负数的情况-----')
+      print('原列表', lst)
+      print('新列表', lst[::-1])
+      print('会将原列表的元素倒叙排列')
+      # start=7,stop 省略 step=-1
+      print(lst[7::-1])
+      # start=6,stop=0,step=-2
+      print(lst[6:0:-2])
+
+#### 1.6    列表元素的判断和遍历
+
+##### 判断元素在列表当中是否存在
+
+      print('p' in 'python')
+      print('k' not in 'python')
+
+      lst=[10,20,'python','hello']
+      print(10 in lst) # True
+      print(100 in lst) # False
+      print(10 not in lst) # False
+      print(100 not in lst) # True
+
+##### 遍历列表元素
+      for i in lst:
+          print(i)
+
+#### 1.7列表元素的添加操作
+<img src='https://user-images.githubusercontent.com/99107924/165215159-a86e0001-1f99-4144-8e7e-e011a98b4d99.png' width='650'/>
+
+
+##### 向列表的末尾添加一个元素
+      lst=[10,20,30]
+      print('添加元素之前',lst,id(lst))
+      lst.append(100)
+      print('添加元素之后',lst,id(lst))
+
+##### 将lst2作为一个元素添加到列表的末尾(append)
+      lst2=['hello','world']
+      lst.append(lst2)
+      print(lst)
+
+##### 向列表的末尾一次性添加多个元素(extend)
+      lst.extend(lst2)
+      print(lst)
+
+##### 在任意位置上添加一个元素(insert)
+      lst.insert(1,90) # 在位置为1的位置上添加
+      print(lst)
+
+##### 在任意位置上添加N多个元素(切片)
+      lst3=[True,False,'hello']
+      lst[1:]=lst3
+      print(lst)
+
+#### 1.8列表元素的删除操作
+<img src='https://user-images.githubusercontent.com/99107924/165252727-c6ac845f-6587-40ea-b3b1-7bd2135e6ac4.png' width='400' height='400'/>
+
+##### remove()从列表中移除第一个元素，如果有重复元素的话。
+      lst=[10,20,30,40,50,60,30]
+      lst.remove(30)
+      print(lst)
+      #lst.remove(100) #如果元素不存在，会报错（ValueError:  x not in list）
+
+##### pop()根据索引来移除元素
+      lst.pop(1)
+      print(lst)
+      #lst.pop(5) #超出范围会抛出异常，（IndexError: pop index out of range）
+      lst.pop() #如果不指定索引，默认删除列表最后的元素
+      print(lst)
+
+##### 切片操作，删除至少一个元素，将产生一个新的列表对象
+      new_lst=lst[1:3]
+      print('原列表',lst)
+      print('切片后的列表',new_lst)
+
+##### 不产生新的列表对象，而是删除源列表中的内容
+      lst[1:3]=[]
+      print(lst)
+
+##### clear()清楚列表中的所有元素
+      lst.clear()
+      print(lst)
+
+##### del()语句将列表对象删除
+      del lst
+      print(lst) #无定义 （NameError: name 'lst' is not defined）
+
+
+#### 1.9列表元素的修改操作
+
+
+##### 一次修改一个值
+      lst=[10,20,30,40] #原列表
+      print(lst)
+      lst[2]=100
+      print(lst)
+
+##### 一次修改多个值
+      lst[1:3]=[300,400,500,600]
+      print(lst)
+
+#### 1.10列表元素的 排序操作
+
+- 列表元素的排序操作 
+- 常见的两种方式：  
+1. 调用sort()方法，列有中的所有元素默认按照从小到大的顺序进行排序，可以指定reverse=True，进行降序排序 。  
+2. 调用内置函数sorted()， 可以指定reverse=True， 进行降序排序，原列表不发生改变。
+
+##### 开始排序，调用列表对象的sort的方法，升序排列
+      lst=[20,40,10,98,54]
+      print('排序前的列表',lst,id(lst))
+      lst.sort()
+      print('排序后的列表',lst,id(lst))
+
+##### 通过指定关键字参数，将列表中的元素进行降序排列
+      lst.sort(reverse=True) #reverse=True，表示降序排列；reverse=False，表示升序排列
+      print('降序排列   ',lst)
+      lst.sort(reverse=False)
+      print('升序排列   ',lst)
+
+##### 使用内置函数sorted()对列表进行排列，将产生一个新的列表对象
+      lst=[20,40,10,98,54]
+      new_lst=sorted(lst)
+      print('原列表',lst,id(lst))
+      print('新列表',new_lst,id(new_lst))
+
+##### 通过指定关键字参数，将列表中的元素进行降序排列
+      desc_lst=sorted(lst,reverse=True)
+      print('降序列表',desc_lst,id(desc_lst))
+
+
+#### 1.10列表生成式
+- 列表生成式简称"生成列表的公式"
+语法格式：
+      
+      [i*i for i in range(1,10)]
+注意事项: 表示列表元素的表达式中通常包括自定义变量
+
+      lst=[i*i for i in range(1,10)]
+      print(lst)
+
+##### 列表中的元素的值为2，4，6，8，10
+      lst2=[i for i in range(2,11,2)]
+      print(lst2)
+
+#### 小结：
+<img src='https://user-images.githubusercontent.com/99107924/165261801-25fa47d5-0b0f-45bd-849a-917c6e9547c1.png' width='800' height='350'/>
+
+
+
+### 2字典
+#### 2.1字典的定义
+- 字典
+- Python内置的数据结构之一，与列表一样是一个可变序列。
+- 以键值对的方式存储数据，字典是一个无序的序列。
+#### 2.2字典的实现原理
+-字典的实现原理与查字典类似，查字典是先根据部首或拼音查找对应的页码，Python中的字典是根据key查找value所在的位置。
+#### 2.3字典的创建
+- 最常用的方式：使用花括号{}创建字典
+      scores={'张三':100,'李四':98,'王五':45}
+      print(scores)
+      print(type(scores))
+
+- 使用内置函数dict()创建字典
+      student=dict(name='jack',age=20)
+      print(student)
+
+- 使用空字典
+      d={}
+      print(d)
 
 
 
@@ -736,3 +924,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
