@@ -917,27 +917,74 @@
       d={}
       print(d)
 #### 2.4字典元素的获取
+- []取值与使用get()取值的区别
+1. 如果字典中不存在指定的key，拋出keyError异常
+2. get()方法取值，如果字典中不存在指定的key，并不会拋出KeyError而 是返回None，可以通过参数设置默认的value，以便指定的key不存在时返回
 
+- 第一种方式，使用[]
+ 
+      scores={'张三':100,'李四':98,'王五':45}
+      print(scores['张三'])
+      #print(scores['陈六']) #KeyError: '陈六'
 
+- 第二种方式，使用get()方法
+ 
+      print(scores.get('张三'))
+      print(scores.get('陈六')) #None
+      print(scores.get('麻七',99)) #99是在查找'麻七'所对应的value不存在时，提供的一个默认值
 
+#### 2.5字典的常用操作
 
+- key的判断
 
+      score={'张三':100,'李四':98,'王五':45}
+      print('张三' in score)
+      print('张三' not in score)
 
+- key的删除和清空
 
+      del score['张三'] #删除指定的key-value对
+      print(score)
+      score.clear() #请空字典的元素
+      print(score)
 
+-key的新增和修改
 
+      score={'李四': 98, '王五': 45}
+      score['陈六']=98 #新增元素
+      print(score )
+      score['陈六']=100 #修改元素
+      print(score)
 
+#### 2.6字典的视图获取
 
+- 获取所有的key
+ 
+      score={'张三':100,'李四':98,'王五':45}
+      keys=score.keys()
+      print(keys)
+      print(type(keys)) #将所有key组成的视图转成列表
 
+- 获取所有的value
 
+      values=score.values()
+      print(values)
+      print(type(values))
+      print(list(values))
 
+- 获取所有的key-value对
+      
+      items=score.items()
+      print(items)
+      print(list(items)) #转换之后的列表元素是由元组组成的（元组之后在讲解）
 
+#### 2.7字典元素的遍历
 
+- 字典元素的遍历
 
-
-
-
-
+      score={'张三':100,'李四':98,'王五':45}
+      for item in score:
+          print(item,score[item],score.get(item))
 
 
 
