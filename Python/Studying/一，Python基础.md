@@ -986,7 +986,7 @@
       for item in score:
           print(item,score[item],score.get(item))
 
-
+#### 2.8字典的特点
 
 
 
