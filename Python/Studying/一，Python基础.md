@@ -1005,9 +1005,52 @@
       #dict={lst:100} #key必须是不可变对象
       #print(dict)
 
+#### 2.9字典生成式
+- 内置函数zip()
 
+用于将可迭代的对象作为参数，将对象中对应的元素打包成一个元组,然后返回由这些元组组成的列表.
 
+      items=['Fruits','Book','Others']
+      prices=[96,78,85,100,120]
 
+      dict={item.lower():price for item,price in zip(items,prices)}
+      print(dict)
+      del dict['fruits']
+      print(dict)
+
+### 3元组
+#### 3.1元组的定义
+- 元组
+
+python内置的数据结构之一，是一个不可变序列
+
+- 不可变序列与可变序列
+##### 不变可变序:字符串、元组
+
+不变可变序列:没有增、删，改的操作
+
+      s='hello' #字符串-->不可变序列
+      print(id(s))
+      s+='world'
+      print(id(s))
+      print(s) #内存地址改变
+##### 可变序列:列表、字典
+
+可变序列:可以对序列执行增、删、改操作，对象地址不发生更改
+
+      lst=[10,20,45] #列表-->可变序列
+      print(id(lst))
+      lst.append(300)
+      lst.insert(1,100)
+      print(id(lst)) #内存地址没有更改
+
+#### 3.2元组的创建方式
+- 元组的创建方式
+##### 直接小括号
+
+##### 使用内置函数
+
+##### 只包含一个元组的元素需要使用逗号和小括号
 
 
 
