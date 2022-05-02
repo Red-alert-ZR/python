@@ -1047,19 +1047,104 @@ python内置的数据结构之一，是一个不可变序列
 #### 3.2元组的创建方式
 - 元组的创建方式
 ##### 直接小括号
+      t=('Python','world',98)
+      print(t)
+      print(type(t))
+      
+      t2='Python','world',98 #省略了小括号
+      print(t2)
+      print(type(t2))
+      
+##### 只包含一个元组的元素需要使用逗号和小括号
+      t3=('Python',) #元组中只有一个元素，逗号不能省
+      print(t3)
+      print(type(t3))
 
 ##### 使用内置函数
+      t1=tuple(('Python','world',98))
+      print(t1)
+      print(type(t1))
 
-##### 只包含一个元组的元素需要使用逗号和小括号
+##### 空元组的创建方式
+      lst=[] #空列表
+      lst1=list()
+
+      dict1=dict()
+      dict2={}
+
+      t4=()
+      t5=tuple()
+
+      print('空列表',lst,lst1)
+      print('空字典',dict1,dict2)
+      print('空元组',t4,t5)
+
+#### 3.3元组为什么是不可变序列
+- 在多任务环境下，同时操作对象时不需要加锁
+- 因此，在程序中尽量使用不可变序列
+
+##### 注意事项:元组中存储的是对象的引用
+1.如果元组中对象本身不可对象，则不能再引用其它对象。
+
+2.如果元组中的对象是可变对象，则可变对象的引用不允许改变，但数据可以改变
+
+      t=(10,[20,30],9)
+      print(t)
+      print(type(t))
+      print(t[0],type(t[0]),id(t[0]))
+      print(t[1],type(t[1]),id(t[1]))
+      print(t[2],type(t[2]),id(t[2]))
+      #尝试将t[1]修改为100
+      print(id(100))
+      #t[1]=100 #由于元组是不允许修改元素的
+      #由于[20,30]列表，而列表是可变序列，所以可以向列表中添加元素，而列表的内存地址不变
+      t[1].append(100) #向列表中添加元素
+      print(t,id(t[1][2]))
+
+#### 3.4元组的遍历
+- 元组是可迭代对象，所以可以使用for...in进行遍历
+
+      t=('Python','world',98)
+      #使用索引
+      print(t[0])
+      print(t[1])
+      print(t[2])
+      #print(t[3]) #IndexError: tuple index out of range
+
+      #遍历元组
+      for i in t:
+          print(i)
+
+### 4集合
+#### 4.1集合的定义
+##### 集合
+- Python语言提供的内置数据结构.
+- 与列表、字典一样都属于可变类型的序列
+- 集合是没有value的字典
+
+#### 4.1集合的创建
+
+- 第一种创建方式，直接使用{}
+
+      s={2,3,4,5,5,6,6,7,7} #集合中的元素不允许重复
+      print(s,type(s))
+
+- 第二种创建方式,使用内置函数set()
+
+      s1=set(range(6))
+      print(s1,type(s1))
+      s2=set([1,2,3,4,5,6,6,6])
+      print(s2,type(s2))
+      s3=set((29,1,2,3,4,'赵瑞',65))
+      print(s3,type(s3))
+      s4=set('Python')
+      print(s4,type(s4))
+      s5=set({123,123,1223,'hello'})
+      print(s5,type(s5))
+      s6=set() #空集合
+      print(type(s6))
 
 
 
 
-
-
-
-
-      
-      
-      
       
