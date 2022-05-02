@@ -1122,7 +1122,7 @@ python内置的数据结构之一，是一个不可变序列
 - 与列表、字典一样都属于可变类型的序列
 - 集合是没有value的字典
 
-#### 4.1集合的创建
+#### 4.2集合的创建
 
 - 第一种创建方式，直接使用{}
 
@@ -1143,8 +1143,58 @@ python内置的数据结构之一，是一个不可变序列
       print(s5,type(s5))
       s6=set() #空集合
       print(type(s6))
+ 
+#### 4.3集合的相关操作
+
+- 集合元素的判断操作 
+    * in 或 not in <br>
+
+##### <br>
+      s={10,20,30,405,60}
+      print(10 in s) #Ture
+      print(100 in s) #False
+      print(10 not in s) # False
+      print((100 not in s)) #True
 
 
+- 集合元素的新增操作<br>
+    * 1.调用add()方法，一次添中一个元素 <br>
+    * 2.调用update()方法至少添中一个元素 <br>
+ 
+ ##### <br>
+      s.add(80) #add()依次添加一个元素
+      print(s)
+      s.update({200,400,300}) #一次至少添加一个元素
+      print(s)
+      s.update([100,99,88])
+      print(s)
+      s.update((77,55,92))
+      print(s)
+      s.update(['哈哈','world'])
+      print(s)
+
+
+- 集合元素的删除操作<br>
+    * 1.调用remove()方法，一次删除一个指定元素，如果指定的元素不存在拋出KeyError <br>
+    * 2.调用discard()方法，一次删除一个指定元素，如果指定的元素不存在不拋异常 <br>
+    * 3.调用pop()方法，一次只删除一个任意元素 <br>
+    * 4.调用clear()方法，清空集合 <br>
+
+##### <br>
+      s.remove(100)
+      print(s)
+      #s.remove(500) ;print(s) #KeyError: 500(500不存在)
+      s.discard(500);print(s) #没有也不报错
+      s.discard(300)
+      print(s)
+      s.pop()
+      print(s)
+      s.pop()
+      print(s)
+      #s.pop(300);print(s) #TypeError: set.pop() takes no arguments (1 given)
+      #pop()是无参数的
+      s.clear() #清空集合当中的元素
+      print(s)
 
 
       
