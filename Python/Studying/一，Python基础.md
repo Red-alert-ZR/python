@@ -1390,9 +1390,58 @@ python内置的数据结构之一，是一个不可变序列
     </tr>
 </table>
           
-          
-          
-          
+      s='hello world Python'
+      '''split()从左侧开始劈分'''
+      lst=s.split()
+      print(lst)
+      s1='hello|world|Python'
+      lst=s1.split(sep='|')
+      print(lst)
+      lst=s1.split(sep='|',maxsplit=1)
+      print(lst)
+
+      '''rsplit()从右侧开始劈分'''
+      lst=s.rsplit()
+      print(lst)
+      lst=s1.rsplit(sep='|')
+      print(lst)
+      lst=s1.rsplit(sep='|',maxsplit=1)
+      print(lst)
+
+- 判断字符串操作的方法
+
+<table>
+    <tr>
+        <th>功能</th>
+        <th>方法名称</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td rowspan="6">判断字符串的方法</td>
+        <td>isidentifier()</td>
+        <td>判断指定的字符串是不是合法的标识符</td>
+    </tr>
+    <tr>
+        <td>isspace()</td>
+        <td>判断指定的字符串是否全部由空白字符组成（回车，换行，水平制表符）</td>
+    </tr>
+    <tr>
+        <td>isalpha</td>
+        <td>判断指定的字符串是否全部由字母组成</td>
+    </tr>
+    <tr>
+        <td>isdecimal()</td>
+        <td>判断指定的字符串是否全部由十进制的数字组成 </td>
+    </tr>
+    <tr>
+        <td>isnumeric</td>
+        <td>判断指定的字符串是否全部由数字组成</td>
+    </tr>
+    <tr>
+        <td>isalnum</td>
+        <td>判断指定的字符串是否全部由字母和数字组成</td>
+    </tr>
+</table>
           
           
           
