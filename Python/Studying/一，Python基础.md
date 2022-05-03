@@ -1195,6 +1195,82 @@ python内置的数据结构之一，是一个不可变序列
       #pop()是无参数的
       s.clear() #清空集合当中的元素
       print(s)
+      
+#### 4.5集合间的关系
+
+- 两个集合是否相等
+    * 可以使用运算符==或!=进行判断
+<br>
+
+      s1={10,20,30,40}
+      s2={30,40,20,10}
+      print(s1==s2) #True
+      print(s1!=s2) #False
+
+- 一个集合是否是另一个集合的子集
+    * 可以调用方法issubset进行判断
+    * B是A的子集
+<br>
+
+      s1={10,20,30,40,50,60}
+      s2={10,20,30,40}
+      s3={10,20,90}
+      print(s2.issubset(s1)) #True
+      print(s3.issubset(s1)) #False
+- 一个集合是否是另一个集合的超集
+    * 可以调用方法issuperset进行判断
+    * A是B的超集
+<br>
+
+      s1={10,20,30,40,50,60}
+      s2={10,20,30,40}
+      s3={10,20,90}
+      print(s1.issuperset(s2)) #True
+      print(s1.issuperset(s3)) #False
+- 两个集合是否没有交集
+    * 可以调用方 法isdisjoint进行判断
+<br>
+
+      s2={10,20,30,40}
+      s3={10,20,90}
+      s4={100,200,300}
+      print(s2.isdisjoint(s3)) #False
+      print(s2.isdisjoint(s4)) #True
+
+#### 4.6集合的数据操作
+- 交集
+
+      s1={10,20,30,40}
+      s2={20,30,40,50,60}
+      print(s1.intersection(s2))
+      print(s1&s2) #求交集： intersection() 与 & 等价操作
+
+- 并集
+ 
+      s1={10,20,30,40}
+      s2={20,30,40,50,60}
+      print(s1.union(s2))
+      print(s1|s2) #求并集： union() 与 | 等价操作
+
+- 差集
+
+      s1={10,20,30,40}
+      s2={20,30,40,50,60}
+      print(s1.difference(s2))
+      print(s1-s2) #求差集： different() 与 - 等价操作
+
+- 对称差集
+
+      s1={10,20,30,40}
+      s2={20,30,40,50,60}
+      print(s1.symmetric_difference(s2))
+      print(s1^s2) #求对称差集： symmtric_difference() 与 ^ 等价操作
+
+##### 原集合不会改变
+
+
+
+
 
 
       
