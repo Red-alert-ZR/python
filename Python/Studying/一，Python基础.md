@@ -1296,6 +1296,30 @@ python内置的数据结构之一，是一个不可变序列
 #### 5.2字符串的常用操作
 
 - 字符串的查询操作
+<table>
+    <tr>
+        <th>功能</th>
+        <th>方法名称</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td rowspan="4">查询方法</td>
+        <td>index()</td>
+        <td>查找子串substr第一次出现的位置，如果查找的子串不存在时，则抛出ValueError</td>
+    </tr>
+    <tr>
+        <td>rindex()</td>
+        <td>查找子串substr最后一次出现的位置，如果查找的子串不存在时，则抛出ValueError</td>
+    </tr>
+    <tr>
+        <td>find()</td>
+        <td>查找子串sbustr第一次出现的位置，如果查找的子串不存在时，则返回-1</td>
+    </tr>
+    <tr>
+        <td>rfind()</td>
+        <td>查找子串substr最后一次出现的位置，如果查找的子串不存在时，则返回-1</td>
+    </tr>
+</table>
 
       s='hello,hello'
       print(s.index('lo')) #3
@@ -1466,7 +1490,7 @@ python内置的数据结构之一，是一个不可变序列
       print('16','张三123'.isalnum()) #True
       print('17','abc!'.isalnum()) #False
 
-- 字符串的其他操作方法
+- 字符串的替换与合并
 <table>
     <tr>
         <th>功能</th>
@@ -1500,9 +1524,88 @@ python内置的数据结构之一，是一个不可变序列
       print(''.join(t))
       print('*'.join('Python'))
 
+#### 5.3字符串的比较操作
 
-          
-          
+- 运算符:>,>=,<,<=,==,!=
+
+- 比较规则:首先比较两个字符串中的第一个字符，如果相等则继续比较下一个字符，依次比较下去，直到两个字符串中的字符不相等时，其比较结果就是两个字符串的比较结果，两个字符串中的所有后续字符将不再被比较
+
+- 比较原理:两上字符进行比较时，比较的是其ordinal value(原始值),调用内置函数ord可以得到指定字符的ordinal value。与内置函数ord对应的是内置函数chr,调用内置函数chr时指定ordinal value可以得到其对应的字符
+
+      print('apple'>'app') #True
+      print('apple'>'banana') #False
+      print(ord('a'),ord('b'))
+      print(ord('赵'),ord('瑞'))
+
+      print(chr(97),chr(98))
+      print(chr(36213),chr(29790))
+
+      '''== 与 is 的区别
+         == 比较的是 value
+         is 比较的是id是否相等'''
+      a=b='Python'
+      c='Python'
+      print(a==b) #True
+      print(b==c) #True
+
+      print(a is b) #True
+      print(a is c) #True
+      print(id(a))
+      print(id(b))
+      print(id(c))
+
+#### 5.4字符串的切片操作
+**字符串是不可改变类型
+
+不具备增，删，改等操作<br>
+切片操作将产生新的对象
+
+      s='hello,Python'
+      s1=s[:5] #由于没有指定起始位置，所以从0开始
+      print(s1) #由于没有指定结束位置，所以切到字符串的最后一个元素
+      s2=s[6:]
+      print(s2)
+      s3='!'
+      nuwstr=s1+s3+s2
+      print(nuwstr)
+      print('\n',id(s),'\n',id(s1),'\n',id(s2),'\n',id(s3),'\n',id(nuwstr),)
+
+      print('-----------------切片[start:end:step]----------------------')
+      print(s[1:5:1]) #从1开始截到5（不包括5），步长为1
+      print(s[::2]) #默认从0开始，没有写结束，默认到字符串的最后一个元素，步长为2，两个元素的索引间隔为2
+      print(s[::-1]) #默认从字符串的最后一个元素开始，到字符串的第一个元素结束，因为步长为负数
+      print(s[-6::1]) #从索引为-6开始，到字符串的最后一个元素结束，步长为1
+
+#### 5.5格式化字符串
+**格式化字符串的两种方式
+- %做占位符
+- {}做占位符
+
+      # 1、%
+      name='张三'
+      age=20
+      print('我叫%s,今年%d岁' %(name,age))
+
+      # 2、{}
+      print('我叫{0},今年{1}岁'.format(name,age))
+
+      # 3、f-string
+      print(f'我叫{name},今年{age}岁')
+
+      print('%10d' % 99) #10表示的是宽度
+      print('hellohello')
+      print('%.3f' % 3.1415926) #%.3f 保留三位小数
+      #同时表示宽度和精度
+      print('%10.3f' % 3.1415926) #一共总宽度为10，小数点后3位
+
+      print('{0:.3}'.format(3.1415926)) #{:.3}表示一共3位数
+      print('{0:.3f}'.format(3.1415926)) #{:.3f}表示的是3位小数
+      print('{:10.3f}'.format(3.1415926)) #{:10.3f}同时表示宽度和精度
+
+
+
+
+
           
           
           
