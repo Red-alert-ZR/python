@@ -1625,7 +1625,7 @@ python内置的数据结构之一，是一个不可变序列
       print(byte1.decode(encoding='UTF-8'))
 
 #### 小结：
-<img src='https://user-images.githubusercontent.com/99107924/166857447-b5bb56a2-1c61-4b16-8cef-8ad13e5cc17c.png' width='800' height='350'>
+<img src='https://user-images.githubusercontent.com/99107924/166857447-b5bb56a2-1c61-4b16-8cef-8ad13e5cc17c.png' width='1000' height='400'>
 
 
 ## 5函数应用
@@ -1897,9 +1897,74 @@ python内置的数据结构之一，是一个不可变序列
           pass
 
 #### 5变量的作用域
+- 程序代码能访问该变量的区域
+- 根据变量的有效范围可分为
+    - 局部变量
+        - 在函数内定义并使用的变量，只是函数内部有效，局部变量使用global声明，这个变量就会成为全局变量
+    - 全局变量
+        - 函数体外定义的变量，可作用于函数体外
+<br>
+
+      def fun1(a,b):
+          c=a+b #c,就称为局部变量，因为c是函数体内进行定义的变量,a,b为函数的形参，作用范围也是函数内部，相当于局部变量
+          print(c)
+
+      #print(a);print(c) #因为a,c,超出了起作用的范围（超出了作用域）
+
+      name='赵瑞' #name的作用范围为函数内部和外部都可以使用--->称为全局变量
+      print(name)
+      def fun2():
+          print(name)
+      #调用函数
+      fun2()
+
+      def fun3():
+          global age
+          age=20
+          print(age)
+      fun3()
+      print(age)
+
 #### 6递归函数
+- 递归函数
+    - 如果在一个函数的函数体内调用了该函数本身，这个函数就称为递归函数
+- 递归的组成部分
+    - 递归调用与递归终止条件
+- 递归的调用过程
+    - 每递归调用一次函数，都会在栈内存分配一个栈帧,
+    - 每执行完一次函数，都会释放相应的空间.
+- 递归的优缺点
+    - 缺点:占用内存多，效率低下
+    - 优点:思路和代码简单
+<br>
 
+      '''使用递归来计算阶乘'''
+      def fac(n):
+          if n==1:
+              return 1
+          else:
+              res=n*fac(n-1)
+              return res
 
+      print(fac(25))
+
+      #斐波那契数列
+      def fun(n):
+          if n==1:
+              return 1
+          elif n==2:
+              return 1
+          else:
+              res=fun(n-1)+fun(n-2)
+              return res
+
+      print(fun(6))
+      for i in range(1,7):
+          print(fun(i))
+
+#### 函数总结：
+
+<img src='https://user-images.githubusercontent.com/99107924/166904486-27f41c95-159f-4ca7-9fb7-e13e61d4498d.png'  width='1000' height="400" />
           
           
           
