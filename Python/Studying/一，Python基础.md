@@ -1965,6 +1965,14 @@ python内置的数据结构之一，是一个不可变序列
 #### 函数总结：
 
 <img src='https://user-images.githubusercontent.com/99107924/166904486-27f41c95-159f-4ca7-9fb7-e13e61d4498d.png'  width='1000' height="400" />
+
+
+## 6异常处理
+#### 1Bug的由来及其分类
+#### 2不同异常类型的处理方式
+#### 3异常处理机制
+#### PyCharm的调试模式
+
           
           
           
