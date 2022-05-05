@@ -1602,7 +1602,9 @@ python内置的数据结构之一，是一个不可变序列
       print('{0:.3f}'.format(3.1415926)) #{:.3f}表示的是3位小数
       print('{:10.3f}'.format(3.1415926)) #{:10.3f}同时表示宽度和精度
 
+#### 小结：
 
+<img src='https://user-images.githubusercontent.com/99107924/166857447-b5bb56a2-1c61-4b16-8cef-8ad13e5cc17c.png' width='800' height='350'>
 
 
 
