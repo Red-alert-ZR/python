@@ -1602,12 +1602,34 @@ python内置的数据结构之一，是一个不可变序列
       print('{0:.3f}'.format(3.1415926)) #{:.3f}表示的是3位小数
       print('{:10.3f}'.format(3.1415926)) #{:10.3f}同时表示宽度和精度
 
-#### 小结：
 
+**编码与解码的方式**
+- 编码：将字符串转换为二进制数据(bytes)
+- 解码：将bytes类型的数据转换成字符串类型
+
+      s='天涯共此时'
+      #编码
+      print(s.encode(encoding='GBK')) #在GBK这种编码中，一个中文占两个字节
+      print(s.encode(encoding='UTF-8')) #在UTF-8这种编码中，一个中文占三个字节
+
+      #解码
+      #byte代表的就是一个二进制数据(字节类型的数据)
+      byte=s.encode(encoding='GBK') #编码
+      print(byte.decode(encoding='GBK')) #解码
+
+      byte=s.encode(encoding='UTF-8') #编码
+      print(byte.decode(encoding='UTF-8')) #解码
+
+      a='赵'
+      byte1=a.encode(encoding='UTF-8')
+      print(byte1.decode(encoding='UTF-8'))
+
+#### 小结：
 <img src='https://user-images.githubusercontent.com/99107924/166857447-b5bb56a2-1c61-4b16-8cef-8ad13e5cc17c.png' width='800' height='350'>
 
-
-
+          
+          
+          
           
           
           
