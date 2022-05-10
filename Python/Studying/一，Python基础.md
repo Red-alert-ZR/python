@@ -1969,6 +1969,109 @@ python内置的数据结构之一，是一个不可变序列
 
 ## 6异常处理
 #### 1Bug的由来及其分类
+#### 1.1粗心导致的语法错误
+- Bug的由来
+    - 世界上第一部用玩用计算机的进化版-马克2号
+1. 漏了末尾的冒号，如if语句，循环语句,else子句等
+2. 缩进错误，该缩进的没缩进，不该缩进的瞎缩进
+3. 把英文符号写成中文符号，比如说:引号，冒号，括号
+4. 字符串拼接的时候，把字符串和数字拼在一起
+5. 没有定义变量，比如说while的循环条件的变量
+6. “==”比较运算符和”=”赋值运算符的混用
+
+- 粗心导致的语法错误
+
+      '''age = (input('请输出你的年龄'))
+      if age>=18:
+          print('成年人')'''
+      age = eval(input('请输出你的年龄'))
+      if age>=18:
+          print('成年人')
+
+      '''
+      while i<10: #i没有指定
+          print（i） #采用中文符号 ,死循环'''
+      i=0
+      while i<10:
+          print(i)
+          i+=1
+
+      '''for i in range(3):
+          uname=input('请输入用户名：')
+          pwd=input('请输入密码：')
+          if uname='admin' and pwd='admin': # = 是赋值符号； == 是比较
+              print('登陆成功')
+              break
+          else #没有冒号
+              print('输入错位')
+      else #没有冒号
+          print('对不起，三次均输入错误')'''
+      for i in range(3):
+          uname=input('请输入用户名：')
+          pwd=input('请输入密码：')
+          if uname=='admin' and pwd=='admin':
+              print('登陆成功')
+              break
+          else:
+              print('输入错位')
+      else:
+          print('对不起，三次均输入错误')
+  
+#### 1.2知识点不熟练导致的错误
+- 索引越界问题inderError
+
+      lst=[11,22,33,44]
+      #print(lst[4]) #IndexError: list index out of range
+      print(lst[3])
+
+- append()方法的使用掌握不熟练
+
+      lst=[]
+      #lst=append('A','B','C') #lst方法，append()只能放一个元素
+      lst.append('A')
+      print(lst)
+
+#### 1.3思路不清导致的问题解决方案
+- 使用print()函数
+    - 使用#注释
+
+            lst=[{'rating':[9.7, 2062397],'id':'1292052','type':['犯罪','剧情'],'title':'肖申克的救赎','actors':['蒂姆.罗宾斯','摩根·弗里曼']},
+                {'rating' :[9.6, 1528760],'id':'1291546','type' :['剧情','爱情','同性'],'title':'霸王别姬','actors':['张国荣','张丰毅','巩俐','葛优']},
+                {'rating':[9.5, 1559181],' id':'1292720','type':['剧情','爱情'],'title':'阿甘正传','actors':['汤姆.汉克斯','罗宾.怀特']}
+                 ]
+
+            name=input('请输入你要查询的演员:')
+            for i in lst: #遍历列表 --> {} i 是一个又一个的字典
+                act_lst=i['actors'] #找寻字典中的'actors' value 使用act_lst来接受key(列表)
+                for actor in act_lst:
+                    if name in actor:
+                        print(name + ' 出演了:' + i['title'])
+                '''for movie in i: #遍历字典，得到movie是一个字典中的key
+                    print(movie)
+                print('-------')
+                actors=movie['actors']
+                if name in actors:
+                    print(name+'出演了:'+movie)'''
+
+#### 1.4被动掉坑
+- 程序代码逻辑没有错，只是因为用户错误操作或者一 些“例外情况”而导致的程序崩溃
+- 被动掉坑问题的解决方案
+    - Python提供了异常处理机制，可以在异常出现时即时捕获，然后内部“消化”，让程序继续运行
+
+                  try:
+                      a=int(input('请输入第一个整数'))
+                      b=int(input('请输入第二个整数'))
+                      result=a/b
+                      print('结果为:',result)
+                  except ZeroDivisionError:
+                      print('对不起，除数不允许为0')
+                  except ValueError:
+                      print('只能输入数字串')
+                  except BaseException as e:
+                      print(e)
+                  print('程序结束')
+      - 多个except结构捕获异常的顺序按照先子类后父亲类的顺序，为了避免遗漏可能出现的异常，可以在最后增加BaseException
+
 #### 2不同异常类型的处理方式
 #### 3异常处理机制
 #### PyCharm的调试模式
