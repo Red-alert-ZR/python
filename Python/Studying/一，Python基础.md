@@ -697,7 +697,7 @@
           print()
 
 
-## 四.高级变量类型
+## 四.高级变量类型 ##
 
 ### 1列表
 #### 1.1列表的创建
@@ -1645,7 +1645,7 @@ python内置的数据结构之一，是一个不可变序列
 <img src='https://user-images.githubusercontent.com/99107924/166857447-b5bb56a2-1c61-4b16-8cef-8ad13e5cc17c.png' width='1000' height='400'>
 
 
-## 5函数应用
+## 五.函数应用 ##
 
 #### 1函数的创建和调用 <br>
 **函数就是执行特定任务和完成特定功能的一段代码** <br>
@@ -1984,7 +1984,7 @@ python内置的数据结构之一，是一个不可变序列
 <img src='https://user-images.githubusercontent.com/99107924/166904486-27f41c95-159f-4ca7-9fb7-e13e61d4498d.png'  width='1000' height="400" />
 
 
-## 6异常处理
+## 六.异常处理 ##
 #### 1 Bug的由来及其分类
 #### 1.1粗心导致的语法错误
 - Bug的由来
@@ -2146,13 +2146,173 @@ python内置的数据结构之一，是一个不可变序列
     </tr>
 </table>
 
-#### 3异常处理机制
-#### PyCharm的调试模式
+      #print(10/0) #ZeroDivisionError
 
-          
-          
-          
-          
+      lst=[11,22,33,44]
+      #print(lst[4]) #IndexError 索引从0开始
+
+      dic={'name':'张三','age':20}
+      #print(dic['gender']) #KeyError
+
+      #print(num) #NameError
+
+python/Python/Studying at Bacise · Red-alert-ZR/python      #int a=20 #SyntaxError
+
+      #a=int('hello') #ValueError
+
+#### 3异常处理机制
+- traceback模块
+    -使用trackback模块打印异常信息
+                #print(10/0)
+            import traceback
+            try:
+                print("---------------------------")
+                print(1/0)
+            except:
+                traceback.print_exc()
+#### 4 PyCharm的调试模式
+- 断点
+    - 程序运行到此处，暂时挂起，停止执行。此时可以详细观察程序的运行情况，方便做出进一步的判断
+
+
+- 进入调试视图
+    - 进入调试视图的三种方式
+        - (1)单击工具栏上的按钮
+        - (2)右键单击编辑区: 点击: debug'模块名'
+        - (3)快捷键:shift+F9
+<br>
+
+## 七.面向对象编程 ##
+
+#### 1 两大编程思想
+
+<table>
+    <tr>
+        <th>   </th>
+        <th>面向过程</th>
+        <th>瓜向对象</th>
+    </tr>
+    <tr>
+        <td >区别</td>
+        <td>事物比较简单，可以用线性的思维去解决</td>
+        <td>事物比较复杂，使用简单的线性思维无法解决</td>
+    </tr>
+    <tr>
+        <td>共同点</td>
+        <td colspan="2">面向过程 和面向对象都是解决实际问题的一种思维方式</td>
+    </tr>
+    <tr>
+        <td >  </td>
+        <td colspan="2">二者相辅相成，并不是对立的
+            解决复杂问题， 通过面向对象方式便于我们从宏观上把握 事物之间复杂的关系、方便我们分析
+            整个系统;具体到微观操作，仍然使用面向过程方式来处理.</td>
+    </tr>
+
+</table>
+
+#### 2 类和对象的创建
+#### 2.1 类与对象
+- 类
+    - 类别，分门别类，物以类聚，人类，鸟类，动物类，植物类....
+    - 类是多个类似事物组成的群体的统称。能够帮助我们快速理解和判断事物的性质
+- 数据类型
+    - 不同的数据类型属于不同的类
+    -使用内置函数查看数据类型
+ <br>
+ 
+      print(type(100)) # <class 'int'>
+      print(type(99)) # <class 'int'>
+      print(type(520)) # <class 'int'>
+ <br>
+
+- 对象
+   - 100、99、520都是int类之下包含的相似的不同个例，这个个例专业数语称为实例或对象
+            
+**Python中一切皆对象**
+
+#### 2.2 类的创建
+- 创建类的语法
+
+- 类的组成
+   - 类属性
+   - 实例方法
+   - 静态方法
+   - 类方法
+
+<br>
+
+      class Student: #Student为类的名称（类名）由一个单词或多个单词组成，每个单词的首字母大写，其余小写
+          pass
+      #Python中一切皆对象，Student是对象，有内存空间
+      print(id(Student)) #1787009785472
+      print(type(Student)) #<class 'type'>
+      print(Student) #<class '__main__.Student'>
+
+      class Student:
+          native_pace='辽宁' #直接写在类里的变量，称为类属性
+          def __init__(self,name,age):
+              self.name=name #self.name 称为实例属性，进行了赋值的操作，将局部变量的name的值赋给实例属性
+              self.age=age
+
+          #实例方法
+          def eat(self):
+              print("学生在吃饭...")
+
+          #静态方法
+          @staticmethod
+          def method():
+              print("我使用了staticmethod进行了修饰，所以我是静态方法")
+
+          #类方法
+          @classmethod
+          def cm(cls):
+              print("我是类方法，因为我使用了classmethod进行了修饰")
+      #在类之外定义的称为函数，在类之内定义的称为方法
+      def drink():
+          print('喝水')
+##### 2.3 对象的创建
+- 对象的创建又称为类的实例化
+- 语法: 实例名=类名()
+- 意义：有了实例，就是调用类中的内容
+
+      class Student:
+          native_pace = '辽宁'  # 直接写在类里的变量，称为类属性
+
+          def __init__(self, name, age):
+              self.name = name  # self.name 称为实例属性，进行了赋值的操作，将局部变量的name的值赋给实例属性
+              self.age = age
+
+          # 实例方法
+          def eat(self):
+              print("学生在吃饭...")
+
+          # 静态方法
+          @staticmethod
+          def method():
+              print("我使用了staticmethod进行了修饰，所以我是静态方法")
+
+          # 类方法
+          @classmethod
+          def cm(cls):
+              print("我是类方法，因为我使用了classmethod进行了修饰")
+
+      #创建Student类的对象
+      stu1=Student('张三',20)
+      stu1.eat()          #对象名.方法名()
+      print(stu1.name)
+      print(stu1.age)
+
+      print('_______________________')
+      Student.eat(stu1)   #类名.方法名(类的对象)————>实际上就是方法定义处的self
+
+#### 2.4 类对象与类属性
+- 类属性、类方法、静态方法
+    - 类属性:类中方法外的变量称为类属性，被该类的所有对象所共享
+    - 类方法:使用@classmethod修饰的方法，使用类名直接访问的方法
+    - 静态方法:使用@staticmethod修饰的方法，使用类名直接访问的方法
+
+#### 2.5 类方法与静态方法
+
           
           
           
