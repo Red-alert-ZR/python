@@ -1985,7 +1985,7 @@ python内置的数据结构之一，是一个不可变序列
 
 
 ## 6异常处理
-#### 1Bug的由来及其分类
+#### 1 Bug的由来及其分类
 #### 1.1粗心导致的语法错误
 - Bug的由来
     - 世界上第一部用玩用计算机的进化版-马克2号
@@ -2070,7 +2070,9 @@ python内置的数据结构之一，是一个不可变序列
                 if name in actors:
                     print(name+'出演了:'+movie)'''
 
-#### 1.4被动掉坑
+#### 2不同异常类型的处理方式
+
+#### 2.1被动掉坑
 - 程序代码逻辑没有错，只是因为用户错误操作或者一 些“例外情况”而导致的程序崩溃
 - 被动掉坑问题的解决方案
     - Python提供了异常处理机制，可以在异常出现时即时捕获，然后内部“消化”，让程序继续运行
@@ -2088,8 +2090,62 @@ python内置的数据结构之一，是一个不可变序列
                       print(e)
                   print('程序结束')
       - 多个except结构捕获异常的顺序按照先子类后父亲类的顺序，为了避免遗漏可能出现的异常，可以在最后增加BaseException
+#### 2.2 try--except--else--finally结构
 
-#### 2不同异常类型的处理方式
+- 如果try块中没有抛出异常，则执行else块，如果try中抛出异常，则执行except块
+- finally无论是否抛出异常，程序都执行finally块
+
+            try:
+                a=int(input('请输入第一个整数'))
+                b=int(input('请输入第二个整数'))
+                result=a/b
+            except BaseException as e:
+                print('出错了',e)
+            else:
+                print('计算结果为：',result)
+            finally:
+                print('无论是否产生异常，总会被执行的代码')
+            print('程序结束')
+            
+#### 2.3 Python的常见异常类型
+<table>
+    <tr>
+        <th>序号</th>
+        <th>异常类型</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td >一</td>
+        <td>ZeroDivisionError</td>
+        <td>除(或取模)零(所有数据类型)</td>
+    </tr>
+    <tr>
+        <td>二</td>
+        <td>IndexError</td>
+        <td>序列中没有此索引(index)</td>
+    </tr>
+    <tr>
+        <td>三</td>
+        <td>KeyError</td>
+        <td>映射中没有这个键</td>
+    </tr>
+    <tr>
+        <td>四</td>
+        <td>NameError</td>
+        <td>未声明/初始化对象 (没有属性)</td>
+    </tr>
+    <tr>
+        <td>五</td>
+        <td>SyntaxError</td>
+        <td>Python 语法错误</td>
+    </tr>
+    <tr>
+        <td>六</td>
+        <td>ValueError</td>
+        <td>传入无效的参数</td>
+    </tr>
+</table>
+
 #### 3异常处理机制
 #### PyCharm的调试模式
 
