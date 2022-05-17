@@ -16,7 +16,7 @@
       print('hello world',file=fp) #2，使用file=fp
       fp.close()
 
-      #不进行换行输出（输出内容在一行中）
+            #不进行换行输出（输出内容在一行中）
       print('hello','world','Python')
 
 
@@ -2413,6 +2413,116 @@ python/Python/Studying at Bacise · Red-alert-ZR/python      #int a=20 #SyntaxEr
       print(stu1._Student__age) #在类的外部可以通过_Student__age 进行访问
 
 #### 3.2 继承
+- 语法格式 <br>
+class 子类类名（父类1，父类2...）：<br>
+      pass
+- 如果一个类没有继承任何类，则默认继承object
+- Python支持多继承
+- 定义子类时，必须在其构造函数中调用父类的构造函数
+      class Person(object): #Person继承object类
+          def __init__(self,name,age):
+              self.name=name          #将局部变量的name值赋给实例属性
+              self.age=age            #对实例属性进行赋值操作
+
+          #定义实例方法
+          def info(self):
+              print('姓名:{0},年龄:{1}'.format(self.name,self.age))
+
+      #定义子类
+      class Student(Person):
+           #定义构造器
+          def __init__(self,name,age,stu_num):
+              super().__init__(name,age)
+              self.stu_num=stu_num
+
+      #定义子类
+      class Teacher(Person):
+          def __init__(self,name,age,teaching_age):
+              super().__init__(name,age)
+              self.teaching_age=teaching_age
+
+      #测试
+      stu=Student('张三',20,'1001')
+      teacher=Teacher('李四',34,10)
+
+      stu.info()
+      teacher.info()
+
+#### 3.2.1 方法重写
+- 如果子类对继承自父类的某个属性或方法不满意，可以在子类中对其(方法体)进行重新编写.
+- 子类重写后的方法中可以通过super(.xxx()调用父类中被重写的方法
+
+      class Person(object): #Person继承object类
+          def __init__(self,name,age):
+              self.name=name          #将局部变量的name值赋给实例属性
+              self.age=age            #对实例属性进行赋值操作
+
+          #定义实例方法
+          def info(self):
+              print('姓名:{0},年龄:{1}'.format(self.name,self.age))
+
+      #定义子类
+      class Student(Person):
+           #定义构造器
+          def __init__(self,name,age,stu_num):
+              super().__init__(name,age)
+              self.stu_num=stu_num
+          def info(self):
+              super().info()
+              print(f'学号:{self.stu_num}')
+
+      #定义子类
+      class Teacher(Person):
+          def __init__(self,name,age,teaching_age):
+              super().__init__(name,age)
+              self.teaching_age=teaching_age
+          def info(self):
+              super().info()
+              print(f'教龄:{self.teaching_age}')
+
+      #测试
+      stu=Student('张三',20,'1001')
+      teacher=Teacher('李四',34,'10')
+
+      stu.info()
+      print('——————————————————————')
+      teacher.info()
+      
+#### 3.2.2 object类
+
+- object类是所有类的父类，因此所有类都有object类的属性和方法。
+- 内置函数dir()可以查看指定对象所有属性
+- object有一个_ _str_ _()方法，用于返回一个对于“对象的描述”，对应于内置函数str()经常用于print()方法，帮我们查看对象的信息，所以我们经常会对__str__()进行重写
+
+      class Student:
+          def __init__(self,name,age):
+              self.name=name
+              self.age=age
+          def __str__(self): #修改了object的方法
+              return f'我的名字是{self.name},今年{self.age}岁了'
+          pass
+
+      stu=Student('张三',20)
+      print(dir(stu))
+      print(stu) #默认会调用__str__()这样的方法
+      print(type(stu))
+
+#### 3.3 多态
+**Python中多态的作用**
+**让具有不同功能的函数可以使用相同的函数名，这样就可以用一个函数名调用不同内容(功能)的函数。**
+- 简单地说，多态就是“具有多种形态”，它指的是:即便不知道一个变量所引用的对象到底是什么类型，仍然可以通过这个变量调用方法，在运行过程中根据变量所引用对象的类型，动态决定调用哪个对象中的方法。
+- 静态语言和动态语言关于多态的区别
+    - 静态语言实现多态的三个必要条件 ---- Java
+        - 继承
+        - 方法重写
+        - 父类引用指向子类对象
+    - 动态语言的多态崇尚“鸭子类型"当看到一只鸟走起来像鸭子、游泳起来像鸭子、收起来也像鸭子，那么这只鸟就可以被称为鸭子。在鸭子类型中，不需要关心对象是什么类型，到底是不是鸭子，只关心对象的行为。 ----  Python
+
+
+
+
+
+
 
 
 
