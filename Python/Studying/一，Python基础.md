@@ -2305,7 +2305,7 @@ python/Python/Studying at Bacise · Red-alert-ZR/python      #int a=20 #SyntaxEr
       print('_______________________')
       Student.eat(stu1)   #类名.方法名(类的对象)————>实际上就是方法定义处的self
 
-#### 2.4 类对象与类属性
+#### 2.4 类属性、类方法、静态方法
 - 类属性、类方法、静态方法
     - 类属性:类中方法外的变量称为类属性，被该类的所有对象所共享
     - 类方法:使用@classmethod修饰的方法，使用类名直接访问的方法
@@ -2348,10 +2348,75 @@ python/Python/Studying at Bacise · Red-alert-ZR/python      #int a=20 #SyntaxEr
             Student.method()
 <img src='https://user-images.githubusercontent.com/99107924/168605577-547992c5-47da-4268-bfa0-5313f660dffb.png' width='1000' height='380'>
 
-#### 2.5 类方法与静态方法
+#### 2.5 动态绑定属性和方法
+- Python是动态语言，在创建对象之后，可以动态地绑定属性和方法
 
-          
-          
-          
+      class Student:
+          def __init__(self,name,age):
+              self.name=name
+              self.age=age
+          def eat(self):
+              print(self.name+'在吃饭')
+
+      stu1=Student('张三',20)
+      stu2=Student('李四',30)
+      print(id(stu1))
+      print(id(stu2))
+      print('——————————为stu2动态绑定性别属性————————————————')
+      stu2.gender='女'  #动态绑定属性
+      #print(stu1.name,stu1.age,stu1.gender)
+      print(stu2.name,stu2.age,stu2.gender)
+      print('——————————————————————————————————————————————')
+      stu1.eat()
+      stu2.eat()
+
+      def show():
+          print('定义在类之外的，称为函数')
+      stu1.show=show # 动态绑定方法
+      stu1.show()
+
+      #stu2.show()
+      
+#### 3 面向对象的三大特征
+- 面向对象的三大特征
+- 封装:提高程序的安全性
+    - 将数据(属性)和行为(方法)包装到类对象中。在方法内部对属性进行操作，在类对象的外部调用方法。这样，无需关心方法内部的具体实现细节，从而隔离了复杂度。
+    - 在Python中没有专门的修饰符用于属性的私有，如果该属性不希望在类对象外部被访问，前边使用两个“_”。
+- 继承:提高代码的复用性
+- 多态:提高程序的可扩展性和可维护性
+
+#### 3.1 封装
+      class Car:
+          def __init__(self,brand):
+              self.brand=brand
+          def start(self):
+              print(' 汽车已启动...')
+          pass
+
+      car=Car('路虎')
+      print(car.brand)
+      print(car.start())
+
+      class Student:
+          def __init__(self, name, age):
+              self.name = name
+              self.__age = age #年龄不希望在类的外部被使用，所以加了两个_
+          def show(self):
+              print(self.name,self.__age)
+
+      stu1=Student('张三',20)
+      stu1.show()
+      #在类的外部使用name与age
+      print(stu1.name)
+      #print(stu1.__age)
+      print(dir(stu1))
+      print(stu1._Student__age) #在类的外部可以通过_Student__age 进行访问
+
+#### 3.2 继承
+
+
+
+
+
           
           
