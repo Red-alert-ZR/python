@@ -2518,6 +2518,88 @@ class 子类类名（父类1，父类2...）：<br>
         - 父类引用指向子类对象
     - 动态语言的多态崇尚“鸭子类型"当看到一只鸟走起来像鸭子、游泳起来像鸭子、收起来也像鸭子，那么这只鸟就可以被称为鸭子。在鸭子类型中，不需要关心对象是什么类型，到底是不是鸭子，只关心对象的行为。 ----  Python
 
+#### 3.4 特殊属性和特殊方法
+**__dict__特殊属性查看**
+
+      class A:
+          pass
+      class B:
+          pass
+      class C(A,B):
+          def  __init__(self,name,age):
+              self.name=name
+              self.age=age
+      class D(A):
+          pass
+      #创建C类的对象
+      x = C('Jack',20) #x是C类型的一个实例对象
+      print(x.__dict__) #实例对象的属性字典
+      print(C.__dict__)
+      print('--------------------------')
+      print(x.__class__) #<class '__main__.C'>输出对象所属的类
+      print(C.__bases__) #(<class '__main__.A'>, <class '__main__.B'>)输出的是C类父类类型的元素
+      print(C.__base__)  #<class '__main__.A'>输出C类的最近父类，类的基类
+      print(C.__mro__) #查看类的层次结构
+      print(A.__subclasses__()) #[<class '__main__.C'>]查看子类,子类的列表
+
+**__new__方法和__init__方法**
+
+      a=20
+      b=100
+      c=a+b #两个整数类型的对象的相加操作
+      d=a.__add__(b)
+
+      print(c)
+      print(d)
+
+      class Student:
+          def __init__(self,name):
+              self.name=name
+
+          def __add__(self, other):
+              return self.name+other.name
+
+          def __len__(self):
+              return len(self.name)
+
+      stu1=Student('Jack111')
+      stu2=Student('李四')
+
+      s=stu1+stu2 #实现了两个对象的加法运算（因为在Student类中，编写__add__()特殊的方法）
+      print(s)
+      s=stu1.__add__(stu2)
+      print(s)
+      print('-------------------------------------')
+      lst=[11,22,33,44]
+      print(len(lst)) #len是内容函数len
+      print(lst.__len__())
+      print(len(stu1))
+      print('-------------------------------------')
+
+      class Person:
+          def __new__(cls, *args, **kwargs):
+              print('__new__被调用执行了,cls的id值为{0}'.format(id(cls)))
+              obj = super().__new__(cls)
+              print('创建的对象的id为{0}'.format(id(obj)))
+              return obj
+
+          def __init__(self,name,age):
+              print('__init__被调用了，self的id值为：{0}'.format(id(self)))
+              self.name=name
+              self.age=age
+
+
+      print('object这个类对象的id为:{0}'.format(id(object)))
+      print('Person这个类对象的id为:{0}'.format(id(Person)))
+
+      #创建Person类的实例对象
+      p1=Person('张三',20)
+      print('p1这个Person类的实例对象的id:{0}'.format(id(p1)))
+
+
+
+
+
 
 
 
