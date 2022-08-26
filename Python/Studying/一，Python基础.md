@@ -2190,7 +2190,7 @@ python/Python/Studying at Bacise · Red-alert-ZR/python      #int a=20 #SyntaxEr
     <tr>
         <th>   </th>
         <th>面向过程</th>
-        <th>瓜向对象</th>
+        <th>面向对象</th>
     </tr>
     <tr>
         <td >区别</td>
@@ -2199,7 +2199,7 @@ python/Python/Studying at Bacise · Red-alert-ZR/python      #int a=20 #SyntaxEr
     </tr>
     <tr>
         <td>共同点</td>
-        <td colspan="2">面向过程 和面向对象都是解决实际问题的一种思维方式</td>
+        <td colspan="2">面向过程和面向对象都是解决实际问题的一种思维方式</td>
     </tr>
     <tr>
         <td >  </td>
@@ -2644,12 +2644,102 @@ class 子类类名（父类1，父类2...）：<br>
 
 <img src='https://user-images.githubusercontent.com/99107924/186585207-bc4d9d93-1682-4b3e-8320-0f4de56cca7a.png' width='1000' height='400'/>
 
+ #### 1.1自定义模块
+ - 创建模块
+      - 新建一个.pyw文件，名称尽量不要与Python自带的标准模块名称相同
+ - 导入模块
+
+#### 1.2模块的导入
+**import 模块名称 [as 别名]**
  
+**from 模块名称 import 函数/变量/类**
 
+#### 1.3以主程序形式运行
+- 以主程序形式运行
+      - 在每个模块的定义中都包括一个记录模块名称的变量__name__， 程序可以检查该变量，以确定他们在哪个模块中执行。如果一个模块不是被导入到其它程序中执行，那么它可能在解释器的顶级模块中执行。顶级模块的__name__变量的值为__main__
+      
+      if __name__ == '__main__' :
+            pass
+            
+      def add(a,b):
+          return a+b
 
+      if __name__ == '__main__':
+          print(add(10,20)) #只有当点击运行module1时，才会执行运算
 
+      import module1
+      print(module1.add(100,200))
 
+#### 1.4Python中的包
+- Python中的包
+  - 包是一个分层次的目录结构，它将一组功能相近的模块组织在一个目录
+- 作用:
+  - 代码规范
+  - 避免模块名称冲突
+- 包与目录的区别
+  - 包含__init__.py文件的目录称为包
+  - 目录里通常不包含__init__.py文件
+- 包的导入
+  - import 包名.模块名
 
+      #在module模块中导入pageage1包
+      import pageage1.moduleA as ma #ma是pageage1.moduleA这个模块的别名
+      #print(pageage1.moduleA.ma)
+      print(a.a)
+
+      #导入含有包的模块时注意事项
+      import pageage1
+      import module1
+      #使用import进行导入时，只能跟包名或模块名称
+
+      from pageage1 import moduleA
+      from pageage1.moduleA import ma
+      #使用 from...import 可以导入包，模块，函数，变量
+
+#### 1.5Python中常用的内置模块
+<table>
+    <tr>
+        <th>模块名</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td >sys</td>
+        <td>与Python解释器极其环境操作相关的标准库</td>
+    </tr>
+    <tr>
+        <td>time</td>
+        <td colspan="2">提供与时间相关的各种函数的标准库</td>
+    </tr>
+    <tr>
+        <td>os</td>
+        <td colspan="2">提供了访问操作系统服务功能的标准库</td>
+    </tr>
+    <tr>
+        <td>calendar</td>
+        <td colspan="2">提供与日期相关的各种函数的标准库</td>
+    </tr>
+    <tr>
+        <td>urllib</td>
+        <td colspan="2">用于读取来自网上(服务器)的数据标准库</td>
+    </tr>    <tr>
+        <td>json</td>
+        <td colspan="2">用于使用JSON序列化和反序列化对象</td>
+    </tr>    <tr>
+        <td>re</td>
+        <td colspan="2">用于在字符串中执行正则表达式匹配和替换</td>
+    </tr>    <tr>
+        <td>math</td>
+        <td colspan="2">提供标准算术运算函数的标准库</td>
+    </tr>    <tr>
+        <td>decimal</td>
+        <td colspan="2">用于进行精确控制运算精度、有效数位和四舍五入操作的十进制运算</td>
+    </tr>    <tr>
+        <td>logging</td>
+        <td colspan="2">提供了灵活的记录事件、错误、警告和调试信息等目志信息的功能</td>
+    </tr>
+</table>
+
+#### 1.6第三方模块的安装与使用
 
 
           
