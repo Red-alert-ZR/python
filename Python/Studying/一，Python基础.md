@@ -2740,7 +2740,22 @@ class 子类类名（父类1，父类2...）：<br>
 </table>
 
 #### 1.6第三方模块的安装与使用
+**第三方的模块**
 
+      pip install 模块名
+**第三方模块的使用**
 
-          
-          
+      import 模块名
+
+<img src='https://user-images.githubusercontent.com/99107924/186901777-a04f243a-0615-49a7-87c8-fc2ef16aa91c.png' width='1000' height='380'>
+
+## 九 文件应用 ##
+#### 1.1编码格式介绍
+- 常见的字符编码格式
+  - Python的解释器使用的是Unicode（内存）
+  - py文件在磁盘上使用UTG-8存储（外存）
+ 
+<img src='https://user-images.githubusercontent.com/99107924/186903317-24b5a7b9-dca3-4fd5-b720-59e0ac456791.png' width='1000' height='380'>
+
+      
+
