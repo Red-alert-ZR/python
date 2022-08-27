@@ -2978,7 +2978,21 @@ class 子类类名（父类1，父类2...）：<br>
 </table>
 </html>
 
+      import os
+      path=os.getcwd()
+      lst_files=os.walk(path)
+      for dirpath,dirname,filename in lst_files:
+          #print(dirpath)
+          #print(dirname)
+          #print(filename)
+          for dir in dirname:
+              print(os.path.join(dirpath,dir))
+          for file in filename:
+              print(os.path.join(dirpath,file))
 
+
+<img src='https://user-images.githubusercontent.com/99107924/187030035-7cdf0455-8258-4af7-b313-a13d55582f5d.png width='1000px' height='380px'>
+'
 
 
 
