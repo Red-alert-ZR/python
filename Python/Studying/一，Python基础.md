@@ -2798,54 +2798,62 @@ class 子类类名（父类1，父类2...）：<br>
      
      
 #### 2.3 文件对象的常用方法 
-<table>
-      <tr>
+<html>
+<table border="1">
+    <thead>
+        <tr>
             <th>方法名</th>
             <th>说明</th>
-      </tr>
-      <tr>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
             <th>read([size])</th>
-            <th>从文件中读取size个字节或字符的内容返回。若省略[size],则读取到文件末尾，即一次读取文件所有内容</th>
-      </tr>
-      <tr>
+            <th width="500px" align="left">从文件中读取size个字节或字符的内容返回。若省略[size],则读取到文件末尾，即一次读取文件所有内容</th>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
             <th>readline()</th>
-            <th>从文本文件中读取一行内容</th>
-      </tr>
-      <tr>
-            <th>readlines()</th>
-            <th>把文本文件中每一行都作为独立的字符串对象，并将这些对象放入列表返回</th>
-      </tr>
-      <tr>
-            <th>write(str)</th>
-            <th>将字符串str内容写入文件</th>
-      </tr>
-      <tr>
-            <th>writelines(s_ list)</th>
-            <th>将字符串列表s_list写入文本文件，不添加换行符</th>
-      </tr>
-      <tr>
-            <th>seek(offset [, whence])</th>
-            <th>把文件指针移动到新的位置，offset表示相对于whence的位置:<br>
-            offset:为正往结束方向移动，为负往开始方向移动    <br>
-            whence不同的值代表不同含义:          <br>
-            0:从文件头开始计算(默认值)        <br>
-            1:从当前位置开始计算          <br>
-            2:从文件尾开始计算</th>
-      </tr>
-      <tr>
-            <th>tell()</th>
-            <th>返回文件指针的当前位置</th>
-      </tr>
-       <tr>
-            <th>flush ()</th>
-            <th>把缓冲区的内容写入文件，但不关闭文件</th>
-      </tr>
-       <tr>
-            <th>close ()</th>
-            <th>把缓冲区的内容写入文件， 同时关闭文件，释放文件对象相关资源</th>
-      </tr>
-      
+            <th align="left">从文本文件中读取一行内容</th>
+        </tr>
+    </tfoot>
+    <tr>
+          <th>readlines()</th>
+          <th align="left">把文本文件中每一行都作为独立的字符串对象，并将这些对象放入列表返回</th>
+    </tr>
+    <tr>
+          <th>write(str)</th>
+          <th align="left">将字符串str内容写入文件</th>
+    </tr>
+    <tr>
+          <th>writelines(s_ list)</th>
+          <th align="left">将字符串列表s_list写入文本文件，不添加换行符</th>
+    </tr>
+    <tr>
+          <th width='200px' height="150px" align="char" rowspan="1">seek(offset [, whence])</th>
+          <th align="left">
+          把文件指针移动到新的位置，offset表示相对于whence的位置:<br>
+          offset:为正往结束方向移动，为负往开始方向移动<br>
+          whence不同的值代表不同含义:<br>
+          从文件头开始计算(默认值)<br>
+          1:从当前位置开始计算<br>  
+          2:从文件尾开始计算</th>
+    <tr>
+          <th>tell()</th>
+          <th align="left">返回文件指针的当前位置</th>
+    </tr>
+     <tr>
+          <th>flush ()</th>
+          <th align="left">把缓冲区的内容写入文件，但不关闭文件</th>
+    </tr>
+     <tr>
+          <th>close ()</th>
+          <th align="left">把缓冲区的内容写入文件， 同时关闭文件，释放文件对象相关资源</th>
+    </tr>
+    
 </table>
+</html>
 
 
 
