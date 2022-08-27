@@ -2755,14 +2755,15 @@ class 子类类名（父类1，父类2...）：<br>
   - Python的解释器使用的是Unicode（内存）
   - py文件在磁盘上使用UTG-8存储（外存）
  
-<img src='https://user-images.githubusercontent.com/99107924/186903317-24b5a7b9-dca3-4fd5-b720-59e0ac456791.png' width='1000' height='380'>
+ 
+ <img src='https://user-images.githubusercontent.com/99107924/186903317-24b5a7b9-dca3-4fd5-b720-59e0ac456791.png' width='1000' height='380'>
 
 #### 2.1 文件的读写原理
 - 文件的读写俗称”IO操作“
 - 文件读写操作流程
 - 操作原理
 
-<img src='https://user-images.githubusercontent.com/99107924/186907355-7daf9b85-e473-46a7-8d0c-d24f31b2cd43.png' witdh='1000' height-'380'>
+<img src='https://user-images.githubusercontent.com/99107924/187025242-27a8f177-ae16-40fe-ab76-eabeb192e138.png' witdh='1000' height='380'>
 
 #### 2.2 常用的文件打开模式
 - 文件的类型
