@@ -2856,8 +2856,127 @@ class 子类类名（父类1，父类2...）：<br>
 </table>
 </html>
 
+#### 2.4 with语句（上下文管理器）
+- with语句可以自动管理.上下文资源，不论什么原因跳出with块,都能确保文件正确的关闭，以此来达到释放资源的目的。
+
+<img src='https://user-images.githubusercontent.com/99107924/187026696-91f72008-750f-4a87-aa2e-29d74a526110.png' width='1000px' height='380px'>
+
+      '''
+      MycounterMgr实现了特殊方法__enter__();__exit__()称为该类对象遵守了上下文管理器协议
+      该类对象的实例对象，称为上下文管理器
+
+      MycounterMgr()
+
+      '''
 
 
+      class MycounterMgr(object):
+          def __enter__(self):
+              print('enter方法被调用执行了')
+              return  self
+
+          def __exit__(self, exc_type, exc_val, exc_tb):
+              print('exit方法被调用执行了')
+
+          def show(self):
+              print('show方法被调用执行了')
+
+      with MycounterMgr() as file: #相当于file=MucounterMgr()
+          file.show()
+
+#### 3.1 目录操作
+- os模块是Python内置的与操作系统功能和文件系统相关的模块，该模块中的语句的执行结果通常与操作系统有关，在不同的操作系统上运行，得到的结果可能不一样。
+- os模块与os.path模块用于对目录或文件进行操作。
+
+
+<html>
+<table border="1">
+    <thead>
+        <tr>
+            <th>函数</th>
+            <th>说明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>getcwd()</th>
+            <td width="500px" align="left">返回当前的目录</td>
+        </tr>
+        <tr>
+            <th >listdir(path)</th>
+            <td align="left">返回指定路径下的文件和目录信息</td>
+        </tr>
+    <tr>
+          <th>mkdir(path[,mode])</th>
+          <td align="left">创建目录</td>
+    </tr>
+    <tr>
+          <th width="300px">makedirs(path1/path2...[,mode])</th>
+          <td align="left">创建多级目录</td>
+    </tr>
+    <tr>
+          <th>rmdir(path)</th>
+          <td align="left">删除目录</td>
+    </tr>
+    <tr>
+          <th >removedirs(path1/path2...)</th>
+          <td align="left">删除多级目录</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+          <th>chdir(path)</th>
+          <td align="left">将path设置为当前工作目录</td>
+    </tr>
+    </tfoot>
+     
+</table>
+</html>
+
+#### 3.2 os.path模块操作目录相关函数
+<html>
+<table border="1">
+    <thead>
+        <tr>
+            <th>函数</th>
+            <th>说明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>abspath(path)</th>
+            <td width="500px" align="left">用于获取文件或目录的绝对路径</td>
+        </tr>
+        <tr>
+            <th>exists (path)</th>
+            <td align="left">用于判断文件或目录是否存在，如果存在返回True,否则返回False</td>
+        </tr>
+    <tr>
+          <th>join(path, name)</th>
+          <td align="left">将目录与目录或者文件名拼接起来.</td>
+    </tr>
+    <tr>
+          <th>splitext()</th>
+          <td align="left">分离文件名和扩展名</td>
+    </tr>
+    <tr>
+          <th>basename(path)</th>
+          <td align="left">从一个目录中提取文件名</td>
+    </tr>
+    <tr>
+          <th >dirname(path)</th>
+          <td align="left">从一个路径中提取文件路径，不包括文件名</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+          <th>isdir(path)</th>
+          <td align="left">用于判断是否为路径</td>
+    </tr>
+    </tfoot>
+     
+</table>
+</html>
 
 
 
