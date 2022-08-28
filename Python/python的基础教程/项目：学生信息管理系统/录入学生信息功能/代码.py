@@ -1,3 +1,5 @@
+    filename='student.txt'
+    
     def insert():
         student_list=[]
         while True:
