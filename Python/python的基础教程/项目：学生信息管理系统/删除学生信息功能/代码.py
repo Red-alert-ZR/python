@@ -1,4 +1,4 @@
-import os 
+import os
 filename='student.txt'
 
 def delete():
@@ -18,19 +18,20 @@ def delete():
                         d = dict(eval(item)) #将字符串转成字典
                         if d['id'] != student_id:
                             wfile.write(str(d) + '\n')
-                            wfile.close()
                         else:
                             flag=True
                     if flag:
                         print('id为{}的学生信息已被删除'.format(student_id))
                     else:
                         print(f'没有找到id为{student_id}的学生信息')
+                    wfile.close()
             else:
                 print('无学生信息')
                 break
-            show()      #删除之后要重新显示学生信息
+            #show()      #删除之后要重新显示学生信息,之后会添加。
             answer=input('是否继续删除？y/n\n')
             if answer=='y':
                 continue
             else:
                 break
+
