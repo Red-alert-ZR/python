@@ -2,7 +2,7 @@ import os
 filename='student.txt'
 
 def modify():
-    #show()
+    #show()  #之后会添加show()模块
     if os.path.exists(filename):
         with open(filename,'r',encoding='UTF-8') as rfile:
             student_old=rfile.readlines()
