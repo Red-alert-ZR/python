@@ -13,22 +13,22 @@ COLOR_BLACK = pygame.Color(0, 0, 0)
 COLOR_RED = pygame.Color(255,0,0)
 version = 'v1.07'
 class MainGame():       #主函数类
-    #游戏主窗口对象
+    # 游戏主窗口对象
     window = None
     SCREEN_WIDTH = 1000 #1720
     SCREEN_HEIGHT = 800 #1000
-    #创建我方坦克
+    # 创建我方坦克
     TANK_P1 = None
     def __init__(self):
         pass
-    #开始游戏方法
+    # 开始游戏方法
     def startGame(self):
         _display.init()   #初始化显示模块
         #创建窗口加载窗口（借鉴官方文档）
         MainGame.window = _display.set_mode([MainGame.SCREEN_WIDTH,MainGame.SCREEN_HEIGHT])   #初始化要显示的窗口或屏幕
-        #创建我方坦克
+        # 创建我方坦克
         MainGame.TANK_P1 = Tank(500, 700)
-        #设置一下游戏标题
+        # 设置一下游戏标题
         _display.set_caption("坦克大战" + version)
         #让窗口持续刷新操作
         while True:
