@@ -10,11 +10,11 @@ COLOR_BLACK = pygame.Color(0, 0, 0)
 COLOR_RED = pygame.Color(255,0,0)
 version = 'v1.06'
 class MainGame():       #主函数类
-    #游戏主窗口对象
+    # 游戏主窗口对象
     window = None
     SCREEN_WIDTH = 1000 #1720
     SCREEN_HEIGHT = 800 #1000
-    #创建我方坦克
+    # 创建我方坦克
     TANK_P1 = None
     def __init__(self):
         pass
