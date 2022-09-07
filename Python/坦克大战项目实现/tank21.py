@@ -143,7 +143,7 @@ class MainGame():  # 主函数类
             else:
                 MainGame.EnemyTank_list.remove(eTank)
 
-    #将我方子弹加入到窗口中
+    # 将我方子弹加入到窗口中
     def blitBUllet(self):
         for bullet in MainGame.Bullet_list:
             #如果子弹还活着，绘制出来，否则，从列表中移除该子弹
@@ -173,7 +173,7 @@ class MainGame():  # 主函数类
             else:
                 MainGame.Enemy_bullet_list.remove(ebullet)
 
-    #将爆炸效果加入到窗口中
+    # 将爆炸效果加入到窗口中
     def displayExplodes(self):
         for explode in MainGame.Explode_list:
             #显示爆炸效果
