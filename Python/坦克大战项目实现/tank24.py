@@ -28,13 +28,13 @@ class MainGame:  # 主函数类
     EnemyTank_list = []
     # 要创建的敌方坦克的数量
     EnemyTank_count = 6
-    #存储我方子弹的列表
+    # 存储我方子弹的列表
     Bullet_list = []
-    #存储敌方子弹列表
+    # 存储敌方子弹列表
     Enemy_bullet_list = []
-    #爆炸效果列表
+    # 爆炸效果列表
     Explode_list = []
-    #墙壁列表
+    # 墙壁列表
     Wall_list = []
 
     def __init__(self):
