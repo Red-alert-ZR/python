@@ -105,9 +105,9 @@ class MainGame:  # 主函数类
     def creatMyTank(self):
         # 创建我方坦克
         MainGame.TANK_P1 = MyTank(465, 400)
-        #创建音乐对象
+        # 创建音乐对象
         music = Music('TankWar-master/music/start.wav')
-        #调用播放音乐方法
+        # 调用播放音乐方法
         music.play()
 
     # 加入我方坦克
