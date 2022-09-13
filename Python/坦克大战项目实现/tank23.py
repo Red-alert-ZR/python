@@ -433,7 +433,7 @@ class EnemyTank(Tank):  # 敌方坦克类
             self.move()
             self.step -= 1
 
-    #射击方法
+    # 射击方法
     def shot(self):
         num = random.randint(1,100)
         if num == 1:
@@ -536,7 +536,7 @@ class Bullet(BaseItem):  # 子弹类
             #修改我方坦克状态
             MainGame.TANK_P1.live = False
 
-    #新增子弹与墙壁的碰撞
+    # 新增子弹与墙壁的碰撞
     def hitWall(self):
         for wall in MainGame.Wall_list:
             if pygame.sprite.collide_rect(self, wall):
