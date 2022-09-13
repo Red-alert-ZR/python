@@ -29,15 +29,15 @@ class MainGame():       #主函数类
         _display.set_caption("坦克大战" + version)
         #让窗口持续刷新操作
         while True:
-            #给窗口完成一个填充颜色
+            # 给窗口完成一个填充颜色
             MainGame.window.fill(COLOR_BLACK)
-            #在循环中持续完成事件的获取
+            # 在循环中持续完成事件的获取
             self.getEvent()
-            #将绘制文字得到的小画布，粘贴到窗口中
+            # 将绘制文字得到的小画布，粘贴到窗口中
             MainGame.window.blit(self.getTextSurface("剩余敌方坦克%d辆" %5), (5, 5))
-            #将我方坦克加入到窗口中
+            # 将我方坦克加入到窗口中
             MainGame.TANK_P1.displayTank()
-            #窗口刷新
+            # 窗口刷新
             _display.update()
 
     #左上角文字绘制的功能
