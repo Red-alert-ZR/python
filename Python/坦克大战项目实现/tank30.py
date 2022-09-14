@@ -2,13 +2,14 @@
 v1.28
     新增功能：
         1、完善坦克受打击动作
+        2、完成结束music
 """
 
 import pygame, time, random
 
 
 _display = pygame.display
-COLOR_BLACK = pygame.Color(118, 79, 130)
+COLOR_BLACK = pygame.Color(0, 0, 0)
 COLOR_RED = pygame.Color(255, 0, 0)
 COLOR_WHITE = pygame.Color(255,255,255)
 version = 'v1.28'
