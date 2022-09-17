@@ -26,8 +26,14 @@ class TankGame():
 
     def __create_sprite(self):
         self.hero = Hero(Startgame.HERO_IMAGE_NAME, self.screen)
-
+        self.enemies = pygame.sprite.Group()
+        self.enemy_bullets = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
+        for i in range(Startgame.ENEMY_COUNT):
+            direction = random.randint(0, 3)
+            enemy = Enemy(Startgame.ENEMY_IMAGES[direction], self.screen)
+            enemy.direction = direction
+            self.enemies.add(enemy)
         self.__draw_map()
 
     def __draw_map(self):
@@ -128,25 +134,55 @@ class TankGame():
                         self.game_still = False
                     elif wall.type == Startgame.IRON_WALL:
                         bullet.kill()
+            # 敌方坦克击中墙
+            for enemy in self.enemies:
+                for bullet in enemy.bullets:
+                    if pygame.sprite.collide_rect(wall, bullet):
+                        if wall.type == Startgame.RED_WALL:
+                            wall.kill()
+                            bullet.kill()
+                        elif wall.type == Startgame.BOSS_WALL:
+                            self.game_still = False
+                        elif wall.type == Startgame.IRON_WALL:
+                            bullet.kill()
 
-        # 我方坦克撞墙
-        if pygame.sprite.collide_rect(self.hero, wall):
-            # 不可穿越墙
-            if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL:
-                self.hero.is_hit_wall = True
-                # 移出墙内
-                self.hero.move_out_wall(wall)
+
+
+            # 我方坦克撞墙
+            if pygame.sprite.collide_rect(self.hero, wall):
+                # 不可穿越墙
+                if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL:
+                    self.hero.is_hit_wall = True
+                    # 移出墙内
+                    self.hero.move_out_wall(wall)
+
+            # 敌方坦克撞墙
+            for enemy in self.enemies:
+                if pygame.sprite.collide_rect(wall, enemy):
+                    if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL:
+                        enemy.move_out_wall(wall)
+                        enemy.random_turn()
 
         # 子弹击中，敌方坦克碰撞，敌我坦克碰撞
         pygame.sprite.groupcollide(self.hero.bullets, self.enemies, True, True)
         # 敌方子弹击中我方
-
+        for enemy in self.enemies:
+            for bullet in enemy.bullets:
+                if pygame.sprite.collide_rect(self.hero, bullet):
+                    bullet.kill()
+                    self.hero.kill()
 
     def __update_sprites(self):
         if self.hero.is_moving:
             self.hero.update()
         self.hero.bullets.update()
         self.walls.update()
+        self.hero.bullets.draw(self.screen)
+        self.enemies.update()
+        for enemy in self.enemies:
+            enemy.bullets.update()
+            enemy.bullets.draw(self.screen)
+        self.enemies.draw(self.screen)
         self.hero.bullets.draw(self.screen)
         self.screen.blit(self.hero.image, self.hero.rect)
         self.walls.draw(self.screen)
