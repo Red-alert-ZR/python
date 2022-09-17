@@ -25,6 +25,8 @@ class TankGame():
         pygame.mixer.init()
 
     def __create_sprite(self):
+        self.hero = Hero(Startgame.HERO_IMAGE_NAME, self.screen)
+
         self.walls = pygame.sprite.Group()
         self.__draw_map()
 
@@ -52,16 +54,74 @@ class TankGame():
                     wall.life = 1
                 self.walls.add(wall)
 
+    def __check_keydown(self, event):
+        """检查按下按钮的事件"""
+        if event.key == pygame.K_LEFT:
+            # 按下左键
+            self.hero.direction = Startgame.LEFT
+            self.hero.is_moving = True
+            self.hero.is_hit_wall = False
+        elif event.key == pygame.K_RIGHT:
+            # 按下右键
+            self.hero.direction = Startgame.RIGHT
+            self.hero.is_moving = True
+            self.hero.is_hit_wall = False
+        elif event.key == pygame.K_UP:
+            # 按下上键
+            self.hero.direction = Startgame.UP
+            self.hero.is_moving = True
+            self.hero.is_hit_wall = False
+        elif event.key == pygame.K_DOWN:
+            # 按下下键
+            self.hero.direction = Startgame.DOWN
+            self.hero.is_moving = True
+            self.hero.is_hit_wall = False
+        elif event.key == pygame.K_SPACE:
+            # 坦克发射子弹
+            self.hero.shot()
 
-    def __event_quit(self):
+    def __check_keyup(self, event):
+        """检查松开按钮的事件"""
+        if event.key == pygame.K_LEFT:
+            # 松开左键
+            self.hero.direction = Startgame.LEFT
+            self.hero.is_moving = False
+        elif event.key == pygame.K_RIGHT:
+            # 松开右键
+            self.hero.direction = Startgame.RIGHT
+            self.hero.is_moving = False
+        elif event.key == pygame.K_UP:
+            # 松开上键
+            self.hero.direction = Startgame.UP
+            self.hero.is_moving = False
+        elif event.key == pygame.K_DOWN:
+            # 松开下键
+            self.hero.direction = Startgame.DOWN
+            self.hero.is_moving = False
+
+    def __event_handler(self):
         for event in pygame.event.get():
             # 判断是否退出游戏
             if event.type == pygame.QUIT:
                 TankGame.__game_over()
                 print('游戏结束')
+            elif event.type == pygame.KEYDOWN:
+                TankGame.__check_keydown(self, event)
+            elif event.type == pygame.KEYUP:
+                TankGame.__check_keyup(self, event)
+
+    def __check_collide(self):
+        pass
+        # 保证坦克不移出屏幕
+        #self.hero.hit_wall()
+        #for enemy in self.enemies:
+            #enemy.hit_wall_turn()
 
     def __update_sprites(self):
+        if self.hero.is_moving:
+            self.hero.update()
         self.walls.update()
+        self.screen.blit(self.hero.image, self.hero.rect)
         self.walls.draw(self.screen)
 
 
@@ -73,7 +133,9 @@ class TankGame():
             # 1、设置刷新帧率
             self.clock.tick(Startgame.FPS)
             # 2、事件监听
-            self.__event_quit()
+            self.__event_handler()
+            # 3、碰撞检测
+            self.__check_collide()
             # 4、更新、绘制精灵、经理组
             self.__update_sprites()
             # 5、更新显示
