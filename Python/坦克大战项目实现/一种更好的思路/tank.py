@@ -111,16 +111,43 @@ class TankGame():
                 TankGame.__check_keyup(self, event)
 
     def __check_collide(self):
-        pass
         # 保证坦克不移出屏幕
-        #self.hero.hit_wall()
+        self.hero.hit_wall()
         #for enemy in self.enemies:
             #enemy.hit_wall_turn()
+
+        # 子弹击中墙
+        for wall in self.walls:
+            # 我方坦克子弹击中墙
+            for bullet in self.hero.bullets:
+                if pygame.sprite.collide_rect(wall, bullet):
+                    if wall.type == Startgame.RED_WALL:
+                        wall.kill()
+                        bullet.kill()
+                    elif wall.type == Startgame.BOSS_WALL:
+                        self.game_still = False
+                    elif wall.type == Startgame.IRON_WALL:
+                        bullet.kill()
+
+        # 我方坦克撞墙
+        if pygame.sprite.collide_rect(self.hero, wall):
+            # 不可穿越墙
+            if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL:
+                self.hero.is_hit_wall = True
+                # 移出墙内
+                self.hero.move_out_wall(wall)
+
+        # 子弹击中，敌方坦克碰撞，敌我坦克碰撞
+        pygame.sprite.groupcollide(self.hero.bullets, self.enemies, True, True)
+        # 敌方子弹击中我方
+
 
     def __update_sprites(self):
         if self.hero.is_moving:
             self.hero.update()
+        self.hero.bullets.update()
         self.walls.update()
+        self.hero.bullets.draw(self.screen)
         self.screen.blit(self.hero.image, self.hero.rect)
         self.walls.draw(self.screen)
 
@@ -141,6 +168,7 @@ class TankGame():
             # 5、更新显示
             pygame.display.update()
         self.__game_over()
+
 
 
     @staticmethod
