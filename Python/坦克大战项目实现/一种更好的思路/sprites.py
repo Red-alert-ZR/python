@@ -28,6 +28,12 @@ class Basesprite(pygame.sprite.Sprite):
         elif self.direction == Startgame.DOWN:
             self.rect.y += self.speed
 
+class Bullet(Basesprite):
+
+    def __init__(self, image_name, screen):
+        super().__init__(image_name, screen)
+        self.speed = Startgame.BULLET_SPEED
+
 class TankSprite(Basesprite):
     """
     ImageSprite类，Basesprite的子类，所有带图片的精灵的父类
@@ -56,17 +62,30 @@ class TankSprite(Basesprite):
             pygame.mixer.music.play()
 
         # 发射子弹
-        bullet = Bullet()
-        pass
+        bullet = Bullet(Startgame.BULLET_IMAGE_NAME, self.screen)
+        bullet.direction = self.direction
+        if self.direction == Startgame.LEFT:
+            bullet.rect.right = self.rect.left
+            bullet.rect.centery = self.rect.centery
+        elif self.direction == Startgame.RIGHT:
+            bullet.rect.left = self.rect.right
+            bullet.rect.centery = self.rect.centery
+        elif self.direction == Startgame.UP:
+            bullet.rect.bottom = self.rect.top
+            bullet.rect.centerx = self.rect.centerx
+        elif self.direction == Startgame.DOWN:
+            bullet.rect.top = self.rect.bottom
+            bullet.rect.centerx = self.rect.centerx
+        self.bullets.add(bullet)
 
     def move_out_wall(self, wall):
         if self.direction == Startgame.LEFT:
             self.rect.left = wall.rect.right + 2
         elif self.direction == Startgame.RIGHT:
             self.rect.right = wall.rect.left - 2
-        elif self.direction == Startgame.LEFT:
+        elif self.direction == Startgame.UP:
             self.rect.top = wall.rect.bottom + 2
-        elif self.direction == Startgame.LEFT:
+        elif self.direction == Startgame.DOWN  :
             self.rect.bottom = wall.rect.top - 2
 
     def __remove_sprites(self):
@@ -118,7 +137,7 @@ class Hero(TankSprite):
         self.image = pygame.image.load(Startgame.HERO_IMAGES.get(self.direction))
 
     def hit_wall(self):
-        if self.direction == Startgame.LEFT and self.rect.left >= 0 or \
+        if self.direction == Startgame.LEFT and self.rect.left <= 0 or \
             self.direction == Startgame.RIGHT and self.rect.right >= Startgame.SCREEN_RECT.right or \
             self.direction == Startgame.UP and self.rect.top <= 0 or \
                   self.direction == Startgame.DOWN and self.rect.bottom >= Startgame.SCREEN_RECT.bottom:
