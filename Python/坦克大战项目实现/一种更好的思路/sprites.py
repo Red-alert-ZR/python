@@ -28,11 +28,13 @@ class Basesprite(pygame.sprite.Sprite):
         elif self.direction == Startgame.DOWN:
             self.rect.y += self.speed
 
+
 class Bullet(Basesprite):
 
     def __init__(self, image_name, screen):
         super().__init__(image_name, screen)
         self.speed = Startgame.BULLET_SPEED
+
 
 class TankSprite(Basesprite):
     """
@@ -108,7 +110,7 @@ class TankSprite(Basesprite):
 
     def boom(self):
         pygame.mixer.music.load(Startgame.BOOM_MUSIC)
-        pygame.game.mixer.music.play()
+        pygame.mixer.music.play()
         for boom in Startgame.BOOMS:
             self.image = pygame.image.load(boom)
             time.sleep(0.05)
@@ -120,6 +122,7 @@ class TankSprite(Basesprite):
         self.is_alive = False
         t = Thread(target=self.boom)
         t.start()
+
 
 class Hero(TankSprite):
     def __init__(self, image_name, screen):
@@ -153,6 +156,57 @@ class Hero(TankSprite):
         self.boom()
 
 
+class Enemy(TankSprite):
+
+    def __init__(self, image_name, screen):
+        super().__init__(image_name, screen)
+        self.is_hit_wall = False
+        self.type = Startgame.ENEMY
+        self.speed = Startgame.ENEMY_SPEED
+        self.direction = random.randint(0, 3)
+        self.terminal = float(random.randint(40*2, 40*8))
+
+    def random_turn(self):
+        # 随机转向
+        self.is_hit_wall = False
+        directions = [i for i in range(4)]
+        directions.remove(self.direction)
+        self.direction = directions[random.randint(0, 2)]
+        self.terminal = float(random.randint(40 * 2, 40 * 8))
+        self.image = pygame.image.load(Startgame.ENEMY_IMAGES.get(self.direction))
+
+    def random_shot(self):
+        # 随机射击
+        shot_flag = random.choice([True] + [False]*59)
+        if shot_flag:
+            super().shot()
+
+    def hit_wall_turn(self):
+        turn = False
+        if self.direction == Settings.LEFT and self.rect.left <= 0:
+            turn = True
+            self.rect.left = 2
+        elif self.direction == Settings.RIGHT and self.rect.right >= Settings.SCREEN_RECT.right-1:
+            turn = True
+            self.rect.right = Settings.SCREEN_RECT.right-2
+        elif self.direction == Settings.UP and self.rect.top <= 0:
+            turn = True
+            self.rect.top = 2
+        elif self.direction == Settings.DOWN and self.rect.bottom >= Settings.SCREEN_RECT.bottom-1:
+            turn = True
+            self.rect.bottom = Settings.SCREEN_RECT.bottom-2
+        if turn:
+            self.random_turn()
+
+    def update(self):
+        self.random_shot()
+        if self.terminal <= 0:
+            self.random_turn()
+        else:
+            super().update()
+            # 碰撞调头
+            self.terminal -= self.speed
+
 class Wall(Basesprite):
 
     def __init__(self, image_name, screen):
@@ -165,7 +219,7 @@ class Wall(Basesprite):
 
     def boom(self):
         pygame.mixer.music.load(Startgame.BOOM_MUSIC)
-        pygame.game.mixer.music.play()
+        pygame.mixer.music.play()
         for boom in Startgame.BOOMS:
             self.image = pygame.image.load(boom)
             time.sleep(0.06)
