@@ -62,16 +62,16 @@ class Startgame:
 
     # 敌方坦克
     ENEMY_IMAGES ={
-        LEFT : "/resources/images/A_enemy/enemyL.png",
-        RIGHT : "/resources/images/A_enemy/enemyR.png",
-        UP : "/resources/images/A_enemy/enemyU.png",
-        DOWN : "/resources/images/A_enemy/enemyD.png"
+        LEFT : "resources/images/A_enemy/enemyL.png",
+        RIGHT : "resources/images/A_enemy/enemyR.png",
+        UP : "resources/images/A_enemy/enemyU.png",
+        DOWN : "resources/images/A_enemy/enemyD.png"
     }
     ENEMY_COUNT = 5
     ENEMY_SPEED = random.uniform(1.0, 2.5)
 
     # 子弹
-    BULLET_IMAGE_NAME = "/resources/images/bullet/bullet.png"
+    BULLET_IMAGE_NAME = "resources/images/bullet/bullet.png"
     BULLET_RECT = Rect(0, 0, 5, 5)
     BULLET_SPEED = 5
 
