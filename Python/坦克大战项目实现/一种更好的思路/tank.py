@@ -1,4 +1,5 @@
 import pygame
+import sprites
 from sprites import *
 
 
@@ -7,7 +8,7 @@ class TankGame():
     def __init__(self):
         self.screen = pygame.display.set_mode(Startgame.SCREEN_RECT.size)
         self.clock = pygame.time.Clock()
-        self.game_still = True
+        self.game_still = True 
         self.hero = None
         self.enemies = None
         self.enemy_bullets = None
@@ -23,6 +24,14 @@ class TankGame():
         pygame.init()
         pygame.display.set_caption(Startgame.GAME_NAME)
         pygame.mixer.init()
+        pygame.font.init()
+
+
+    def __draw_text(self, text):
+        font =pygame.font.SysFont('微软雅黑', 18, bold=True, italic=False)
+        textSurface_R =font.render(text, True, Startgame.COLOR_R)
+        return textSurface_R
+
 
     def __create_sprite(self):
         self.hero = Hero(Startgame.HERO_IMAGE_NAME, self.screen)
@@ -34,6 +43,8 @@ class TankGame():
             enemy = Enemy(Startgame.ENEMY_IMAGES[direction], self.screen)
             enemy.direction = direction
             self.enemies.add(enemy)
+        self.screen.blit(
+            self.__draw_text("剩余我方坦克数量： %d" % len(self.enemies)), (5, 5))
         self.__draw_map()
 
     def __draw_map(self):
@@ -85,6 +96,12 @@ class TankGame():
         elif event.key == pygame.K_SPACE:
             # 坦克发射子弹
             self.hero.shot()
+        elif event.key == pygame.K_j and Startgame.HERO_LIVE != 0:
+            # 我方坦克重生
+            self.hero = Hero(Startgame.HERO_IMAGE_NAME, self.screen)
+            Startgame.HERO_LIVE -= 1
+            self.hero.is_alive = True
+            self.screen.blit(self.hero.image, self.hero.rect)
 
     def __check_keyup(self, event):
         """检查松开按钮的事件"""
@@ -119,8 +136,8 @@ class TankGame():
     def __check_collide(self):
         # 保证坦克不移出屏幕
         self.hero.hit_wall()
-        #for enemy in self.enemies:
-            #enemy.hit_wall_turn()
+        for enemy in self.enemies:
+            enemy.hit_wall_turn()
 
         # 子弹击中墙
         for wall in self.walls:
@@ -131,6 +148,10 @@ class TankGame():
                         wall.kill()
                         bullet.kill()
                     elif wall.type == Startgame.BOSS_WALL:
+                        music = sprites.Music(Startgame.DEFEAT_MUSIC)
+                        music.play()
+                        pygame.time.delay(2200)
+                        print('游戏结束——失败')
                         self.game_still = False
                     elif wall.type == Startgame.IRON_WALL:
                         bullet.kill()
@@ -142,16 +163,18 @@ class TankGame():
                             wall.kill()
                             bullet.kill()
                         elif wall.type == Startgame.BOSS_WALL:
+                            music = sprites.Music(Startgame.DEFEAT_MUSIC)
+                            music.play()
+                            pygame.time.delay(2200)
+                            print('游戏结束——失败')
                             self.game_still = False
                         elif wall.type == Startgame.IRON_WALL:
                             bullet.kill()
 
-
-
             # 我方坦克撞墙
             if pygame.sprite.collide_rect(self.hero, wall):
                 # 不可穿越墙
-                if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL:
+                if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL or wall.type == Startgame.SEA_WALL:
                     self.hero.is_hit_wall = True
                     # 移出墙内
                     self.hero.move_out_wall(wall)
@@ -159,12 +182,27 @@ class TankGame():
             # 敌方坦克撞墙
             for enemy in self.enemies:
                 if pygame.sprite.collide_rect(wall, enemy):
-                    if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL:
+                    if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL or wall.type == Startgame.SEA_WALL:
                         enemy.move_out_wall(wall)
                         enemy.random_turn()
 
         # 子弹击中，敌方坦克碰撞，敌我坦克碰撞
         pygame.sprite.groupcollide(self.hero.bullets, self.enemies, True, True)
+        for enemy in self.enemies:
+            if pygame.sprite.collide_rect(enemy, self.hero):
+                enemy.stay()
+            if pygame.sprite.collide_rect(self.hero, enemy):
+                self.hero.stay()
+
+        a = pygame.time.get_ticks()
+        if a >= 1000:
+            for enemy in self.enemies:
+                self.enemies.remove(enemy)
+                num = self.enemies.copy()
+                if pygame.sprite.spritecollide(enemy, num, False):
+                    enemy.stay()
+                self.enemies.add(enemy)
+
         # 敌方子弹击中我方
         for enemy in self.enemies:
             for bullet in enemy.bullets:
@@ -184,8 +222,24 @@ class TankGame():
             enemy.bullets.draw(self.screen)
         self.enemies.draw(self.screen)
         self.hero.bullets.draw(self.screen)
-        self.screen.blit(self.hero.image, self.hero.rect)
+        if self.hero.is_alive:
+            self.screen.blit(self.hero.image, self.hero.rect)
         self.walls.draw(self.screen)
+
+
+    def __victory_and_defeat(self):
+        if Startgame.HERO_LIVE == 0:
+            music = sprites.Music(Startgame.DEFEAT_MUSIC)
+            music.play()
+            pygame.time.delay(2200)
+            print('游戏结束——失败')
+            self.game_still = False
+        elif len(self.enemies) == 0:
+            music = sprites.Music(Startgame.VIC_MUSIC)
+            music.play()
+            pygame.time.delay(20000)
+            print('游戏结束——胜利')
+            self.game_still = False
 
 
     def run_game(self):
@@ -201,7 +255,9 @@ class TankGame():
             self.__check_collide()
             # 4、更新、绘制精灵、经理组
             self.__update_sprites()
-            # 5、更新显示
+            # 5、游戏胜利、失败
+            self.__victory_and_defeat()
+            # 6、更新显示
             pygame.display.update()
         self.__game_over()
 
