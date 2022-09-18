@@ -11,6 +11,7 @@ class Startgame:
     BOX_RECT = Rect(0, 0, BOX_SIZE, BOX_SIZE)
     SCREEN_RECT = Rect(0, 0, BOX_SIZE * 21, BOX_SIZE * 15)
     SCREEN_COLOR = (0, 0, 0)
+    COLOR_R = (255, 255, 255)
 
     # 通用变量
     LEFT = 0
@@ -38,10 +39,12 @@ class Startgame:
     ]
 
     # 音频
-    BOOM_MUSIC ="TankWar-master/music/bang.wav"
+    BOOM_MUSIC ="resources/musics/boom.wav"
     START_MUSIC = "TankWar-master/music/start.wav"
     FIRE_MUSIC = "TankWar-master/music/fire.wav"
     HIT_MUSIC = "TankWar-master/music/hit.wav"
+    VIC_MUSIC = "TankWar-master/music/victory.mp3"
+    DEFEAT_MUSIC = "TankWar-master/music/天赐音画 - 超级玛丽失败音效 (节目).mp3"
 
     # 坦克类型
     HERO = 0
@@ -55,7 +58,8 @@ class Startgame:
         UP : "resources/images/hero/hero1U.gif",
         DOWN : "resources/images/hero/hero1D.gif"
     }
-    HERO_SPEED = 2
+    HERO_SPEED = 3
+    HERO_LIVE = 3
 
     # 我方老巢
     BOSS_IMAGE = ""
@@ -68,7 +72,9 @@ class Startgame:
         DOWN : "resources/images/A_enemy/enemyD.png"
     }
     ENEMY_COUNT = 5
-    ENEMY_SPEED = random.uniform(1.0, 2.5)
+    ENEMY_SPEED = random.uniform(1, 2)
+    # 初始化位置
+    ENEMY_POSITION = [0,[0, 1, 2, 3, 4, 5]]
 
     # 子弹
     BULLET_IMAGE_NAME = "resources/images/bullet/bullet.png"
