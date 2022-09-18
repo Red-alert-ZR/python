@@ -19,6 +19,8 @@ class Basesprite(pygame.sprite.Sprite):
 
     def update(self):
         # 根据方向移动
+        self.old_x = self.rect.x
+        self.old_y = self.rect.y
         if self.direction == Startgame.LEFT:
             self.rect.x -= self.speed
         elif self.direction == Startgame.RIGHT:
@@ -46,6 +48,8 @@ class TankSprite(Basesprite):
         self.bullets = pygame.sprite.Group()
         self.is_alive = True
         self.is_moving = False
+        self.old_x = self.rect.x
+        self.old_y = self.rect.y
 
     def shot(self):
         """
@@ -60,8 +64,11 @@ class TankSprite(Basesprite):
         if len(self.bullets) >= 3:
             return
         if self.type == Startgame.HERO:
-            pygame.mixer.music.load(Startgame.FIRE_MUSIC)
-            pygame.mixer.music.play()
+            music = Music(Startgame.FIRE_MUSIC)
+            music.play()
+        if self.type == Startgame.ENEMY and pygame.time.get_ticks() >= 5500:
+            music = Music(Startgame.HIT_MUSIC)
+            music.play()
 
         # 发射子弹
         bullet = Bullet(Startgame.BULLET_IMAGE_NAME, self.screen)
@@ -103,6 +110,11 @@ class TankSprite(Basesprite):
                 self.bullets.remove(bullet)
                 bullet.kill()
 
+    # 还原方法
+    def stay(self):
+        self.rect.x = self.old_x
+        self.rect.y = self.old_y
+
     def update(self):
         if not self.is_alive:
             return
@@ -128,13 +140,18 @@ class Hero(TankSprite):
     def __init__(self, image_name, screen):
         super(Hero, self).__init__(image_name, screen)
         self.type = Startgame.HERO
-        self.speed = Startgame.HERO_SPEED * 4 ##
+        self.speed = Startgame.HERO_SPEED
         self.direction = Startgame.UP
         self.is_hit_wall = False
 
-        # 初始化未知
+        # 初始化位置
         self.rect.centerx = Startgame.SCREEN_RECT.centerx - Startgame.BOX_RECT.width * 2
         self.rect.bottom = Startgame.SCREEN_RECT.bottom
+
+        # 初始化音乐
+        music =Music('TankWar-master/music/start.wav')
+        music.play()
+
 
     def __turn(self):
         self.image = pygame.image.load(Startgame.HERO_IMAGES.get(self.direction))
@@ -154,6 +171,8 @@ class Hero(TankSprite):
     def kill(self):
         self.is_alive = False
         self.boom()
+        self.rect.centerx = Startgame.SCREEN_RECT.centerx - Startgame.BOX_RECT.width * 2
+        self.rect.bottom = Startgame.SCREEN_RECT.bottom
 
 
 class Enemy(TankSprite):
@@ -165,6 +184,12 @@ class Enemy(TankSprite):
         self.speed = Startgame.ENEMY_SPEED
         self.direction = random.randint(0, 3)
         self.terminal = float(random.randint(40*2, 40*8))
+
+        # 初始化位置
+        self.rect.x = Startgame.SCREEN_RECT.width - Startgame.ENEMY_POSITION[1][Startgame.ENEMY_POSITION[0]] * Startgame.BOX_RECT.width * 5
+        self.rect.top = Startgame.SCREEN_RECT.top
+        Startgame.ENEMY_POSITION[0] += 1
+
 
     def random_turn(self):
         # 随机转向
@@ -183,18 +208,18 @@ class Enemy(TankSprite):
 
     def hit_wall_turn(self):
         turn = False
-        if self.direction == Settings.LEFT and self.rect.left <= 0:
+        if self.direction == Startgame.LEFT and self.rect.left <= 0:
             turn = True
             self.rect.left = 2
-        elif self.direction == Settings.RIGHT and self.rect.right >= Settings.SCREEN_RECT.right-1:
+        elif self.direction == Startgame.RIGHT and self.rect.right >= Startgame.SCREEN_RECT.right-1:
             turn = True
-            self.rect.right = Settings.SCREEN_RECT.right-2
-        elif self.direction == Settings.UP and self.rect.top <= 0:
+            self.rect.right = Startgame.SCREEN_RECT.right-2
+        elif self.direction == Startgame.UP and self.rect.top <= 0:
             turn = True
             self.rect.top = 2
-        elif self.direction == Settings.DOWN and self.rect.bottom >= Settings.SCREEN_RECT.bottom-1:
+        elif self.direction == Startgame.DOWN and self.rect.bottom >= Startgame.SCREEN_RECT.bottom-1:
             turn = True
-            self.rect.bottom = Settings.SCREEN_RECT.bottom-2
+            self.rect.bottom = Startgame.SCREEN_RECT.bottom-2
         if turn:
             self.random_turn()
 
@@ -206,6 +231,7 @@ class Enemy(TankSprite):
             super().update()
             # 碰撞调头
             self.terminal -= self.speed
+
 
 class Wall(Basesprite):
 
@@ -232,3 +258,13 @@ class Wall(Basesprite):
         if not self.life:
             t = Thread(target=self.boom)
             t.start()
+
+class Music():
+    def __init__(self, filename):
+        self.filename =filename
+        # 初始化混合器
+        pygame.mixer.init()
+        pygame.mixer.music.load(self.filename)
+
+    def play(self):
+        pygame.mixer.music.play()
