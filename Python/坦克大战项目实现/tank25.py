@@ -396,12 +396,12 @@ class Tank(BaseItem):  # 坦克类
             if self.rect.top + self.rect.height < MainGame.SCREEN_HEIGHT:
                 self.rect.top += self.speed
 
-    #还原方法
+    # 还原方法
     def stay(self):
         self.rect.left = self.oldLeft
         self.rect.top = self.oldTop
 
-    #新增碰撞墙壁方法
+    # 新增碰撞墙壁方法
     def hitWalls(self):
         for wall in MainGame.Wall_list:
             if pygame.sprite.collide_rect(wall, self):
@@ -412,13 +412,13 @@ class Tank(BaseItem):  # 坦克类
         if pygame.sprite.collide_rect(MainGame.home, self):
             self.stay()
 
-    #我方坦克碰撞敌方坦克方法
+    # 我方坦克碰撞敌方坦克方法
     def hitMyTank_EnemyTank(self):
         for eTank in MainGame.EnemyTank_list:
             if pygame.sprite.collide_rect(eTank, self):
                 self.stay()
 
-    #敌方坦克碰撞我方坦克方法
+    # 敌方坦克碰撞我方坦克方法
     def hitEnemyTank_MyTank(self):
         if MainGame.TANK_P1:
             if pygame.sprite.collide_rect(self, MainGame.TANK_P1):
