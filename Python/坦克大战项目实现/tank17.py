@@ -329,7 +329,7 @@ class Bullet(BaseItem):  # 子弹类
         }
         #方向（坦克方向）
         self.direction = tank.direction
-        #位置
+        # 位置
         self.image = self.images[self.direction]
         self.rect = self.image.get_rect()
         if self.direction == 'U':
@@ -348,7 +348,7 @@ class Bullet(BaseItem):  # 子弹类
             self.image = self.images[self.direction]
             self.rect.left = tank.rect.left + tank.rect.width / 2 + self.rect.width + 6
             self.rect.top = tank.rect.top + self.rect.height + 4
-        #速度
+        # 速度
         self.speed = 10
         #用来记录子弹是否活着
         self.live = True
