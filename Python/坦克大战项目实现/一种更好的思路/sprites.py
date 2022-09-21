@@ -16,6 +16,8 @@ class Basesprite(pygame.sprite.Sprite):
         self.speed = None
         self.image = pygame.image.load(image_name)
         self.rect = self.image.get_rect()
+        self.old_x = self.rect.x
+        self.old_y = self.rect.y
 
     def update(self):
         # 根据方向移动
@@ -94,7 +96,7 @@ class TankSprite(Basesprite):
             self.rect.right = wall.rect.left - 2
         elif self.direction == Startgame.UP:
             self.rect.top = wall.rect.bottom + 2
-        elif self.direction == Startgame.DOWN  :
+        elif self.direction == Startgame.DOWN:
             self.rect.bottom = wall.rect.top - 2
 
     def __remove_sprites(self):
@@ -149,7 +151,7 @@ class Hero(TankSprite):
         self.rect.bottom = Startgame.SCREEN_RECT.bottom
 
         # 初始化音乐
-        music =Music('TankWar-master/music/start.wav')
+        music = Music('TankWar-master/music/start.wav')
         music.play()
 
 
@@ -160,7 +162,7 @@ class Hero(TankSprite):
         if self.direction == Startgame.LEFT and self.rect.left <= 0 or \
             self.direction == Startgame.RIGHT and self.rect.right >= Startgame.SCREEN_RECT.right or \
             self.direction == Startgame.UP and self.rect.top <= 0 or \
-                  self.direction == Startgame.DOWN and self.rect.bottom >= Startgame.SCREEN_RECT.bottom:
+                self.direction == Startgame.DOWN and self.rect.bottom >= Startgame.SCREEN_RECT.bottom:
             self.is_hit_wall = True
 
     def update(self):
@@ -259,9 +261,9 @@ class Wall(Basesprite):
             t = Thread(target=self.boom)
             t.start()
 
-class Music():
+class Music:
     def __init__(self, filename):
-        self.filename =filename
+        self.filename = filename
         # 初始化混合器
         pygame.mixer.init()
         pygame.mixer.music.load(self.filename)
