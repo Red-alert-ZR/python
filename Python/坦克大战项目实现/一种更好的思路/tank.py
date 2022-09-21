@@ -3,7 +3,7 @@ import sprites
 from sprites import *
 
 
-class TankGame():
+class TankGame:
 
     def __init__(self):
         self.screen = pygame.display.set_mode(Startgame.SCREEN_RECT.size)
@@ -28,8 +28,8 @@ class TankGame():
 
 
     def __draw_text(self, text):
-        font =pygame.font.SysFont('微软雅黑', 18, bold=True, italic=False)
-        textSurface_R =font.render(text, True, Startgame.COLOR_R)
+        font = pygame.font.SysFont('微软雅黑', 18, bold=True, italic=False)
+        textSurface_R = font.render(text, True, Startgame.COLOR_R)
         return textSurface_R
 
 
@@ -60,13 +60,13 @@ class TankGame():
                 wall.rect.y = y * Startgame.BOX_SIZE
                 if Startgame.MAP_ONE[y][x] == Startgame.RED_WALL:
                     wall.type = Startgame.RED_WALL
-                elif Startgame.MAP_ONE[y][x] ==Startgame.IRON_WALL:
+                elif Startgame.MAP_ONE[y][x] == Startgame.IRON_WALL:
                     wall.type = Startgame.IRON_WALL
-                elif Startgame.MAP_ONE[y][x] ==Startgame.WEED_WALL:
+                elif Startgame.MAP_ONE[y][x] == Startgame.WEED_WALL:
                     wall.type = Startgame.WEED_WALL
-                elif Startgame.MAP_ONE[y][x] ==Startgame.SEA_WALL:
+                elif Startgame.MAP_ONE[y][x] == Startgame.SEA_WALL:
                     wall.type = Startgame.SEA_WALL
-                elif Startgame.MAP_ONE[y][x] ==Startgame.BOSS_WALL:
+                elif Startgame.MAP_ONE[y][x] == Startgame.BOSS_WALL:
                     wall.type = Startgame.BOSS_WALL
                     wall.life = 1
                 self.walls.add(wall)
@@ -174,7 +174,10 @@ class TankGame():
             # 我方坦克撞墙
             if pygame.sprite.collide_rect(self.hero, wall):
                 # 不可穿越墙
-                if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL or wall.type == Startgame.SEA_WALL:
+                if wall.type == Startgame.RED_WALL or \
+                        wall.type == Startgame.IRON_WALL or \
+                        wall.type == Startgame.BOSS_WALL or \
+                        wall.type == Startgame.SEA_WALL:
                     self.hero.is_hit_wall = True
                     # 移出墙内
                     self.hero.move_out_wall(wall)
@@ -182,7 +185,10 @@ class TankGame():
             # 敌方坦克撞墙
             for enemy in self.enemies:
                 if pygame.sprite.collide_rect(wall, enemy):
-                    if wall.type == Startgame.RED_WALL or wall.type == Startgame.IRON_WALL or wall.type == Startgame.BOSS_WALL or wall.type == Startgame.SEA_WALL:
+                    if wall.type == Startgame.RED_WALL or\
+                            wall.type == Startgame.IRON_WALL or \
+                            wall.type == Startgame.BOSS_WALL or \
+                            wall.type == Startgame.SEA_WALL:
                         enemy.move_out_wall(wall)
                         enemy.random_turn()
 
