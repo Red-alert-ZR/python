@@ -453,16 +453,16 @@ class EnemyTank(Tank):  # 敌方坦克类
 class Bullet(BaseItem):  # 子弹类
     def __init__(self, tank):
         BaseItem.__init__(self)
-        #图片
+        # 图片
         self.images ={
             'U' : pygame.image.load('TankWar-master/images/bullet/bullet_U.png'),
             'D' : pygame.image.load('TankWar-master/images/bullet/bullet_D.png'),
             'L' : pygame.image.load('TankWar-master/images/bullet/bullet_L.png'),
             'R' : pygame.image.load('TankWar-master/images/bullet/bullet_R.png')
         }
-        #方向（坦克方向）
+        # 方向（坦克方向）
         self.direction = tank.direction
-        #位置
+        # 位置
         self.image = self.images[self.direction]
         self.rect = self.image.get_rect()
         if self.direction == 'U':
@@ -481,9 +481,9 @@ class Bullet(BaseItem):  # 子弹类
             self.image = self.images[self.direction]
             self.rect.left = tank.rect.left + tank.rect.width / 2 + self.rect.width + 6
             self.rect.top = tank.rect.top + self.rect.height + 4
-        #速度
+        # 速度
         self.speed = 10
-        #用来记录子弹是否活着
+        # 用来记录子弹是否活着
         self.live = True
 
     # 子弹移动方法
