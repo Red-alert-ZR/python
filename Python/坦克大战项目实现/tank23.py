@@ -180,7 +180,7 @@ class MainGame():  # 主函数类
             else:
                 MainGame.Bullet_list.remove(bullet)
 
-    #将敌方子弹加入到窗口中
+    # 将敌方子弹加入到窗口中
     def blitEnemyBullet(self):
         for ebullet in MainGame.Enemy_bullet_list:
             # 如果子弹还活着，绘制出来，否则，从列表中移除该子弹
@@ -195,7 +195,7 @@ class MainGame():  # 主函数类
             else:
                 MainGame.Enemy_bullet_list.remove(ebullet)
 
-    #将爆炸效果加入到窗口中
+    # 将爆炸效果加入到窗口中
     def displayExplodes(self):
         for explode in MainGame.Explode_list:
             #显示爆炸效果
@@ -332,24 +332,24 @@ class Tank(BaseItem):  # 坦克类
             if self.rect.top + self.rect.height < MainGame.SCREEN_HEIGHT:
                 self.rect.top += self.speed
 
-    #还原方法
+    # 还原方法
     def stay(self):
         self.rect.left = self.oldLeft
         self.rect.top = self.oldTop
 
-    #新增碰撞墙壁方法
+    # 新增碰撞墙壁方法
     def hitWalls(self):
         for wall in MainGame.Wall_list:
             if pygame.sprite.collide_rect(wall, self):
                 self.stay()
 
-    #我方坦克碰撞敌方坦克方法
+    # 我方坦克碰撞敌方坦克方法
     def hitMyTank_EnemyTank(self):
         for eTank in MainGame.EnemyTank_list:
             if pygame.sprite.collide_rect(eTank, self):
                 self.stay()
 
-    #敌方坦克碰撞我方坦克方法
+    # 敌方坦克碰撞我方坦克方法
     def hitEnemyTank_MyTank(self):
         if MainGame.TANK_P1:
             if pygame.sprite.collide_rect(self, MainGame.TANK_P1):
