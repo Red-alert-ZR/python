@@ -6,7 +6,7 @@ class Startgame:
 
     # 游戏设置
     FPS = 60
-    GAME_NAME = "坦克大战"  #屏幕标题
+    GAME_NAME = "坦克大战"  # 屏幕标题
     BOX_SIZE = 50
     BOX_RECT = Rect(0, 0, BOX_SIZE, BOX_SIZE)
     SCREEN_RECT = Rect(0, 0, BOX_SIZE * 21, BOX_SIZE * 15)
@@ -39,7 +39,7 @@ class Startgame:
     ]
 
     # 音频
-    BOOM_MUSIC ="resources/musics/boom.wav"
+    BOOM_MUSIC = "resources/musics/boom.wav"
     START_MUSIC = "TankWar-master/music/start.wav"
     FIRE_MUSIC = "TankWar-master/music/fire.wav"
     HIT_MUSIC = "TankWar-master/music/hit.wav"
@@ -52,11 +52,11 @@ class Startgame:
 
     # 我方坦克
     HERO_IMAGE_NAME = "resources/images/hero/hero1U.gif"
-    HERO_IMAGES ={
-        LEFT : "resources/images/hero/hero1L.gif",
-        RIGHT : "resources/images/hero/hero1R.gif",
-        UP : "resources/images/hero/hero1U.gif",
-        DOWN : "resources/images/hero/hero1D.gif"
+    HERO_IMAGES = {
+        LEFT: "resources/images/hero/hero1L.gif",
+        RIGHT: "resources/images/hero/hero1R.gif",
+        UP: "resources/images/hero/hero1U.gif",
+        DOWN: "resources/images/hero/hero1D.gif"
     }
     HERO_SPEED = 3
     HERO_LIVE = 3
@@ -65,16 +65,16 @@ class Startgame:
     BOSS_IMAGE = ""
 
     # 敌方坦克
-    ENEMY_IMAGES ={
-        LEFT : "resources/images/A_enemy/enemyL.png",
-        RIGHT : "resources/images/A_enemy/enemyR.png",
-        UP : "resources/images/A_enemy/enemyU.png",
-        DOWN : "resources/images/A_enemy/enemyD.png"
+    ENEMY_IMAGES = {
+        LEFT: "resources/images/A_enemy/enemyL.png",
+        RIGHT: "resources/images/A_enemy/enemyR.png",
+        UP: "resources/images/A_enemy/enemyU.png",
+        DOWN: "resources/images/A_enemy/enemyD.png"
     }
     ENEMY_COUNT = 5
     ENEMY_SPEED = random.uniform(1, 2)
     # 初始化位置
-    ENEMY_POSITION = [0,[0, 1, 2, 3, 4, 5]]
+    ENEMY_POSITION = [0, [0, 1, 2, 3, 4, 5]]
 
     # 子弹
     BULLET_IMAGE_NAME = "resources/images/bullet/bullet.png"
@@ -90,10 +90,7 @@ class Startgame:
     WALLS = [
         f"resources/images/walls/{file}" for file in os.listdir("resources/images/walls")
     ]
-
-
-
-
+    
     # 爆炸的图片
     BOOMS = [
         "resources/images/boom/" + file for file in os.listdir("resources/images/boom")
