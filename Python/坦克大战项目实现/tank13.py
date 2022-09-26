@@ -137,7 +137,7 @@ class MainGame():  # 主函数类
                     MainGame.TANK_P1.stop = False
                 elif event.key == pygame.K_SPACE:
                     print('发射子弹')
-                    #产生一颗子弹
+                    # 产生一颗子弹
                     m = Bullet(MainGame.TANK_P1)
                     #将子弹加入子弹列表
                     MainGame.Bullet_list.append(m)
