@@ -15,21 +15,21 @@ class MainGame():       #主函数类
     SCREEN_HEIGHT = 700
     def __init__(self):
         pass
-    #开始游戏方法
+    # 开始游戏方法
     def startGame(self):
         _display.init()   #初始化显示模块
-        #创建窗口加载窗口（借鉴官方文档）
+        # 创建窗口加载窗口（借鉴官方文档）
         MainGame.window = _display.set_mode([MainGame.SCREEN_WIDTH,MainGame.SCREEN_HEIGHT])   #初始化要显示的窗口或屏幕
-        #设置一下游戏标题
+        # 设置一下游戏标题
         _display.set_caption("坦克大战v1.03")
-        #让窗口持续刷新操作
+        # 让窗口持续刷新操作
         while True:
 
-            #给窗口完成一个填充颜色
+            # 给窗口完成一个填充颜色
             MainGame.window.fill(COLOR_BLACK)
             _display.update()
 
-    #结束游戏方法
+    # 结束游戏方法
     def endGame(self):
         print('谢谢使用')
         #结束Python解释器
