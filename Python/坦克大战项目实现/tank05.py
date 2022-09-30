@@ -10,40 +10,40 @@ COLOR_BLACK = pygame.Color(0, 0, 0)
 COLOR_RED = pygame.Color(255,0,0)
 version = 'v1.05'
 class MainGame():       #主函数类
-    #游戏主窗口对象
+    # 游戏主窗口对象
     window = None
     SCREEN_WIDTH = 1000
     SCREEN_HEIGHT = 700
     def __init__(self):
         pass
-    #开始游戏方法
+    # 开始游戏方法
     def startGame(self):
         _display.init()   #初始化显示模块
-        #创建窗口加载窗口（借鉴官方文档）
+        # 创建窗口加载窗口（借鉴官方文档）
         MainGame.window = _display.set_mode([MainGame.SCREEN_WIDTH,MainGame.SCREEN_HEIGHT])   #初始化要显示的窗口或屏幕
-        #设置一下游戏标题
+        # 设置一下游戏标题
         _display.set_caption("坦克大战" + version)
-        #让窗口持续刷新操作
+        # 让窗口持续刷新操作
         while True:
-            #给窗口完成一个填充颜色
+            # 给窗口完成一个填充颜色
             MainGame.window.fill(COLOR_BLACK)
-            #在循环中持续完成事件的获取
+            # 在循环中持续完成事件的获取
             self.getEvent()
-            #将绘制文字得到的小画布，粘贴到窗口中
+            # 将绘制文字得到的小画布，粘贴到窗口中
             MainGame.window.blit(self.getTextSurface("剩余敌方坦克%d辆" %5), (5, 5))
-            #窗口刷新
+            # 窗口刷新
             _display.update()
 
-    #左上角文字绘制的功能
+    # 左上角文字绘制的功能
     def getTextSurface(self,text):
-        #初始化字体模块
+        # 初始化字体模块
         pygame.font.init()
-        #查看系统支持的所有字体
-        #fontList = pygame.font.get_fonts()
-        #print(fontList)
-        #选中一个合适的字体
+        # 查看系统支持的所有字体
+        # fontList = pygame.font.get_fonts()
+        # print(fontList)
+        # 选中一个合适的字体
         font = pygame.font.SysFont('微软雅黑', 18, bold = True, italic = False)
-        #使用对应的字符完成相关的内容的绘制
+        # 使用对应的字符完成相关的内容的绘制
         textSurface = font.render(text, True, COLOR_RED)
         return textSurface
 
