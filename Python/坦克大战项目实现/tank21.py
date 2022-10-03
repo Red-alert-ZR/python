@@ -17,19 +17,19 @@ class MainGame():  # 主函数类
     window = None
     SCREEN_WIDTH = 1000  # 1720
     SCREEN_HEIGHT = 800  # 1000
-    # 创建我方坦克
+    # 创建我方坦克  
     TANK_P1 = None
-    # 存储所有地方坦克
+    # 存储所有地方坦克 
     EnemyTank_list = []
     # 要创建的敌方坦克的数量
     EnemyTank_count = 10
-    #存储我方子弹的列表
+    # 存储我方子弹的列表
     Bullet_list = []
-    #存储敌方子弹列表
+    # 存储敌方子弹列表
     Enemy_bullet_list = []
-    #爆炸效果列表
+    # 爆炸效果列表
     Explode_list = []
-    #墙壁列表
+    # 墙壁列表
     Wall_list = []
 
     def __init__(self):
