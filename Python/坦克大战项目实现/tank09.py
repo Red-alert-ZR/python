@@ -11,51 +11,51 @@ COLOR_BLACK = pygame.Color(0, 0, 0)
 COLOR_RED = pygame.Color(255,0,0)
 version = 'v1.09'
 class MainGame():       #主函数类
-    #游戏主窗口对象
+    # 游戏主窗口对象
     window = None
     SCREEN_WIDTH = 1000 #1720
     SCREEN_HEIGHT = 800 #1000
-    #创建我方坦克
+    # 创建我方坦克
     TANK_P1 = None
-    #存储所有地方坦克
+    # 存储所有地方坦克
     EnemyTank_list = []
-    #要创建的敌方坦克的数量
+    # 要创建的敌方坦克的数量
     EnemyTank_count = 5
     def __init__(self):
         pass
-    #开始游戏方法
+    # 开始游戏方法
     def startGame(self):
         _display.init()   #初始化显示模块
-        #创建窗口加载窗口（借鉴官方文档）
+        # 创建窗口加载窗口（借鉴官方文档）
         MainGame.window = _display.set_mode([MainGame.SCREEN_WIDTH,MainGame.SCREEN_HEIGHT])   #初始化要显示的窗口或屏幕
-        #创建我方坦克
+        # 创建我方坦克
         MainGame.TANK_P1 = Tank(500, 700)
-        #创建敌方坦克
+        # 创建敌方坦克
         self.creatEnemyTank()
-        #设置一下游戏标题
+        # 设置一下游戏标题
         _display.set_caption("坦克大战" + version)
-        #让窗口持续刷新操作
+        # 让窗口持续刷新操作
         while True:
-            #给窗口完成一个填充颜色
+            # 给窗口完成一个填充颜色
             MainGame.window.fill(COLOR_BLACK)
-            #在循环中持续完成事件的获取
+            # 在循环中持续完成事件的获取
             self.getEvent()
-            #设置重复点击效果
-            #pygame.key.set_repeat(pygame.KEYDOWN,50)
-            #将绘制文字得到的小画布，粘贴到窗口中
+            # 设置重复点击效果
+            # pygame.key.set_repeat(pygame.KEYDOWN,50)
+            # 将绘制文字得到的小画布，粘贴到窗口中
             MainGame.window.blit(self.getTextSurface("剩余敌方坦克%d辆" %5), (5, 5))
-            #将我方坦克加入到窗口中
+            # 将我方坦克加入到窗口中
             MainGame.TANK_P1.displayTank()
-            #循环展示敌方坦克
+            # 循环展示敌方坦克
             self.blitEnemyTank()
-            #根据坦克的开关状态调用坦克的移动方法
+            # 根据坦克的开关状态调用坦克的移动方法
             if MainGame.TANK_P1 and not MainGame.TANK_P1.stop :
                 MainGame.TANK_P1.move()
             time.sleep(0.005)
             #窗口刷新
             _display.update()
 
-    #创建敌方坦克
+    # 创建敌方坦克
     def creatEnemyTank(self):
         speed = random.uniform(1.0, 2.0)
         for i in range(MainGame.EnemyTank_count):
@@ -64,28 +64,28 @@ class MainGame():       #主函数类
             eTank = EnemyTank(left * 100, top * 100, speed)
             MainGame.EnemyTank_list.append(eTank)
 
-    #将坦克加入到窗口中
+    # 将坦克加入到窗口中
     def blitEnemyTank(self):
         for eTank in MainGame.EnemyTank_list:
             eTank.displayTank()
-    #左上角文字绘制的功能
+    # 左上角文字绘制的功能
     def getTextSurface(self,text):
         #初始化字体模块
         pygame.font.init()
-        #查看系统支持的所有字体
+        # 查看系统支持的所有字体
         #fontList = pygame.font.get_fonts()
-        #print(fontList)
-        #选中一个合适的字体
+        # print(fontList)
+        # 选中一个合适的字体
         font = pygame.font.SysFont('微软雅黑', 18, bold = True, italic = False)
-        #使用对应的字符完成相关的内容的绘制
+        # 使用对应的字符完成相关的内容的绘制
         textSurface = font.render(text, True, COLOR_RED)
         return textSurface
 
-    #获取程序期间所有事件（鼠标事件，键盘事件）
+    # 获取程序期间所有事件（鼠标事件，键盘事件）
     def getEvent(self):
-        #1、获取所有事件
+        # 1、获取所有事件
         eventList = pygame.event.get()
-        #2、对事件进行判断处理（1、点击关闭按钮 2、按下键盘上的某个按钮）
+        # 2、对事件进行判断处理（1、点击关闭按钮 2、按下键盘上的某个按钮）
         for event in eventList:
             #判断 event.type 是否是QUIT，如果是退出，直接调用程序结束方法
             if event.type == pygame.QUIT:
