@@ -49,16 +49,16 @@ class MainGame():       #主函数类
 
     #获取程序期间所有事件（鼠标事件，键盘事件）
     def getEvent(self):
-        #1、获取所有事件
+        # 1、获取所有事件
         eventList = pygame.event.get()
-        #2、对事件进行判断处理（1、点击关闭按钮 2、按下键盘上的某个按钮）
+        # 2、对事件进行判断处理（1、点击关闭按钮 2、按下键盘上的某个按钮）
         for event in eventList:
-            #判断 event.type 是否是QUIT，如果是退出，直接调用程序结束方法
+            # 判断 event.type 是否是QUIT，如果是退出，直接调用程序结束方法
             if event.type == pygame.QUIT:
                 self.endGame()
-            #判断事件类型是否为按键按下，如果是，继续判断是哪一个按键，来进行对应的处理
+            # 判断事件类型是否为按键按下，如果是，继续判断是哪一个按键，来进行对应的处理
             if event.type == pygame.KEYDOWN:
-                #具体是哪一个按键的处理
+                # 具体是哪一个按键的处理
                 if event.key == pygame.K_LEFT:
                     print('坦克向左调头，移动')
                 elif event.key == pygame.K_RIGHT:
