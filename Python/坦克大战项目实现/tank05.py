@@ -70,21 +70,21 @@ class MainGame():       #主函数类
                 elif event.key == pygame.K_SPACE:
                     print('发射子弹')
 
-    #结束游戏方法
+    # 结束游戏方法
     def endGame(self):
         print('谢谢使用')
-        #结束Python解释器
+        # 结束Python解释器
         exit()
 class Tank():       # 坦克类
     def __init__(self):
         pass
-    #坦克移动方法
+    # 坦克移动方法
     def move(self):
         pass
-    #射击方法
+    # 射击方法
     def shot(self):
         pass
-    #展示坦克方法
+    # 展示坦克方法
     def displayTank(self):
         pass
 class MyTank(Tank):     # 我方坦克类
