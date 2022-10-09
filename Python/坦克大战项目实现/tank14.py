@@ -276,7 +276,7 @@ class Bullet():  # 子弹类
             'L' : pygame.image.load('TankWar-master/images/bullet/bullet_L.png'),
             'R' : pygame.image.load('TankWar-master/images/bullet/bullet_R.png')
         }
-        #方向（坦克方向）
+        # 方向（坦克方向）
         self.direction = tank.direction
         #位置
         self.image = self.images[self.direction]
