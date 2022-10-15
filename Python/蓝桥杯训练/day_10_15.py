@@ -166,8 +166,3 @@ def fun(A):
             r -= 1
     return print(A)
 print(fun(A))
-
-
-print(
-
-)
