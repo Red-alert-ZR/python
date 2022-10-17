@@ -428,7 +428,7 @@ class Tank(BaseItem):  # 坦克类
 
     # 坦克移动方法
     def move(self):
-        #先记录移动之前的坐标
+        # 先记录移动之前的坐标
         self.oldLeft = self.rect.left
         self.oldTop = self.rect.top
         if self.direction == 'L':
