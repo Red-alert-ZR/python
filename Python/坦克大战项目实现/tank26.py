@@ -816,7 +816,7 @@ class Home():
         self.live = True
         self.hp = 1
 
-    #展示方法
+    # 展示方法
     def displayHome(self):
         MainGame.window.blit(self.image, self.rect)
 
