@@ -238,10 +238,10 @@ class MainGame:  # 主函数类
             else:
                 MainGame.Enemy_bullet_list.remove(ebullet)
 
-    #将爆炸效果加入到窗口中
+    # 将爆炸效果加入到窗口中
     def displayExplodes(self):
         for explode in MainGame.Explode_list:
-            #显示爆炸效果
+            # 显示爆炸效果
             if explode.live:
                 explode.displayExplode()
             else:
@@ -448,7 +448,7 @@ class MyTank(Tank):  # 我方坦克类
     def __init__(self, left, top):
         super(MyTank, self).__init__(left, top)
 
-    #新增主动碰撞到敌方坦克
+    # 新增主动碰撞到敌方坦克
     def hitEnemyTank(self):
         for eTank in MainGame.EnemyTank_list:
             if pygame.sprite.collide_rect(eTank, self):
