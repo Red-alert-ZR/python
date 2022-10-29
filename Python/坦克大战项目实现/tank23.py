@@ -165,17 +165,17 @@ class MainGame():  # 主函数类
             else:
                 MainGame.EnemyTank_list.remove(eTank)
 
-    #将我方子弹加入到窗口中
+    # 将我方子弹加入到窗口中
     def blitBUllet(self):
         for bullet in MainGame.Bullet_list:
-            #如果子弹还活着，绘制出来，否则，从列表中移除该子弹
+            # 如果子弹还活着，绘制出来，否则，从列表中移除该子弹
             if bullet.live:
                 bullet.displayBullet()
-                #让子弹移动
+                # 让子弹移动
                 bullet.bulletMove()
-                #调用我方子弹与敌方坦克的碰撞方法
+                # 调用我方子弹与敌方坦克的碰撞方法
                 bullet.hitEnemyTank()
-                #调用判断我方子弹是否碰撞到墙壁的方法
+                # 调用判断我方子弹是否碰撞到墙壁的方法
                 bullet.hitWall()
             else:
                 MainGame.Bullet_list.remove(bullet)
