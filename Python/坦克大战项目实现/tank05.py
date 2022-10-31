@@ -105,19 +105,19 @@ class Bullet():     # 子弹类
 class Explode():        # 爆炸效果类
     def __init__(self):
         pass
-    #展示爆炸效果类
+    # 展示爆炸效果类
     def display(self):
         pass
 class Wall ():       # 墙壁类
     def __init__(self):
         pass
-    #展示墙壁方法
+    # 展示墙壁方法
     def display(self):
         pass
 class Music():      #音效类
     def __init__(self):
         pass
-    #开始播放音乐
+    # 开始播放音乐
     def play(self):
         pass
 MainGame().startGame()
