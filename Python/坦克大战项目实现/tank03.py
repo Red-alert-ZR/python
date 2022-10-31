@@ -32,7 +32,7 @@ class MainGame():       #主函数类
     # 结束游戏方法
     def endGame(self):
         print('谢谢使用')
-        #结束Python解释器
+        # 结束Python解释器
         exit()
 class Tank():       # 坦克类
     def __init__(self):
