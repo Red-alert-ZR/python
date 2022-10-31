@@ -12,19 +12,19 @@ COLOR_BLACK = pygame.Color(0, 0, 0)
 COLOR_RED = pygame.Color(255,0,0)
 version = 'v1.10'
 class MainGame():       #主函数类
-    #游戏主窗口对象
+    # 游戏主窗口对象
     window = None
     SCREEN_WIDTH = 1000 #1720
     SCREEN_HEIGHT = 800 #1000
-    #创建我方坦克
+    # 创建我方坦克
     TANK_P1 = None
-    #存储所有地方坦克
+    # 存储所有地方坦克
     EnemyTank_list = []
-    #要创建的敌方坦克的数量
+    # 要创建的敌方坦克的数量
     EnemyTank_count = 5
     def __init__(self):
         pass
-    #开始游戏方法
+    # 开始游戏方法
     def startGame(self):
         _display.init()   #初始化显示模块
         #创建窗口加载窗口（借鉴官方文档）
