@@ -243,11 +243,11 @@ class EnemyTank(Tank):  # 敌方坦克类
 
 class Bullet():  # 子弹类
     def __init__(self, tank):
-        #图片
+        # 图片
         self.image = pygame.image.load('TankWar-master/images/bullet/bullet.png')
-        #方向（坦克方向）
+        # 方向（坦克方向）
         self.direction = tank.direction
-        #位置
+        # 位置
         self.rect = self.image.get_rect()
         if self.direction == 'U':
             self.rect.left = tank.rect.left + tank.rect.width/2 - self.rect.width/2
