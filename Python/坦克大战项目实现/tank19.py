@@ -409,7 +409,7 @@ class Bullet(BaseItem):  # 子弹类
                 self.live = False
                 eTank.live = False
 
-    #新增子弹与我方坦克的碰撞的方法
+    # 新增子弹与我方坦克的碰撞的方法
     def  hitMyTank(self):
         if pygame.sprite.collide_rect(self, MainGame.TANK_P1):
             #产生爆炸效果，并加入到爆炸效果列表中
