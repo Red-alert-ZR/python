@@ -297,7 +297,7 @@ class Bullet():  # 子弹类
             self.image = self.images[self.direction]
             self.rect.left = tank.rect.left + tank.rect.width / 2 + self.rect.width + 6
             self.rect.top = tank.rect.top + self.rect.height + 4
-        #速度
+        # 速度
         self.speed = 12
         #用来记录子弹是否活着
         self.live = True
