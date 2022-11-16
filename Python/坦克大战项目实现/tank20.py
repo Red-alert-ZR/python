@@ -435,7 +435,7 @@ class Bullet(BaseItem):  # 子弹类
     def displayBullet(self):
         MainGame.window.blit(self.image, self.rect)
 
-    #新增我方子弹碰撞敌方坦克的方法
+    # 新增我方子弹碰撞敌方坦克的方法
     def hitEnemyTank(self):
         for eTank in MainGame.EnemyTank_list:
             if pygame.sprite.collide_rect(eTank, self):
@@ -446,15 +446,15 @@ class Bullet(BaseItem):  # 子弹类
                 self.live = False
                 eTank.live = False
 
-    #新增子弹与我方坦克的碰撞的方法
+    # 新增子弹与我方坦克的碰撞的方法
     def  hitMyTank(self):
         if pygame.sprite.collide_rect(self, MainGame.TANK_P1):
-            #产生爆炸效果，并加入到爆炸效果列表中
+            # 产生爆炸效果，并加入到爆炸效果列表中
             explode = Explode(MainGame.TANK_P1)
             MainGame.Explode_list.append(explode)
-            #修改子弹状态
+            # 修改子弹状态
             self.live = False
-            #修改我方坦克状态
+            # 修改我方坦克状态
             MainGame.TANK_P1.live = False
 
 class Explode():  # 爆炸效果类
