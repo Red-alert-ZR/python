@@ -66,7 +66,7 @@ class MainGame():  # 主函数类
             self.blitBUllet()
             # 调用渲染敌方子弹列表的一个方法
             self.blitEnemyBullet()
-            #调用爆炸效果方法
+            # 调用爆炸效果方法
             self.displayExplodes()
             time.sleep(0.02)
             # 窗口刷新
