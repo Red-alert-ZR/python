@@ -134,7 +134,7 @@ class MainGame():  # 主函数类
     #将爆炸效果加入到窗口中
     def displayExplodes(self):
         for explode in MainGame.Explode_list:
-            #显示爆炸效果
+            # 显示爆炸效果
             if explode.live:
                 explode.displayExplode()
             else:
